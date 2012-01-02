@@ -5,7 +5,14 @@ gem 'rails', '3.1.2'
 # Bundle edge Rails instead:
 # gem 'rails',     :git => 'git://github.com/rails/rails.git'
 
-gem 'sqlite3'
+group :production do
+  gem 'pg'
+  gem 'thin'
+end
+group :development, :test do
+  gem 'sqlite3'
+  gem 'rails-dev-boost', :git => 'git://github.com/thedarkone/rails-dev-boost.git', :require => 'rails_development_boost'
+end
 
 
 # Gems used only for assets and not required

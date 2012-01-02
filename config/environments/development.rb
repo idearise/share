@@ -27,4 +27,7 @@ Share::Application.configure do
 
   # Expands the lines which load the assets
   config.assets.debug = true
+
+  # Turn off helper generator
+  config.generators.helper = false  
 end

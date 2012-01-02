@@ -1,14 +1,104 @@
 <!DOCTYPE html>
-<html>
+<!--[if lt IE 7 ]><html class="ie ie6" lang="en"> <![endif]-->
+<!--[if IE 7 ]><html class="ie ie7" lang="en"> <![endif]-->
+<!--[if IE 8 ]><html class="ie ie8" lang="en"> <![endif]-->
+<!--[if (gte IE 8)|!(IE)]><!--><html lang="en"> <!--<![endif]-->
 <head>
-  <title>Share</title>
-  <%= stylesheet_link_tag    "application" %>
-  <%= javascript_include_tag "application" %>
+
+  <!-- Basic Page Needs
+  ================================================== -->
+  <meta charset="utf-8">
+  <title><%= yield :page_title -%> : <%=t(:site_name)-%></title>
+  <meta name="description" content="<%=t(:site_description)-%>">
+  <meta name="author" content="<%=t(:site_author)-%>">
+  <!--[if lt IE 9]>
+    <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+  <![endif]-->
+
+  <!-- Mobile Specific Metas
+  ================================================== -->
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+  <!-- CSS
+  ================================================== -->
+  <link rel="stylesheet" href="http://twitter.github.com/bootstrap/1.4.0/bootstrap.min.css">
+  <link href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8/themes/base/jquery-ui.css" rel="stylesheet" type="text/css"/>
+  <%= stylesheet_link_tag "application" %>
+  
+  <!-- Favicons
+  ================================================== -->
+  <link rel="shortcut icon" href="/favicon.ico">
+  <link rel="apple-touch-icon" href="/assets/apple-touch-icon.png">
+  <link rel="apple-touch-icon" sizes="72x72" href="/assets/apple-touch-icon-72x72.png">
+  <link rel="apple-touch-icon" sizes="114x114" href="/assets/apple-touch-icon-114x114.png">
+
+  <!-- CSRF Meta Tags
+  ================================================== -->  
   <%= csrf_meta_tags %>
+  
+  <%= yield :include_head -%>
 </head>
-<body>
+<body style="padding-top:40px;">
 
-<%= yield %>
+<section id="header">
+  <div class="topbar">
+    <div class="fill">
+      <div class="container span18">
+        <a class="brand" href="/"><%=t(:site_name)-%></a>
+        <ul class="nav">
+          <li><a href="/sources"><%=t("structure.top.label")-%></a></li>
+          <li><a href="/sources/latest"><%=t("structure.latest.label")-%></a></li>
+          <li><a href="/sources/new"><%=t("structure.submit.label")-%></a></li>
+          <li><a href="#"><%=t("structure.replies.label")-%></a></li>
+        </ul>
+        <p class="pull-right">
+          <%= link_to image_tag("http://placehold.it/10x10"), 
+              "" -%>
+          <%= link_to "Tess Tuser, tess.tuser@test.com", "" -%>
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
 
+<section id="content">
+  <div class="container span18">
+    <%= yield :content_header %>  
+    <%= yield %>
+  </div>
+</section>
+
+<section id="footer">
+  <div class="container span18">
+      <h6><strong>Brought to you by ...</strong></h6>
+      <p>
+        <a href="/about">About this site</a><br/>
+        <a href="/terms_of_service">Terms of service</a>
+      </p>
+    
+      <ul class="block-grid three-up">
+        <li>
+          Google+
+        </li>
+        <li>
+          <iframe allowtransparency="true" frameborder="0" scrolling="no"
+          src="http://platform.twitter.com/widgets/follow_button.html?screen_name=idearisey"
+          style="width:80px; height:20px;"></iframe>
+        </li>
+        <li>
+          Facebook
+        </li>
+      </ul>
+  </div>
+</section>
+
+  <!-- JS ================================================== -->
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.8.16/jquery-ui.min.js"></script>
+  <%= javascript_include_tag "application" -%>
+  <%= yield :include_js -%>
+
+<!-- End Document
+================================================== -->
 </body>
 </html>
