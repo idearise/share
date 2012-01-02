@@ -1,5 +1,25 @@
 Share::Application.routes.draw do
-  root :to => 'home#index'  
+  root :to => 'home#index'
+
+  resources :apps, :only => [:index, :new, :create, :show, :edit, :update, :destroy] do
+    resources :posts, :only => [:new, :create, :show, :edit, :update, :hide] do
+      resources :comments, :only => [:new, :create, :show, :edit, :update, :hide] do
+      end      
+    end
+    collection do
+      get 'popular'
+      get 'recent'
+    end
+  end
+
+  resources :users, :only => [:index, :new, :create, :show, :edit, :update] do
+    member do
+      get 'votes'
+      get 'posts'
+    end
+  end
+
+  get "posts/recent"
   
   # The priority is based upon order of creation:
   # first created -> highest priority.
