@@ -38,65 +38,67 @@
   
   <%= yield :include_head -%>
 </head>
-<body style="padding-top:40px;">
+<body>
 
-<section id="header">
-  <div class="topbar">
-    <div class="fill">
-      <div class="container span18">
-        <a class="brand" href="/"><%=t(:site_name)-%></a>
-        <ul class="nav">
-          <li><a href="/sources"><%=t("structure.top.label")-%></a></li>
-          <li><a href="/sources/latest"><%=t("structure.latest.label")-%></a></li>
-          <li><a href="/sources/new"><%=t("structure.submit.label")-%></a></li>
-          <li><a href="#"><%=t("structure.replies.label")-%></a></li>
-        </ul>
-        <p class="pull-right">
-          <%= link_to image_tag("http://placehold.it/10x10"), 
-              "" -%>
-          <%= link_to "Tess Tuser, tess.tuser@test.com", "" -%>
+<div class="topbar">
+  <div class="fill">
+    <div class="container">
+      <a class="brand" href="/"><%=t(:site_name)-%></a>
+      <ul class="nav">
+        <li><a href="/apps/popular">Popular</a></li>
+        <li><a href="/apps/recent">Recent</a></li>
+        <li><a href="/apps/new">Add</a></li>
+        <li><a href="/apps/">Browse</a></li>        
+      </ul>
+      <form class="pull-left" action="">
+        <input class="span3" type="text" placeholder="Search">
+      </form>        
+      <p class="pull-right">
+        <%= link_to image_tag("http://placehold.it/10x10"), 
+            "/users/1" -%>
+        <%= link_to "Tess | tess.tuser@test.com | 1 pt", "/users/1" -%>
+      </p>
+    </div>
+  </div>
+</div>
+
+<header>
+  <div class="container">
+    <%= yield :content_header %>
+  </div>
+</header>
+
+<div id="content" class="container">
+  <%= yield %>
+</div>
+
+<footer class="footer">
+  <div class="container">
+    <div class="row">
+      <div class="span14">
+        <h6><strong>Brought to you by ...</strong></h6>
+        <p>
+          <a href="/about">About this site</a><br/>
+          <a href="/terms_of_service">Terms of service</a>
+        </p>      
+      </div>
+      <div class="span2">
+        <h6><strong>Follow us</strong></h6>      
+        <p>
+          <a href="">Google+</a><br/>
+          <a href="">Twitter</a><br/>
+          <a href="">Facebook</a>
         </p>
       </div>
     </div>
   </div>
-</section>
+</footer>
 
-<section id="content">
-  <div class="container span18">
-    <%= yield :content_header %>  
-    <%= yield %>
-  </div>
-</section>
-
-<section id="footer">
-  <div class="container span18">
-      <h6><strong>Brought to you by ...</strong></h6>
-      <p>
-        <a href="/about">About this site</a><br/>
-        <a href="/terms_of_service">Terms of service</a>
-      </p>
-    
-      <ul class="block-grid three-up">
-        <li>
-          Google+
-        </li>
-        <li>
-          <iframe allowtransparency="true" frameborder="0" scrolling="no"
-          src="http://platform.twitter.com/widgets/follow_button.html?screen_name=idearisey"
-          style="width:80px; height:20px;"></iframe>
-        </li>
-        <li>
-          Facebook
-        </li>
-      </ul>
-  </div>
-</section>
-
-  <!-- JS ================================================== -->
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
-  <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.8.16/jquery-ui.min.js"></script>
-  <%= javascript_include_tag "application" -%>
-  <%= yield :include_js -%>
+<!-- JS ================================================== -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.8.16/jquery-ui.min.js"></script>
+<%= javascript_include_tag "application" -%>
+<%= yield :include_js -%>
 
 <!-- End Document
 ================================================== -->
