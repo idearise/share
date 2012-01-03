@@ -1,95 +1,214 @@
+<% content_for :page_title do -%>Adding Your App<% end -%>
+<% content_for :content_header do -%>
+<div class="page-header">
+  <h1>Adding Your App <small>Thanks!</small></h1>
+</div>
+<% end -%>
 
-  <div class="hero-unit span8 pull-left">
-    <h1>Popular Apps <small><a href="">more &rarr;</a></small></h1>
-
-    <ul class="media-grid">
-      <li>
-        <a href="#">
-          <img class="thumbnail" src="http://placehold.it/210x210" alt="">
-          <h3>example.com</h3>
-          Added by 
-          <span style="whitespace:nowrap;"><%= image_tag("http://placehold.it/10x10", :style=>"display:inline;") -%> Tess</span>
-        </a>
-      </li>
-      <li>
-        <a href="#">
-          <img class="thumbnail" src="http://placehold.it/210x210" alt="">
-          <h3>anotherapp</h3>
-          Added by
-          <span style="whitespace:nowrap;"><%= image_tag("http://placehold.it/10x10", :style=>"display:inline;") -%> Tess</span>
-        </a>
-      </li>
-    </ul>
-
-    <h2 style="margin-top:20px;margin-bottom:10px;">Recent Posts <small><a href="">more &rarr;</a></small></h2>
-
-    <div style="margin-bottom:20px;">
-      <div class="pull-left"><img src="http://placehold.it/36x36" alt=""></div>
-      <div style="margin-left:46px;">
-        <h4><a href="/apps/1/thread/1">Blog post about authentication issue</a> <small>+10 -4</small> <span class="label">link</span></h4>
-        added 2 hours ago 
-        <span style="whitespace:nowrap;">by <%= image_tag("http://placehold.it/10x10", :style=>"display:inline;") -%> Tess</span> 
-        to example.com
-      </div>
-    </div>
-        
-    <div style="margin-bottom:20px;">
-      <div class="pull-left"><img src="http://placehold.it/36x36" alt=""></div>
-      <div style="margin-left:46px;">
-        <h4><a href="/apps/1/thread/1">Needs a better sign-up process</a> <small>+783 -42</small> <span class="label">topic</span> <span class="label">file</span></h4>
-        added 3 hours ago 
-        <span style="whitespace:nowrap;">by <%= image_tag("http://placehold.it/10x10", :style=>"display:inline;") -%> Jim</span> 
-        to example.com
-      </div>
-    </div>
-
-    <div style="margin-bottom:20px;">
-      <div class="pull-left"><img src="http://placehold.it/36x36" alt=""></div>
-      <div style="margin-left:46px;">
-        <h4><a href="/apps/1/thread/1">iOS versions</a> <small>+3 -0</small> <span class="label">topic</span></h4>
-        added 3 hours ago 
-        <span style="whitespace:nowrap;">by <%= image_tag("http://placehold.it/10x10", :style=>"display:inline;") -%> Jim</span> 
-        to anotherapp
-      </div>
-    </div>
-        
-    <div style="margin-bottom:20px;">
-      <div class="pull-left"><img src="http://placehold.it/36x36" alt=""></div>
-      <div style="margin-left:46px;">
-        <h4><a href="/apps/1/thread/1">What blog app is being used?</a> <small>+20 -0</small> <span class="label">question</span></h4>
-        added 7 hours ago 
-        <span style="whitespace:nowrap;">by <%= image_tag("http://placehold.it/10x10", :style=>"display:inline;") -%> Tess</span> 
-        to stephenpaul.me
-      </div>
-    </div>
-
-    <div style="margin-bottom:20px;">
-      <div class="pull-left"><img src="http://placehold.it/36x36" alt=""></div>
-      <div style="margin-left:46px;">
-        <h4><a href="/apps/1">stephenpaul.me</a> <span class="label">app</span></h4>
-        added 20 hours ago 
-        <span style="whitespace:nowrap;">by <%= image_tag("http://placehold.it/10x10", :style=>"display:inline;") -%> devpopol</span>
-      </div>
-    </div>
+<div class="row">
+  <div class="span4 well panel pull-left">
+    <h2>What's Behind It?</h2>
+    <p>People come to this site to know more about what makes your app tick.</p>
+    <p>We recommend describing the following in the <strong>About</strong> field:</p>
+    <dl>
+      <dt>What your app offers</dt>
+      <dd>Features, functions, data, processes, you name it!</dd>
+      <dt>Who built it</dt>
+      <dd>Tell us about the folks who designed, developed, launched, and support the app.</dd>
+      <dt>How you're spreading the word</dt>
+      <dd>What are you doing to make sure that the right people know about your app?</dd>
+      <dt>Why it's important</dt>
+      <dd>Saving the best for last...</dd>                  
+    </dl>
+    <p>Also, upload a few <strong>Screenshots</strong>!</p>
   </div>
 
-  <div class="span5 well panel pull-right">
-    <h3>Showcase + Discuss + Grow</h3>
-    <ul>
-      <li>Add your app and talk about how you made things work.</li>
-      <li>Get feedback from other developers and web + mobile experts.</li>
-      <li>And expand your userbase!</li>
-    </ul>
-    <a class="btn large primary">Add Your App &rarr;</a>
-    
-    <h3 style="margin-top:25px;">How Did They Do That?</h3>
-    <p>
-      If you're looking for information on how something was done, you've come to the right place!
-    </p>
-    <form action>
-      <div class="clearfix">
-        <input class="span5" id="" name="" type="text" placeholder="Search by app name, techology, or person">
+  <div class="span11 pull-right">
+    <form>
+      <fieldset>
+        <legend>Basic Info</legend>
+        <div class="clearfix">
+          <label for="xlInput">App Name *</label>
+          <div class="input">
+            <input class="span5" id="xlInput" name="xlInput" size="30" type="text">
+            <span class="help-block">Use your app's name or domain name. We suggest keeping it to 30 characters or less.</span>
+          </div>
+        </div><!-- /clearfix -->
+        <div class="clearfix">
+          <label for="prependedInput">Web site</label>
+          <div class="input">
+            <div class="input-prepend">
+              <span class="add-on">http://</span>
+              <input class="span5" id="prependedInput" name="prependedInput" size="16" type="text" placeholder="domain/page">
+            </div>
+          </div>
+        </div>        
+        <div class="clearfix">
+          <label for="textarea">About *</label>
+          <div class="input">
+            <textarea class="span8" id="textarea2" name="textarea2" rows="12"></textarea>
+            <span class="help-block">
+              Describe what your app offers, who built it, how your spreading the word about it, and why it's important.
+            </span>
+          </div>
+        </div><!-- /clearfix -->        
+        <div class="clearfix">
+          <label id="optionsCheckboxes">User Platforms *</label>
+          <div class="input">
+            <ul class="inputs-list">
+              <li>
+                <label>
+                  <input type="checkbox" name="optionsCheckboxes" value="option1">
+                  <span>Web</span>
+                </label>
+              </li>
+              <li>
+                <label>
+                  <input type="checkbox" name="optionsCheckboxes" value="option2">
+                  <span>Android</span>
+                </label>
+              </li>              
+              <li>
+                <label>
+                  <input type="checkbox" name="optionsCheckboxes" value="option2">
+                  <span>iOS</span>
+                </label>
+              </li>
+              <li>
+                <label>
+                  <input type="checkbox" name="optionsCheckboxes" value="option2">
+                  <span>Windows Phone</span>
+                </label>
+              </li>
+              <li>
+                <label class="disabled">
+                  <input type="checkbox" name="optionsCheckboxes" value="option2">
+                  <span>Windows</span>
+                </label>
+              </li>
+              <li>
+                <label class="disabled">
+                  <input type="checkbox" name="optionsCheckboxes" value="option2">
+                  <span>OS X</span>
+                </label>
+              </li>              
+              <li>
+                <label class="disabled">
+                  <input type="checkbox" name="optionsCheckboxes" value="option2">
+                  <span>Linux</span>
+                </label>
+              </li>
+            </ul>
+            <span class="help-block">
+              <strong>Note:</strong> Choose one or more.
+            </span>
+          </div>
+        </div><!-- /clearfix -->
+        <div class="clearfix">
+          <label id="optionsCheckboxes">User Devices *</label>
+          <div class="input">
+            <ul class="inputs-list">
+              <li>
+                <label>
+                  <input type="checkbox" name="optionsCheckboxes" value="option1">
+                  <span>Laptop / Desktop</span>
+                </label>
+              </li>
+              <li>
+                <label>
+                  <input type="checkbox" name="optionsCheckboxes" value="option2">
+                  <span>Tablet</span>
+                </label>
+              </li>              
+              <li>
+                <label>
+                  <input type="checkbox" name="optionsCheckboxes" value="option2">
+                  <span>Phone</span>
+                </label>
+              </li>
+            </ul>
+            <span class="help-block">
+              <strong>Note:</strong> Choose one or more.
+            </span>
+          </div>
+        </div><!-- /clearfix -->
+        <div class="clearfix">
+          <label for="fileInput">Screenshots</label>
+          <div class="input">
+            <input class="input-file" id="fileInput" name="fileInput" type="file">
+          </div>
+        </div><!-- /clearfix -->        
+      </fieldset>
+         
+      <fieldset class="add-top">
+        <legend>Other Details</legend>
+        <div class="clearfix">
+          <label for="textarea">Technical Info</label>
+          <div class="input">
+            <textarea class="span8" id="textarea2" name="textarea2" rows="4"></textarea>
+            <span class="help-block">
+              Enter the different types of technology being used, such as languages, frameworks, and libraries. 
+            </span>
+          </div>
+        </div><!-- /clearfix -->
+        <div class="clearfix">
+          <label for="textarea">Thanks To</label>
+          <div class="input">
+            <textarea class="span8" id="textarea2" name="textarea2" rows="4"></textarea>
+            <span class="help-block">
+              Mention all the people you'd like to thank for helping make your app what it is today!
+            </span>
+          </div>
+        </div><!-- /clearfix --> 
+        <div class="clearfix">
+          <label for="prependedInput">Twitter</label>
+          <div class="input">
+            <div class="input-prepend">
+              <span class="add-on">@</span>
+              <input class="span3" id="prependedInput" name="prependedInput" size="16" type="text" placeholder="accountname">
+            </div>
+          </div> 
+        </div>
+        <div class="clearfix">
+          <label for="prependedInput">Facebook</label>
+          <div class="input">
+            <div class="input-prepend">
+              <span class="add-on">http://www.facebook.com/</span>
+              <input class="span5" id="prependedInput" name="prependedInput" size="16" type="text" placeholder="page">
+            </div>
+          </div>
+        </div>
+        <div class="clearfix">
+          <label for="prependedInput">Google+</label>
+          <div class="input">
+            <div class="input-prepend">
+              <span class="add-on">https://plus.google.com/</span>
+              <input class="span5" id="prependedInput" name="prependedInput" size="16" type="text" placeholder="uniqueid/posts">
+            </div>
+          </div>
+        </div>
+        <div class="clearfix">
+          <label for="prependedInput">Android Market</label>
+          <div class="input">
+            <div class="input-prepend">
+              <span class="add-on">https://market.android.com/</span>
+              <input class="span5" id="prependedInput" name="prependedInput" size="16" type="text" placeholder="page">
+            </div>
+          </div>
+        </div>
+        <div class="clearfix">
+          <label for="prependedInput">iTunes App Store</label>
+          <div class="input">
+            <div class="input-prepend">
+              <span class="add-on">http://itunes.apple.com/</span>
+              <input class="span5" id="prependedInput" name="prependedInput" size="16" type="text" placeholder="page">
+            </div>
+          </div>
+        </div>
+      </fieldset>
+      <div class="actions">
+        <input type="submit" class="btn" value="Preview">&nbsp;<input type="submit" class="btn primary half-left" value="Save">
       </div>
-      <a class="btn large primary">Find An App &rarr;</a>
     </form>
   </div>
+</div>
