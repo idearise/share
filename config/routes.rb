@@ -12,6 +12,7 @@ Share::Application.routes.draw do
     collection do
       get 'popular'
       get 'recent'
+      get '1-example-com' => 'apps#show'
     end
   end
 

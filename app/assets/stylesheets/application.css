@@ -41,6 +41,7 @@ label { font-weight: bold; }
 }
 
 .post-summary { margin-left:46px; }
+.post-summary h4 { line-height: 16px; margin-top: 10px; margin-bottom: 10px; }
 
 
 /* Layout classes */
