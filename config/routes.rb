@@ -1,6 +1,9 @@
 Share::Application.routes.draw do
   root :to => 'home#index'
 
+  get "home/about"
+  get "home/terms_of_service"
+
   resources :apps, :only => [:index, :new, :create, :show, :edit, :update, :destroy] do
     resources :posts, :only => [:new, :create, :show, :edit, :update, :hide] do
       resources :comments, :only => [:new, :create, :show, :edit, :update, :hide] do

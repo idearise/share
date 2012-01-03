@@ -1,95 +1,76 @@
-
-  <div class="hero-unit span8 pull-left">
-    <h1>Popular Apps <small><a href="">more &rarr;</a></small></h1>
-
-    <ul class="media-grid">
-      <li>
-        <a href="#">
-          <img class="thumbnail" src="http://placehold.it/210x210" alt="">
-          <h3>example.com</h3>
-          Added by 
-          <span style="whitespace:nowrap;"><%= image_tag("http://placehold.it/10x10", :style=>"display:inline;") -%> Tess</span>
-        </a>
-      </li>
-      <li>
-        <a href="#">
-          <img class="thumbnail" src="http://placehold.it/210x210" alt="">
-          <h3>anotherapp</h3>
-          Added by
-          <span style="whitespace:nowrap;"><%= image_tag("http://placehold.it/10x10", :style=>"display:inline;") -%> Tess</span>
-        </a>
-      </li>
-    </ul>
-
-    <h2 style="margin-top:20px;margin-bottom:10px;">Recent Posts <small><a href="">more &rarr;</a></small></h2>
-
-    <div style="margin-bottom:20px;">
-      <div class="pull-left"><img src="http://placehold.it/36x36" alt=""></div>
-      <div style="margin-left:46px;">
-        <h4><a href="/apps/1/thread/1">Blog post about authentication issue</a> <small>+10 -4</small> <span class="label">link</span></h4>
-        added 2 hours ago 
-        <span style="whitespace:nowrap;">by <%= image_tag("http://placehold.it/10x10", :style=>"display:inline;") -%> Tess</span> 
-        to example.com
-      </div>
-    </div>
-        
-    <div style="margin-bottom:20px;">
-      <div class="pull-left"><img src="http://placehold.it/36x36" alt=""></div>
-      <div style="margin-left:46px;">
-        <h4><a href="/apps/1/thread/1">Needs a better sign-up process</a> <small>+783 -42</small> <span class="label">topic</span> <span class="label">file</span></h4>
-        added 3 hours ago 
-        <span style="whitespace:nowrap;">by <%= image_tag("http://placehold.it/10x10", :style=>"display:inline;") -%> Jim</span> 
-        to example.com
-      </div>
-    </div>
-
-    <div style="margin-bottom:20px;">
-      <div class="pull-left"><img src="http://placehold.it/36x36" alt=""></div>
-      <div style="margin-left:46px;">
-        <h4><a href="/apps/1/thread/1">iOS versions</a> <small>+3 -0</small> <span class="label">topic</span></h4>
-        added 3 hours ago 
-        <span style="whitespace:nowrap;">by <%= image_tag("http://placehold.it/10x10", :style=>"display:inline;") -%> Jim</span> 
-        to anotherapp
-      </div>
-    </div>
-        
-    <div style="margin-bottom:20px;">
-      <div class="pull-left"><img src="http://placehold.it/36x36" alt=""></div>
-      <div style="margin-left:46px;">
-        <h4><a href="/apps/1/thread/1">What blog app is being used?</a> <small>+20 -0</small> <span class="label">question</span></h4>
-        added 7 hours ago 
-        <span style="whitespace:nowrap;">by <%= image_tag("http://placehold.it/10x10", :style=>"display:inline;") -%> Tess</span> 
-        to stephenpaul.me
-      </div>
-    </div>
-
-    <div style="margin-bottom:20px;">
-      <div class="pull-left"><img src="http://placehold.it/36x36" alt=""></div>
-      <div style="margin-left:46px;">
-        <h4><a href="/apps/1">stephenpaul.me</a> <span class="label">app</span></h4>
-        added 20 hours ago 
-        <span style="whitespace:nowrap;">by <%= image_tag("http://placehold.it/10x10", :style=>"display:inline;") -%> devpopol</span>
-      </div>
-    </div>
-  </div>
-
-  <div class="span5 well panel pull-right">
-    <h3>Showcase + Discuss + Grow</h3>
-    <ul>
-      <li>Add your app and talk about how you made things work.</li>
-      <li>Get feedback from other developers and web + mobile experts.</li>
-      <li>And expand your userbase!</li>
-    </ul>
+<% content_for :page_title do -%>Recent Apps<% end -%>
+<% content_for :content_header do -%>
+<div class="page-header">
+  <div class="span3 pull-right">
     <a class="btn large primary">Add Your App &rarr;</a>
-    
-    <h3 style="margin-top:25px;">How Did They Do That?</h3>
-    <p>
-      If you're looking for information on how something was done, you've come to the right place!
-    </p>
-    <form action>
-      <div class="clearfix">
-        <input class="span5" id="" name="" type="text" placeholder="Search by app name, techology, or person">
-      </div>
-      <a class="btn large primary">Find An App &rarr;</a>
-    </form>
   </div>
+
+  <h1>Recent Apps <small>page 1 of 1 &bull; 6 total</small></h1>
+</div>
+<% end -%>
+
+<div class="span16 pull-left">
+  <ul class="pills">
+    <li class="active"><a href="#">7 days</a></li>
+    <li><a href="#">2 weeks</a></li>
+    <li><a href="#">30 days</a></li>
+  </ul>
+
+  <ul class="media-grid">
+    <li>
+      <a href="/apps/1-example-com">
+        <img class="thumbnail" src="http://placehold.it/210x210" alt="">
+        <h3>example.com</h3>
+        30 Posts &bull; 
+        <span class="nowrap"><%= image_tag("http://placehold.it/10x10", :class=>"inline") -%> Tess</span>
+      </a>
+    </li>
+    <li>
+      <a href="#">
+        <img class="thumbnail" src="http://placehold.it/210x210" alt="">
+        <h3>anotherapp</h3>
+        10 Posts &bull; 
+        <span class="nowrap"><%= image_tag("http://placehold.it/10x10", :class=>"inline") -%> Tess</span>
+      </a>
+    </li>
+    <li>
+      <a href="#">
+        <img class="thumbnail" src="http://placehold.it/210x210" alt="">
+        <h3>stephenpaul.me</h3>
+        8 Posts &bull; 
+        <span class="nowrap"><%= image_tag("http://placehold.it/10x10", :class=>"inline") -%> devpopol</span>
+      </a>
+    </li>
+    <li>
+      <a href="#">
+        <img class="thumbnail" src="http://placehold.it/210x210" alt="">
+        <h3>nextbigthingapp</h3>
+        120 Posts &bull; 
+        <span class="nowrap"><%= image_tag("http://placehold.it/10x10", :class=>"inline") -%> Tess</span>
+      </a>
+    </li>
+    <li>
+      <a href="#">
+        <img class="thumbnail" src="http://placehold.it/210x210" alt="">
+        <h3>windowsapp</h3>
+        29 Posts &bull; 
+        <span class="nowrap"><%= image_tag("http://placehold.it/10x10", :class=>"inline") -%> Tess</span>
+      </a>
+    </li>
+    <li>
+      <a href="#">
+        <img class="thumbnail" src="http://placehold.it/210x210" alt="">
+        <h3>iosapp</h3>
+        19 Posts &bull; 
+        <span class="nowrap"><%= image_tag("http://placehold.it/10x10", :class=>"inline") -%> Tess</span>
+      </a>
+    </li>
+  </ul>
+  <div class="pagination">
+    <ul>
+      <li class="prev disabled"><a href="#">&larr; Previous</a></li>
+      <li class="active"><a href="#">1</a></li>
+      <li class="next disabled"><a href="#">Next &rarr;</a></li>
+    </ul>
+  </div>    
+</div>
