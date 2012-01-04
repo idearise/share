@@ -7,7 +7,7 @@ Share::Application.routes.draw do
   resources :apps, :only => [:index, :new, :create, :show, :edit, :update, :destroy] do
     resources :posts, :only => [:new, :create, :show, :edit, :update, :hide] do
       resources :comments, :only => [:new, :create, :show, :edit, :update, :hide] do
-      end      
+      end
     end
     collection do
       get 'popular'
@@ -24,6 +24,7 @@ Share::Application.routes.draw do
   end
 
   get "posts/recent"
+  get "apps/1-example-com/posts/1" => 'posts#show'
   
   # The priority is based upon order of creation:
   # first created -> highest priority.
