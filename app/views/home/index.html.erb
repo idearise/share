@@ -1,77 +1,111 @@
+<!-- HANDLEBARS TEMPLATES-->
+<script id="recent_source" type="text/x-handlebars-template">
+<a href="{{url}}">
+  <img class="thumbnail" src="http://placehold.it/210x210" alt="">
+  <h3>{{domain}}</h3>
+  <span class="nowrap"><%= image_tag("http://placehold.it/10x10", :class=>"inline") -%> {{user_id}}</span>
+</a>
+</script>
+
+<script id="featured_source" type="text/x-handlebars-template">
+
+<a href="{{url}}">
+  <img class="thumbnail" src="http://placehold.it/210x210" alt="">
+  <h3>{{title}}</h3>
+  {{comments}} Posts
+</a>
+</script>
+
+<script id="latest_source" type="text/x-handlebars-template">
+<div class="add-bottom">
+  <div class="pull-left"><img src="http://placehold.it/36x36" alt=""></div>
+  <div class="post-summary">
+    <h4><a href="{{url}}">{{title}}</a> <small>+{{up}} -{{down}}</small> <span class="label"><a href="{{url}}">link</a></span></h4>
+    {{created_at}}
+    <span class="nowrap">by <%= image_tag("http://placehold.it/10x10", :class=>"inline") -%> {{user_id}}</span> 
+    in {{domain}} 
+    &bull; {{comments}} responses
+  </div>
+</div>
+</script>
+<!-- END HANDLEBARS TEMPLATES-->
+
+<% content_for :include_js do %>
+<script type="text/javascript">
+$(document).ready(function() {
+	Signalike.Source.latest({
+		success: function (sources) {
+			var source   = $("#featured_source").html();
+			var template = Handlebars.compile(source);
+			//sources.items is the list of sources
+			//sources.total is the number of sources in the list
+			var compiled = [];
+			var limit = 4;
+			var i;
+			limit = Math.min(limit,sources.items.length);
+			for(var x = 0; x < limit; x++) {
+				i = sources.items[x];
+				compiled.push('<li>' + template(i) + '</li>');
+			}
+			
+			$('#popular_container').html('<ul class="media-grid">'+ compiled.join('') + '</ul>');
+			
+			console.log(sources);
+			//get the handlebar template
+			source   = $("#latest_source").html();
+			template = Handlebars.compile(source);
+			//sources.items is the list of sources
+			//sources.total is the number of sources in the list
+			compiled = [];
+			$.each(sources.items, function (idx, i) {
+				compiled.push(template(i));
+				// (new Signalike.Source(i.id)).fetch({
+				// 	success: function (d) {
+				// 		console.log(d);
+				// 		
+				// 	}
+				// });
+			});
+			
+			$('#latest_sources_list').html(compiled.join(''));
+		}
+	});
+	Signalike.Source.latest({
+		success: function (sources) {
+			console.log(sources);
+			//get the handlebar template
+			//
+			var source   = $("#recent_source").html();
+			var template = Handlebars.compile(source);
+			//sources.items is the list of sources
+			//sources.total is the number of sources in the list
+			var compiled = [];
+			var limit = 3;
+			var i;
+			limit = Math.min(limit,sources.items.length);
+			for(var x = 0; x < limit; x++) {
+				i = sources.items[x];
+				compiled.push('<li>' + template(i) + '</li>');
+			}
+			
+			$('#recent_container').html('<ul class="media-grid">'+ compiled.join('') + '</ul>');
+			
+		}
+	});
+});
+</script>
+<% end %>
 <div class="row">
   <div class="hero-unit panel span8 pull-left">
     <h1>Popular Apps <small><strong><a href="/apps/popular">more &rarr;</a></strong></small></h1>
-
-    <ul class="media-grid">
-      <li>
-        <a href="/apps/1-example-com">
-          <img class="thumbnail" src="http://placehold.it/210x210" alt="">
-          <h3>example.com</h3>
-          30 Posts
-        </a>
-      </li>
-      <li>
-        <a href="#">
-          <img class="thumbnail" src="http://placehold.it/210x210" alt="">
-          <h3>anotherapp</h3>
-          10 Posts
-        </a>
-      </li>
-    </ul>
+	<div id="popular_container">
+		Loading..
+	</div>
 
     <h2 class="add-top half-bottom">Popular Posts <small><strong><a href="/posts/recent">more &rarr;</a></strong></small></h2>
-    <div class="add-bottom">
-      <div class="pull-left"><img src="http://placehold.it/36x36" alt=""></div>
-      <div class="post-summary">
-        <h4><a href="/apps/1/post/1">Blog post about authentication issue</a> <small>+10 -4</small> <span class="label">link</span></h4>
-        2 hours ago 
-        <span class="nowrap">by <%= image_tag("http://placehold.it/10x10", :class=>"inline") -%> Tess</span> 
-        in example.com 
-        &bull; 2 responses
-      </div>
-    </div>
-        
-    <div class="add-bottom">
-      <div class="pull-left"><img src="http://placehold.it/36x36" alt=""></div>
-      <div class="post-summary">
-        <h4><a href="/apps/1/post/1">Needs a better sign-up process</a> <small>+783 -42</small> <span class="label">topic</span> <span class="label">file</span></h4>
-        3 hours ago 
-        <span class="nowrap">by <%= image_tag("http://placehold.it/10x10", :class=>"inline") -%> Jim</span> 
-        in example.com 
-        &bull; 1034 responses
-      </div>
-    </div>
-
-    <div class="add-bottom">
-      <div class="pull-left"><img src="http://placehold.it/36x36" alt=""></div>
-      <div class="post-summary">
-        <h4><a href="/apps/1/post/1">iOS versions</a> <small>+3 -0</small> <span class="label">topic</span></h4>
-        3 hours ago 
-        <span class="nowrap">by <%= image_tag("http://placehold.it/10x10", :class=>"inline") -%> Jim</span> 
-        in anotherapp 
-        &bull; 1 response1
-      </div>
-    </div>
-        
-    <div class="add-bottom">
-      <div class="pull-left"><img src="http://placehold.it/36x36" alt=""></div>
-      <div class="post-summary">
-        <h4><a href="/apps/1/post/1">What blog app is being used?</a> <small>+20 -0</small> <span class="label">question</span></h4>
-        7 hours ago 
-        <span class="nowrap">by <%= image_tag("http://placehold.it/10x10", :class=>"inline") -%> Tess</span> 
-        in stephenpaul.me 
-        &bull; 5 responses
-      </div>
-    </div>
-
-    <div class="add-bottom">
-      <div class="pull-left"><img src="http://placehold.it/36x36" alt=""></div>
-      <div class="post-summary">
-        <h4><a href="/apps/1">stephenpaul.me</a> <span class="label">app</span></h4>
-        20 hours ago 
-        <span class="nowrap">by <%= image_tag("http://placehold.it/10x10", :class=>"inline") -%> devpopol</span>
-      </div>
-    </div>
+    <div id="latest_sources_list">
+	  Loading...
+	</div>
 
   </div>
 
@@ -100,14 +134,8 @@
 
   <div class="span5 well panel pull-right">
     <h2 class="half-bottom">Recent Apps <small><a href="/posts/recent">more &rarr;</a></small></h2>
-    <ul class="media-grid">
-      <li>
-        <a href="#">
-          <img class="thumbnail" src="http://placehold.it/210x210" alt="">
-          <h3>stephenpaul.me</h3>
-          <span class="nowrap"><%= image_tag("http://placehold.it/10x10", :class=>"inline") -%> devpopol</span>
-        </a>
-      </li>
-    </ul>
+    <div id="recent_container">
+	  Loading...
+	</div>
   </div>  
 </div>
