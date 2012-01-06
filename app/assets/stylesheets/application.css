@@ -56,7 +56,11 @@ body {
   -moz-box-shadow: 0 2px 2px rgba(0,0,0,0.25);     
 }
 .hero-unit h1 { font-size: 58px; color: #eee; text-shadow: 1px 1px 2px #000; }
-.hero-unit h1 a { color: #009EFF; text-shadow: 1px 1px 2px #000; }
+.hero-unit h2 { color: #EEE; text-shadow: 1px 1px 2px #000; }
+.hero-unit a { color: #0AE; }
+.hero-unit h1 a { color: #0AE; text-shadow: 1px 1px 2px #000; }
+.hero-unit h4 a { color: #EEE; text-shadow: 1px 1px 2px #000; }
+
 /*.media-grid a { background: url('polaroid.png'); }*/
 .media-grid a { background: #FFFFFF; }
 
@@ -93,3 +97,5 @@ label { font-weight: bold; }
 .no-top { margin-top: 0px !important; padding-top: 0px !important; }
 .add-left { margin-left: 20px !important; }
 .half-left { margin-left: 10px !important; }
+
+li .black { color: #404040 !important; }
