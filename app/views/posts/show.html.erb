@@ -16,7 +16,11 @@
 </div>
 <% end -%>
 
-<div class="span7 pull-left">
+<div class="span7 pull-left"> 
+  <p>Lorem ipsum dolor sit amet, pri quot fuisset mnesarchum ea. Cum odio inciderint no, eu putant verear sit, qui posse eripuit no. Fugit appetere his an. Delectus insolens at quo, mei invidunt adipisci temporibus ad.</p>
+  <p>Pri omnes denique cu, modus graeci eu pri. Ne suas esse atqui mei, inimicus pertinacia dissentiunt ut has. His et equidem senserit. Cu blandit reprimique est, nam an liber neglegentur. Alii option ocurreret eu sit, vix suas homero aeterno ad.</p>
+  <p>Lorem ipsum dolor sit amet, pri quot fuisset mnesarchum ea. Cum odio inciderint no, eu putant verear sit, qui posse eripuit no. Fugit appetere his an. Delectus insolens at quo, mei invidunt adipisci temporibus ad.</p>
+  <p>Pri omnes denique cu, modus graeci eu pri. Ne suas esse atqui mei, inimicus pertinacia dissentiunt ut has. His et equidem senserit. Cu blandit reprimique est, nam an liber neglegentur. Alii option ocurreret eu sit, vix suas homero aeterno ad.</p>
   <h3>Link</h3>
   <ul>
     <li><a href="">http://www.example.com/</a></li>
@@ -25,16 +29,12 @@
   <ul>
     <li><a href="">Architecture Overview.pptx</a></li>
     <li><a href="">Conference Presentation.pptx</a></li>
-  </ul>  
-  <p>Lorem ipsum dolor sit amet, pri quot fuisset mnesarchum ea. Cum odio inciderint no, eu putant verear sit, qui posse eripuit no. Fugit appetere his an. Delectus insolens at quo, mei invidunt adipisci temporibus ad.</p>
-  <p>Pri omnes denique cu, modus graeci eu pri. Ne suas esse atqui mei, inimicus pertinacia dissentiunt ut has. His et equidem senserit. Cu blandit reprimique est, nam an liber neglegentur. Alii option ocurreret eu sit, vix suas homero aeterno ad.</p>
-  <p>Lorem ipsum dolor sit amet, pri quot fuisset mnesarchum ea. Cum odio inciderint no, eu putant verear sit, qui posse eripuit no. Fugit appetere his an. Delectus insolens at quo, mei invidunt adipisci temporibus ad.</p>
-  <p>Pri omnes denique cu, modus graeci eu pri. Ne suas esse atqui mei, inimicus pertinacia dissentiunt ut has. His et equidem senserit. Cu blandit reprimique est, nam an liber neglegentur. Alii option ocurreret eu sit, vix suas homero aeterno ad.</p>
+  </ul>   
 </div>
 
 <div class="span8 pull-right">
   <div class="pull-right">
-    <a href="#" class="btn small primary">Add Response</a>
+    <a href="#" data-controls-modal="modal-add-response" data-backdrop="static" class="btn small primary">Add Response</a>
   </div>
   
   <h2 class="add-bottom">Responses <small>5 responses</small></h2> 
@@ -192,3 +192,25 @@
 
 </div>
 
+<div id="modal-add-response" class="modal hide fade" style="display: none; ">
+  <div class="modal-header">
+    <a href="#" class="close">×</a>
+    <h3>Add Response</h3>
+  </div>
+  <div class="modal-body">
+    <form>
+      <fieldset>  
+        <div class="clearfix">
+          <label for="textarea">Text</label>
+          <div class="input">
+            <textarea class="span6" id="textarea2" name="textarea2" rows="12"></textarea>
+          </div>
+        </div><!-- /clearfix -->        
+      </fieldset>
+    </form>
+  </div>
+  <div class="modal-footer">
+    <a href="#" class="btn primary">Save</a>
+    <a href="#" class="btn secondary">Preview</a>
+  </div>
+</div>

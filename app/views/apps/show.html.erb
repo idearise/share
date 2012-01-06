@@ -60,7 +60,7 @@
 
 <div class="span8 pull-right">
   <div class="pull-right">
-    <a href="#" class="btn small primary">Add Post</a>
+    <a href="#" data-controls-modal="modal-add-post" data-backdrop="static" class="btn small primary">Add Post</a>
   </div>
   
   <h2>Posts <small>page 1 of 3 &bull; 30 posts</small></h2>
@@ -180,5 +180,46 @@
       <li class="next"><a href="#">Next &rarr;</a></li>
     </ul>
   </div>   
+</div>
+
+<div id="modal-add-post" class="modal hide fade" style="display: none; ">
+  <div class="modal-header">
+    <a href="#" class="close">×</a>
+    <h3>Add Post</h3>
+  </div>
+  <div class="modal-body">
+    <form>
+      <fieldset>
+        <div class="clearfix">
+          <label for="xlInput">Title *</label>
+          <div class="input">
+            <input class="span5" id="xlInput" name="xlInput" size="30" type="text">
+          </div>
+        </div><!-- /clearfix -->
+        <div class="clearfix">
+          <label for="prependedInput">Link</label>
+          <div class="input">
+            <input class="span5" id="prependedInput" name="prependedInput" size="16" type="text" placeholder="">
+          </div>
+        </div>        
+        <div class="clearfix">
+          <label for="fileInput">Files</label>
+          <div class="input">
+            <input class="input-file" id="fileInput" name="fileInput" type="file">
+          </div>
+        </div><!-- /clearfix -->        
+        <div class="clearfix">
+          <label for="textarea">Text</label>
+          <div class="input">
+            <textarea class="span6" id="textarea2" name="textarea2" rows="12"></textarea>
+          </div>
+        </div><!-- /clearfix -->        
+      </fieldset>
+    </form>
+  </div>
+  <div class="modal-footer">
+    <a href="#" class="btn primary">Save</a>
+    <a href="#" class="btn secondary">Preview</a>
+  </div>
 </div>
 
