@@ -14,6 +14,10 @@ group :development, :test do
   gem 'rails-dev-boost', :git => 'git://github.com/thedarkone/rails-dev-boost.git', :require => 'rails_development_boost'
 end
 
+gem 'omniauth'
+gem 'omniauth-openid'
+gem 'omniauth-facebook', :git => 'git://github.com/mkdynamic/omniauth-facebook.git'
+gem 'recaptcha', :require => 'recaptcha/rails'
 
 # Gems used only for assets and not required
 # in production environments by default.

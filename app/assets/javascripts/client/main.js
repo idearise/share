@@ -7,7 +7,7 @@
 //namespace
 //use handlebars;
 var Signalike = {
-	endPoint: 'http://localhost:3000/api/v1', //this should probably be in a yaml configuration file
+	endPoint: 'http://192.168.1.9:8081/api/v1', //this should probably be in a yaml configuration file
 	urlFor: function () {
 		if (arguments.length == 0) {
 			throw(new Error("1 or more arguments required"));

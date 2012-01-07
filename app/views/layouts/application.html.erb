@@ -54,21 +54,19 @@
       <form class="pull-left" action="">
         <input class="span3" type="text" placeholder="Search">
       </form>
-      <!-- FIXME Hack for wireframing and randomly showing login options or user info //-->
-      <% show_login = Random.rand(2) -%>
-      <% if show_login == 1 -%>
+      <% if user_signed_in? -%>
+      <p class="pull-right">
+      <%= link_to image_tag("#{current_user.picture(10)}"), 
+          main_app.user_path(current_user) -%>
+      <%= link_to "#{current_user.nickname} | #{current_user.email} | 1 pt", main_app.user_path(current_user) -%>
+      </p>
+      <% else -%>
       <p class="pull-right">
         <%= link_to "Login With", "/signin" -%> 
         <a href="/auth/facebook" title="Facebook"><%= image_tag('facebook_32.png', :height=>"22", :width=>"22", :style=>"vertical-align:sub;") -%></a> 
         <a href="/auth/google" title="Google"><%= image_tag('google_32.png', :height=>"22", :width=>"22", :style=>"vertical-align:sub;") -%></a> 
         <a href="/auth/yahoo" title="Yahoo!"><%= image_tag('yahoo_32.png', :height=>"22", :width=>"22", :style=>"vertical-align:sub;") -%></a>
       </p>
-      <% else -%>
-        <p class="pull-right">
-        <%= link_to image_tag("http://placehold.it/10x10"), 
-            "/users/1" -%>
-        <%= link_to "Tess | tess.tuser@test.com | 1 pt", "/users/1" -%>
-        </p>
       <% end -%>
     </div>
   </div>
