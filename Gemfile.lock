@@ -54,6 +54,7 @@ GEM
       execjs
     coffee-script-source (1.2.0)
     daemons (1.1.5)
+    dynamic_form (1.1.4)
     erubis (2.7.0)
     eventmachine (0.12.10)
     execjs (1.2.13)
@@ -154,6 +155,7 @@ PLATFORMS
 
 DEPENDENCIES
   coffee-rails (~> 3.1.1)
+  dynamic_form
   jquery-rails
   omniauth
   omniauth-facebook!

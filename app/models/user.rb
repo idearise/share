@@ -9,6 +9,7 @@ class User < ActiveRecord::Base
 
   # ASSOCIATIONS
   has_many :services
+  has_many :apps
 
   # CALLBACKS
 

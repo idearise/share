@@ -11,7 +11,48 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120107015009) do
+ActiveRecord::Schema.define(:version => 20120109044005) do
+
+  create_table "apps", :force => true do |t|
+    t.string   "name"
+    t.string   "website"
+    t.text     "about"
+    t.text     "thanks_to"
+    t.string   "twitter"
+    t.string   "facebook"
+    t.string   "google_plus"
+    t.string   "android"
+    t.string   "itunes"
+    t.integer  "user_id"
+    t.integer  "created_by"
+    t.string   "created_ip",  :limit => 39
+    t.integer  "updated_by"
+    t.string   "updated_ip",  :limit => 39
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "apps", ["created_at"], :name => "index_apps_on_created_at"
+  add_index "apps", ["created_by"], :name => "index_apps_on_created_by"
+  add_index "apps", ["updated_at"], :name => "index_apps_on_updated_at"
+  add_index "apps", ["updated_by"], :name => "index_apps_on_updated_by"
+
+  create_table "client_platforms", :force => true do |t|
+    t.integer  "platform_id"
+    t.integer  "app_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "client_platforms", ["created_at"], :name => "index_client_platforms_on_created_at"
+  add_index "client_platforms", ["updated_at"], :name => "index_client_platforms_on_updated_at"
+
+  create_table "platforms", :force => true do |t|
+    t.string   "name"
+    t.integer  "display_order", :default => 1
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "services", :force => true do |t|
     t.integer  "user_id"
