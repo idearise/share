@@ -1,0 +1,130 @@
+<%= form_for app, {:url => form_url } do |app_form| -%>
+<%= app_form.error_messages :header_tag => :h4, 
+                 :header_message => "The following issues kept the App from being added:", 
+                 :message => nil,
+                 :class => "alert-message block-message error" -%>
+  <fieldset>
+    <legend>App Information</legend>
+    <div class="clearfix">
+      <%= label_tag(:app_name, "App Name *") -%>
+      <div class="input">
+        <%= app_form.text_field :name, {:maxlength => 30, :class => "span5"} -%>
+        <span class="help-block">Use your app's name or domain name. We suggest keeping it to 30 characters or less.</span>
+      </div>
+    </div><!-- /clearfix -->
+    <div class="clearfix">
+    <%= label_tag(:app_website, "Web Site") -%>
+      <div class="input">
+        <div class="input-prepend">
+          <span class="add-on">http://</span>
+          <%= app_form.text_field :website, {:maxlength => 30, :class => "span5", :placeholder=>"domain/page"} -%>
+        </div>
+      </div>
+    </div><!-- /clearfix -->
+  <%#= label_tag(:source_text, "Text") -%>
+  <%#= source_form.text_area :text, {:size => "80x12", :style => "width:99%"} -%>
+
+    <div class="clearfix">
+      <%= label_tag(:app_about, "About *") -%>
+      <div class="input">
+        <%= app_form.text_area :about, {:size => "80x12", :class => "span8"} -%>
+        <span class="help-block">
+          Describe what your app offers, what's in it, who built it, how your spreading the word about it, and why it's important. 4000 character max length.
+        </span>
+      </div>
+    </div><!-- /clearfix -->        
+    <div class="clearfix">
+      <label id="optionsCheckboxes">User Platforms *</label>
+      <div class="input">
+        <ul class="inputs-list">
+          <% @platforms.each do |p| -%>
+          <li>
+            <label>
+              <input type="checkbox" name="optionsCheckboxes" value="option1">
+              <%= check_box_tag :platform_ids, p.id, @app.platforms.include?(p), :name => 'app[platform_ids][]' -%>
+              <span><%= p.name -%></span>
+            </label>
+          </li>
+          <% end -%>
+        </ul>
+        <span class="help-block">
+          <strong>Note:</strong> Choose one or more.
+        </span>
+      </div>
+    </div><!-- /clearfix -->
+    <div class="clearfix">
+      <label for="fileInput">Screenshots</label>
+      <div class="input">
+        <input class="input-file" id="fileInput" name="fileInput" type="file">
+      </div>
+    </div><!-- /clearfix -->        
+  </fieldset>
+     
+  <fieldset class="add-top">
+    <legend>Other Details</legend>
+    <div class="clearfix">
+      <%= label_tag(:app_thanks_to, "Thanks To") -%>
+      <div class="input">
+        <%= app_form.text_area :thanks_to, {:size => "80x4", :class => "span8"} -%>
+        <span class="help-block">
+          Mention all the people you'd like to thank for helping make your app what it is today! 1000 character max length.
+        </span>
+      </div>
+    </div><!-- /clearfix --> 
+    <div class="clearfix">
+      <%= label_tag(:app_twitter, "Twitter") -%>
+      <div class="input">
+        <div class="input-prepend">
+          <span class="add-on">@</span>
+          <%= app_form.text_field :twitter, {:maxlength => 15, :class => "span3", :placeholder=>"accountname"} -%>
+        </div>
+      </div> 
+    </div>
+    <div class="clearfix">
+      <%= label_tag(:app_facebook, "Facebook") -%>
+      <div class="input">
+        <div class="input-prepend">
+          <span class="add-on">http://www.facebook.com/</span>
+          <%= app_form.text_field :facebook, {:maxlength => 50, :class => "span5", :placeholder=>"page"} -%>
+        </div>
+      </div>
+    </div>
+    <div class="clearfix">
+      <%= label_tag(:app_google_plus, "Google+") -%>
+      <div class="input">
+        <div class="input-prepend">
+          <span class="add-on">https://plus.google.com/</span>
+          <%= app_form.text_field :google_plus, {:maxlength => 50, :class => "span5", :placeholder=>"uniqueid/posts"} -%>
+        </div>
+      </div>
+    </div>
+    <div class="clearfix">
+      <%= label_tag(:app_android, "Android Market") -%>
+      <div class="input">
+        <div class="input-prepend">
+          <span class="add-on">https://market.android.com/</span>
+          <%= app_form.text_field :android, {:maxlength => 50, :class => "span5", :placeholder=>"page"} -%>
+        </div>
+      </div>
+    </div>
+    <div class="clearfix">
+      <%= label_tag(:app_itunes, "iTunes App Store") -%>
+      <div class="input">
+        <div class="input-prepend">
+          <span class="add-on">http://itunes.apple.com/</span>
+          <%= app_form.text_field :itunes, {:maxlength => 50, :class => "span5", :placeholder=>"page"} -%>
+        </div>
+      </div>
+    </div>
+    <div class="clearfix">
+      <label for="fileInput">Other Documents</label>
+      <div class="input">
+        <input class="input-file" id="fileInput" name="fileInput" type="file">
+      </div>
+    </div><!-- /clearfix -->          
+  </fieldset>
+  <div class="actions">
+    <input type="submit" class="btn" value="Preview">&nbsp;<input type="submit" class="btn half-left" value="Save Draft">&nbsp;<input type="submit" class="btn primary half-left" value="Save">
+  </div>
+  </fieldset>
+<% end -%>

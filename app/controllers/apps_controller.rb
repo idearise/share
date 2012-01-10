@@ -55,8 +55,34 @@ class AppsController < ApplicationController
   # end
 
   # PUT / POST
-  # def update
-  # end
+  def update
+    # TODO permissions
+    if @app.user_id == current_user.id
+      # @app.attributes = params[:app]
+      @app.attributes = {'platform_ids' => []}.merge(params[:app] || {})
+      # TODO Sanitize links
+      # TODO Use sanitized basic html or use markdown with a markdown editor
+      # [:name, :website, :twitter, :facebook, :google_plus, :android, :itunes].each do |x|
+      #   @app.attributes[x] = Sanitize.clean(@app.attributes[x])
+      # end    
+      # @app.text = Sanitize.clean(
+      #               view_context.auto_link(
+      #                 view_context.truncate(@app.text, 
+      #                                         :length => 2000, 
+      #                                         :omission => '... (truncated)'),
+      #                                         :sanitize => false),
+      #               Sanitize::Config::RELAXED)
+      if @app.save_update_by(current_user.id, request.remote_ip)
+        flash[:notice] = "Successfully updated."
+        redirect_to app_path(@app)
+      else
+        render "edit"
+      end
+    else
+      flash[:error] = "You are not allowed to update the app."
+      redirect_to app_path(@app)
+    end
+  end
 
   # DELETE
   # def destroy

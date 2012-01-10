@@ -6,15 +6,17 @@
 <% end -%>
 
 <div class="row">
-  <div class="span4 well panel pull-left">
+  <div class="span4 well panel yellow pull-left">
     <h2>What's Behind It?</h2>
     <p>People come to this site to know more about what makes your app tick.</p>
     <p>We recommend describing the following in the <strong>About</strong> field:</p>
     <dl>
       <dt>What your app offers</dt>
       <dd>Features, functions, data, processes, you name it!</dd>
+      <dt>What's in it</dt>
+      <dd>What are the different types of technology being used, such as languages, frameworks, and libraries. </dd>
       <dt>Who built it</dt>
-      <dd>Tell us about the folks who designed, developed, launched, and support the app.</dd>
+      <dd>Tell us about the folks who are designing, developing, launching, and supporting the app.</dd>
       <dt>How you're spreading the word</dt>
       <dd>What are you doing to make sure that the right people know about your app?</dd>
       <dt>Why it's important</dt>
@@ -24,6 +26,7 @@
   </div>
 
   <div class="span11 pull-right">
-
+    <%= render :partial => "form", :locals => { :app => @app, 
+          :form_url => app_path(@app) } %>
   </div>
 </div>

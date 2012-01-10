@@ -2,7 +2,7 @@
 <% content_for :content_header do -%>
 <div class="page-header">
   <div class="pull-right">
-    <a class="btn large primary">Edit &rarr;</a>
+    <%= link_to "Edit &rarr;".html_safe, edit_app_path(@app), :class => "btn large primary" -%>
   </div>
 
   <h1>example.com 
