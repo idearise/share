@@ -1,6 +1,7 @@
 class UsersController < ApplicationController
   before_filter :authenticate_user!, :except => [:index, :show]
   before_filter :find_user, :only => [:show, :edit, :update, :destroy]
+  before_filter :find_services, :only => [:edit, :update]
   protect_from_forgery :except => [:index, :show]
 
   # GET
@@ -51,5 +52,9 @@ class UsersController < ApplicationController
   protected
   def find_user
     @user = User.find(params[:id])
+  end
+
+  def find_services
+    @services = current_user.services.order("provider asc")
   end
 end

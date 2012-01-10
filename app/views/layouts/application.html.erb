@@ -58,6 +58,7 @@
       <p class="pull-right">
       <%= link_to image_tag("#{current_user.picture(10)}"), 
           main_app.user_path(current_user) -%>
+      <%# FIXME Fix user score -%>
       <%= link_to "#{current_user.nickname} | #{current_user.email} | 1 pt", main_app.user_path(current_user) -%>
       </p>
       <% else -%>

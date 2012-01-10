@@ -13,19 +13,18 @@
 
 <div class="row">
   <div class="span5 well panel pull-left">
-    <%= image_tag(@user.picture(50)) -%>
-
+    <p><%= image_tag(@user.picture(50)) -%></p>
     <address>
       <strong>Web Site</strong><br>
-      <a href="">http://www.example.com/</a><br>
+      <%= @user.website -%><br>
       <strong>Twitter</strong><br>
       <a href="<%= "http://twitter.com/#{@user.twitter}" -%>">@<%= "#{@user.twitter}" -%></a><br>
       <strong>LinkedIn</strong><br>
-      <a href="">http://www.facebook.com/example</a><br>
+      <%= @user.linkedin -%><br>
       <strong>Facebook</strong><br>
-      <a href="">http://www.facebook.com/example</a><br>
+      <%= @user.facebook -%><br>
       <strong>Google+</strong><br>
-      <a href="">http://plus.google.com/...</a><br>
+      <%= @user.google -%><br>
     </address>
   </div>
 

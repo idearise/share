@@ -18,7 +18,8 @@ class ServicesController < ApplicationController
       @service.destroy
     end
     
-    redirect_to services_path
+    # redirect_to services_path
+    redirect_back
   end
 
   # POST from signup view
