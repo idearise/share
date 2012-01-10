@@ -32,7 +32,7 @@ Share::Application.routes.draw do
     end
   end
 
-  resources :users, :only => [:index, :new, :create, :show, :edit, :update] do
+  resources :users, :only => [:index, :show, :edit, :update] do
     member do
       get 'votes'
       get 'posts'

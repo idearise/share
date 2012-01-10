@@ -17,19 +17,16 @@
       <div class="input">
         <div class="input-prepend">
           <span class="add-on">http://</span>
-          <%= app_form.text_field :website, {:maxlength => 30, :class => "span5", :placeholder=>"domain/page"} -%>
+          <%= app_form.text_field :website, {:maxlength => 64, :class => "span5", :placeholder=>"domain/page"} -%>
         </div>
       </div>
     </div><!-- /clearfix -->
-  <%#= label_tag(:source_text, "Text") -%>
-  <%#= source_form.text_area :text, {:size => "80x12", :style => "width:99%"} -%>
-
     <div class="clearfix">
       <%= label_tag(:app_about, "About *") -%>
       <div class="input">
         <%= app_form.text_area :about, {:size => "80x12", :class => "span8"} -%>
         <span class="help-block">
-          Describe what your app offers, what's in it, who built it, how your spreading the word about it, and why it's important. 4000 character max length.
+          Describe what your app offers, what's in it, who built it, how your spreading the word about it, and why it's important. 4000 characters max length.
         </span>
       </div>
     </div><!-- /clearfix -->        

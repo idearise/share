@@ -5,11 +5,12 @@ class CreateUsers < ActiveRecord::Migration
       t.string :email, :limit => 255
       t.string :avatar, :limit => 64
       t.string :nickname, :limit => 32
+      t.string :website, :limit => 64
       t.string :twitter, :limit => 32
       t.string :linkedin, :limit => 64
       t.string :facebook, :limit => 64
       t.string :google, :limit => 64
-      t.text :bio
+      t.text :about
       t.string :last_ip, :limit => 39
       t.integer :created_by
       t.string :created_ip, :limit => 39

@@ -18,18 +18,20 @@ class User < ActiveRecord::Base
   # CONSTANTS
 
   # ATTRIBUTES
-  attr_accessible :nickname, :avatar, :last_ip, :linkedin, :facebook, :google, :bio
+  attr_accessible :nickname, :avatar, :last_ip, :website, :twitter, :linkedin, :facebook, :google, :about
 
   # VALIDATIONS
   validates :name, :presence => true
   validates :nickname, :presence => true, :length => { :in => 1..32 }
+  validates :about, :length => { :in => 0..2000 }
+  validates :website, :length => { :in => 0..64 }
+  validates :twitter, :length => { :in => 0..15 } # TODO increase for future?
   validates :linkedin, :length => { :in => 0..64 }
   validates :facebook, :length => { :in => 0..64 }
   validates :google, :length => { :in => 0..64 }
-  validates_format_of :linkedin, :allow_blank => true, :with => /^(http|https):\/\/[a-z0-9]+([\-\.]{1}[a-z0-9]+)*\.[a-z]{2,6}(:[0-9]{1,5})?(\/.*)?$/ix
-  validates_format_of :facebook, :allow_blank => true, :with => /^(http|https):\/\/[a-z0-9]+([\-\.]{1}[a-z0-9]+)*\.[a-z]{2,6}(:[0-9]{1,5})?(\/.*)?$/ix
-  validates_format_of :google, :allow_blank => true, :with => /^(http|https):\/\/[a-z0-9]+([\-\.]{1}[a-z0-9]+)*\.[a-z]{2,6}(:[0-9]{1,5})?(\/.*)?$/ix
-  validates :bio, :length => { :in => 0..2000 }
+  # validates_format_of :linkedin, :allow_blank => true, :with => /^(http|https):\/\/[a-z0-9]+([\-\.]{1}[a-z0-9]+)*\.[a-z]{2,6}(:[0-9]{1,5})?(\/.*)?$/ix
+  # validates_format_of :facebook, :allow_blank => true, :with => /^(http|https):\/\/[a-z0-9]+([\-\.]{1}[a-z0-9]+)*\.[a-z]{2,6}(:[0-9]{1,5})?(\/.*)?$/ix
+  # validates_format_of :google, :allow_blank => true, :with => /^(http|https):\/\/[a-z0-9]+([\-\.]{1}[a-z0-9]+)*\.[a-z]{2,6}(:[0-9]{1,5})?(\/.*)?$/ix
   # validates_inclusion_of :is_notifiable, :in => [true, false]
 
   # CLASS METHODS

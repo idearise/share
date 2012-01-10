@@ -1,95 +1,107 @@
+<% content_for :page_title do -%>Editing Profile &amp; Preferences<% end -%>
+<% content_for :content_header do -%>
+<div class="page-header">
+  <h1>Editing <%= "#{@user.nickname}'s" -%> Profile &amp; Preferences</h1>
+</div>
+<% end -%>
 
-  <div class="hero-unit span8 pull-left">
-    <h1>Popular Apps <small><a href="">more &rarr;</a></small></h1>
-
-    <ul class="media-grid">
-      <li>
-        <a href="#">
-          <img class="thumbnail" src="http://placehold.it/210x210" alt="">
-          <h3>example.com</h3>
-          Added by 
-          <span style="whitespace:nowrap;"><%= image_tag("http://placehold.it/10x10", :style=>"display:inline;") -%> Tess</span>
-        </a>
-      </li>
-      <li>
-        <a href="#">
-          <img class="thumbnail" src="http://placehold.it/210x210" alt="">
-          <h3>anotherapp</h3>
-          Added by
-          <span style="whitespace:nowrap;"><%= image_tag("http://placehold.it/10x10", :style=>"display:inline;") -%> Tess</span>
-        </a>
-      </li>
-    </ul>
-
-    <h2 style="margin-top:20px;margin-bottom:10px;">Recent Posts <small><a href="">more &rarr;</a></small></h2>
-
-    <div style="margin-bottom:20px;">
-      <div class="pull-left"><img src="http://placehold.it/36x36" alt=""></div>
-      <div style="margin-left:46px;">
-        <h4><a href="/apps/1/thread/1">Blog post about authentication issue</a> <small>+10 -4</small> <span class="label">link</span></h4>
-        added 2 hours ago 
-        <span style="whitespace:nowrap;">by <%= image_tag("http://placehold.it/10x10", :style=>"display:inline;") -%> Tess</span> 
-        to example.com
-      </div>
-    </div>
-        
-    <div style="margin-bottom:20px;">
-      <div class="pull-left"><img src="http://placehold.it/36x36" alt=""></div>
-      <div style="margin-left:46px;">
-        <h4><a href="/apps/1/thread/1">Needs a better sign-up process</a> <small>+783 -42</small> <span class="label">topic</span> <span class="label">file</span></h4>
-        added 3 hours ago 
-        <span style="whitespace:nowrap;">by <%= image_tag("http://placehold.it/10x10", :style=>"display:inline;") -%> Jim</span> 
-        to example.com
-      </div>
-    </div>
-
-    <div style="margin-bottom:20px;">
-      <div class="pull-left"><img src="http://placehold.it/36x36" alt=""></div>
-      <div style="margin-left:46px;">
-        <h4><a href="/apps/1/thread/1">iOS versions</a> <small>+3 -0</small> <span class="label">topic</span></h4>
-        added 3 hours ago 
-        <span style="whitespace:nowrap;">by <%= image_tag("http://placehold.it/10x10", :style=>"display:inline;") -%> Jim</span> 
-        to anotherapp
-      </div>
-    </div>
-        
-    <div style="margin-bottom:20px;">
-      <div class="pull-left"><img src="http://placehold.it/36x36" alt=""></div>
-      <div style="margin-left:46px;">
-        <h4><a href="/apps/1/thread/1">What blog app is being used?</a> <small>+20 -0</small> <span class="label">question</span></h4>
-        added 7 hours ago 
-        <span style="whitespace:nowrap;">by <%= image_tag("http://placehold.it/10x10", :style=>"display:inline;") -%> Tess</span> 
-        to stephenpaul.me
-      </div>
-    </div>
-
-    <div style="margin-bottom:20px;">
-      <div class="pull-left"><img src="http://placehold.it/36x36" alt=""></div>
-      <div style="margin-left:46px;">
-        <h4><a href="/apps/1">stephenpaul.me</a> <span class="label">app</span></h4>
-        added 20 hours ago 
-        <span style="whitespace:nowrap;">by <%= image_tag("http://placehold.it/10x10", :style=>"display:inline;") -%> devpopol</span>
-      </div>
-    </div>
-  </div>
-
-  <div class="span5 well panel pull-right">
-    <h3>Showcase + Discuss + Grow</h3>
-    <ul>
-      <li>Add your app and talk about how you made things work.</li>
-      <li>Get feedback from other developers and web + mobile experts.</li>
-      <li>And expand your userbase!</li>
-    </ul>
-    <a class="btn large primary">Add Your App &rarr;</a>
-    
-    <h3 style="margin-top:25px;">How Did They Do That?</h3>
-    <p>
-      If you're looking for information on how something was done, you've come to the right place!
-    </p>
-    <form action>
+<div class="row">
+  <div class="span11 pull-left">
+  <%= form_for @user, {:url => user_path(@user) } do |user_form| -%>
+  <%= user_form.error_messages :header_tag => :h4, 
+                   :header_message => "The following issues kept the profile from being saved:", 
+                   :message => nil,
+                   :class => "alert-message block-message error" -%>
+    <fieldset>
+      <legend>User Profile</legend>
       <div class="clearfix">
-        <input class="span5" id="" name="" type="text" placeholder="Search by app name, techology, or person">
+        <%= label_tag(:user_nickname, "Nickname *") -%>
+        <div class="input">
+          <%= user_form.text_field :nickname, {:maxlength => 32, :class => "span5"} -%>
+          <span class="help-block">32 characters max length.</span>
+        </div>
+      </div><!-- /clearfix -->
+      <div class="clearfix">
+        <%= label_tag(:user_nickname, "Picture") -%>
+        <div class="input">
+          <%= image_tag(@user.picture(50)) -%>
+          <span class="help-block">Change your picture at <a href="http://www.gravatar.com/">gravatar.com</a>.</span>
+        </div>
+      </div><!-- /clearfix -->
+      <div class="clearfix">
+      <%= label_tag(:user_website, "Web Site") -%>
+        <div class="input">
+          <div class="input-prepend">
+            <span class="add-on">http://</span>
+            <%= user_form.text_field :website, {:maxlength => 64, :class => "span5", :placeholder=>"domain/page"} -%>
+          </div>
+        </div>
+      </div><!-- /clearfix -->
+      <div class="clearfix">
+        <%= label_tag(:user_twitter, "Twitter") -%>
+        <div class="input">
+          <div class="input-prepend">
+            <span class="add-on">@</span>
+            <%= user_form.text_field :twitter, {:maxlength => 15, :class => "span3", :placeholder=>"accountname"} -%>
+          </div>
+        </div> 
       </div>
-      <a class="btn large primary">Find An App &rarr;</a>
-    </form>
+      <div class="clearfix">
+        <%= label_tag(:user_linkedin, "LinkedIn") -%>
+        <div class="input">
+          <div class="input-prepend">
+            <span class="add-on">http://www.linkedin.com/</span>
+            <%= user_form.text_field :linkedin, {:maxlength => 50, :class => "span5", :placeholder=>"page"} -%>
+          </div>
+        </div>
+      </div>
+      <div class="clearfix">
+        <%= label_tag(:user_facebook, "Facebook") -%>
+        <div class="input">
+          <div class="input-prepend">
+            <span class="add-on">http://www.facebook.com/</span>
+            <%= user_form.text_field :facebook, {:maxlength => 50, :class => "span5", :placeholder=>"page"} -%>
+          </div>
+        </div>
+      </div>
+      <div class="clearfix">
+        <%= label_tag(:user_google, "Google+") -%>
+        <div class="input">
+          <div class="input-prepend">
+            <span class="add-on">https://plus.google.com/</span>
+            <%= user_form.text_field :google, {:maxlength => 50, :class => "span5", :placeholder=>"uniqueid/posts"} -%>
+          </div>
+        </div>
+      </div>
+      <div class="clearfix">
+        <%= label_tag(:user_about, "About") -%>
+        <div class="input">
+          <%= user_form.text_area :about, {:size => "80x12", :class => "span8"} -%>
+          <span class="help-block">
+            Feel free to describe your interests and expertise. 2000 characters max length.
+          </span>
+        </div>
+      </div><!-- /clearfix -->    
+    </fieldset>
+       
+    <fieldset class="add-top">
+      <legend>Preferences</legend>
+      <div class="clearfix">
+        <label for="input">Notifications</label>
+        <div class="input">
+          TODO
+        </div>
+      </div><!-- /clearfix -->          
+    </fieldset>
+    <div class="actions">
+      <input type="submit" class="btn" value="Preview">&nbsp;<input type="submit" class="btn primary half-left" value="Save">
+    </div>
+    </fieldset>
+  <% end -%>
   </div>
+
+  <div class="span4 well panel pull-right">
+    <h2>Login Services</h2>
+    <p>TODO</p>
+  </div>
+</div>

@@ -30,14 +30,16 @@ class AppsController < ApplicationController
     # TODO Use sanitized basic html or use markdown with a markdown editor
     # [:name, :website, :twitter, :facebook, :google_plus, :android, :itunes].each do |x|
     #   @app.attributes[x] = Sanitize.clean(@app.attributes[x])
-    # end    
-    # @app.text = Sanitize.clean(
-    #               view_context.auto_link(
-    #                 view_context.truncate(@app.text, 
-    #                                         :length => 2000, 
-    #                                         :omission => '... (truncated)'),
-    #                                         :sanitize => false),
-    #               Sanitize::Config::RELAXED)
+    # end
+    # [:about, :thanks_to].each do |y|
+    #   @app.attributes[y] = Sanitize.clean(
+    #                         view_context.auto_link(
+    #                           view_context.truncate(@app.attributes[y], 
+    #                                                 :length => 2000, 
+    #                                                 :omission => '... (truncated)'),
+    #                                                 :sanitize => false),
+    #                         Sanitize::Config::RELAXED)
+    # end
     if @app.save_new_by(current_user.id, request.remote_ip)
       flash[:notice] = "Successfully added."
       redirect_to app_path(@app)
@@ -65,13 +67,15 @@ class AppsController < ApplicationController
       # [:name, :website, :twitter, :facebook, :google_plus, :android, :itunes].each do |x|
       #   @app.attributes[x] = Sanitize.clean(@app.attributes[x])
       # end    
-      # @app.text = Sanitize.clean(
-      #               view_context.auto_link(
-      #                 view_context.truncate(@app.text, 
-      #                                         :length => 2000, 
-      #                                         :omission => '... (truncated)'),
-      #                                         :sanitize => false),
-      #               Sanitize::Config::RELAXED)
+      # [:about, :thanks_to].each do |y|
+      #   @app.attributes[y] = Sanitize.clean(
+      #                         view_context.auto_link(
+      #                           view_context.truncate(@app.attributes[y], 
+      #                                                 :length => 2000, 
+      #                                                 :omission => '... (truncated)'),
+      #                                                 :sanitize => false),
+      #                         Sanitize::Config::RELAXED)
+      # end
       if @app.save_update_by(current_user.id, request.remote_ip)
         flash[:notice] = "Successfully updated."
         redirect_to app_path(@app)
