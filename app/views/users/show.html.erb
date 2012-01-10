@@ -15,10 +15,14 @@
   <div class="span5 well panel pull-left">
     <p><%= image_tag(@user.picture(50)) -%></p>
     <address>
+      <strong>Apps</strong><br>
+      <% @user.apps.each do |a| -%>
+        <%= link_to a.name, app_path(a) -%><br>
+      <% end -%>
       <strong>Web Site</strong><br>
       <%= @user.website -%><br>
       <strong>Twitter</strong><br>
-      <a href="<%= "http://twitter.com/#{@user.twitter}" -%>">@<%= "#{@user.twitter}" -%></a><br>
+      <%= link_to "@#{@user.twitter}", "http://twitter.com/#{@user.twitter}" unless @user.twitter.blank? -%><br>
       <strong>LinkedIn</strong><br>
       <%= @user.linkedin -%><br>
       <strong>Facebook</strong><br>
