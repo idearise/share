@@ -1,0 +1,1 @@
+task :setup => ['db:drop', 'db:create', 'db:migrate','db:seed']
