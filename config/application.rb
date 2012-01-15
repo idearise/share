@@ -1,5 +1,6 @@
 require File.expand_path('../boot', __FILE__)
 
+require 'ostruct'
 require 'rails/all'
 
 if defined?(Bundler)

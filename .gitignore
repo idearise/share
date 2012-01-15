@@ -16,3 +16,4 @@
 .rvmrc
 
 .rbenv-*
+config/share.yml
