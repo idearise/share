@@ -7,7 +7,9 @@
 //namespace
 //use handlebars;
 var Signalike = {
-	endPoint: 'http://192.168.1.9:8081/api/v1', //this should probably be in a yaml configuration file
+	endPoint: '<%= Share.config.endpoint %>',
+	apiKey: '<%= Share.config.api_key %>',
+
 	urlFor: function () {
 		if (arguments.length == 0) {
 			throw(new Error("1 or more arguments required"));
@@ -16,6 +18,6 @@ var Signalike = {
 		for (var x=0; x < arguments.length; x++) {
 			parts.push(arguments[x]);
 		}
-		return parts.join('/') + '.json';
+		return parts.join('/') + '.json?api_key=' + this.apiKey;
 	}
 };
