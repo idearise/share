@@ -9,15 +9,7 @@
     <small><%= @platforms.map(&:name).join(' &bull; ').html_safe%></small>
     <span class="label warning">unverified</span>
   </h1>
-</div> <div class="add-bottom">
-    <div class="pull-left"><img src="http://placehold.it/36x36" alt=""></div>
-    <div class="post-summary">
-      <h4><a href="/apps/1-example-com/posts/1">This is a very long post title that seems to keep going and going...</a> <small>+3 -0</small> <span class="label">topic</span> <span class="label">file</span> <span class="label">link</span></h4>
-      20 hours ago 
-      <span class="nowrap">by <%= image_tag("http://placehold.it/10x10", :class=>"inline") -%> devpopol</span> 
-      &bull; 5 responses
-    </div>
-  </div>
+</div> 
 
 <% end -%>
 
@@ -43,6 +35,8 @@ $(document).ready(function() {
 			$('#top_sources').html(compiled.join(''));
 			
 			console.log(sources);
+			console.log($("#pagination"))
+			$("#pagination").html('<ul><li class="prev disabled"><a href="#">&larr; Previous</a></li><li class="active"><a href="#">1</a></li><li><a href="#">2</a></li><li><a href="#">3</a></li><li class="next"><a href="#">Next &rarr;</a></li></ul>');
 			//get the handlebar template
 			source   = $("#_post").html();
 			template = Handlebars.compile(source);
@@ -136,14 +130,8 @@ $(document).ready(function() {
 	Loading...
   </div>
 
-  <div class="pagination">
-    <ul>
-      <li class="prev disabled"><a href="#">&larr; Previous</a></li>
-      <li class="active"><a href="#">1</a></li>
-      <li><a href="#">2</a></li>
-      <li><a href="#">3</a></li>
-      <li class="next"><a href="#">Next &rarr;</a></li>
-    </ul>
+  <div id="pagination" class="pagination">
+   
   </div>   
 </div>
 
