@@ -33,12 +33,12 @@ class AppsController < ApplicationController
     # end
     # [:about, :thanks_to].each do |y|
     #   @app.attributes[y] = Sanitize.clean(
-    #                         view_context.auto_link(
-    #                           view_context.truncate(@app.attributes[y], 
-    #                                                 :length => 2000, 
-    #                                                 :omission => '... (truncated)'),
-    #                                                 :sanitize => false),
-    #                         Sanitize::Config::RELAXED)
+    #   view_context.auto_link(
+    #     view_context.truncate(@app.attributes[y], 
+    #                           :length => 2000, 
+    #                           :omission => '... (truncated)'),
+    #                           :sanitize => false),
+    #   Sanitize::Config::RELAXED)
     # end
     if @app.save_new_by(current_user.id, request.remote_ip)
       flash[:notice] = "Successfully added."
@@ -49,8 +49,10 @@ class AppsController < ApplicationController
   end
 
   # GET
-  # def show
-  # end
+  def show
+    @app = App.find(params[:id])
+    @platforms = @app.platforms
+  end
 
   # GET
   # def edit

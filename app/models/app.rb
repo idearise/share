@@ -20,7 +20,7 @@ class App < ActiveRecord::Base
   # ATTRIBUTES
   # accepts_nested_attributes_for :client_platforms, :allow_destroy => true
   # attr_accessible :client_platforms
-  attr_accessible :name, :website, :about, :platform_ids, :thanks_to, :twitter, :facebook, :google_plus, :android, :itunes
+  attr_accessible :name, :website, :about, :platform_ids,:platforms, :thanks_to, :twitter, :facebook, :google_plus, :android, :itunes
 
   # VALIDATIONS
   validates :name, :presence => true

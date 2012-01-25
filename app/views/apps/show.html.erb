@@ -5,16 +5,73 @@
     <%= link_to "Edit &rarr;".html_safe, edit_app_path(@app), :class => "btn large primary" -%>
   </div>
 
-  <h1>example.com 
-    <small>Web &bull; iOS &bull; Windows &bull; OS X</small>
+  <h1><%= @app.name%>
+    <small><%= @platforms.map(&:name).join(' &bull; ').html_safe%></small>
     <span class="label warning">unverified</span>
   </h1>
-</div>
+</div> <div class="add-bottom">
+    <div class="pull-left"><img src="http://placehold.it/36x36" alt=""></div>
+    <div class="post-summary">
+      <h4><a href="/apps/1-example-com/posts/1">This is a very long post title that seems to keep going and going...</a> <small>+3 -0</small> <span class="label">topic</span> <span class="label">file</span> <span class="label">link</span></h4>
+      20 hours ago 
+      <span class="nowrap">by <%= image_tag("http://placehold.it/10x10", :class=>"inline") -%> devpopol</span> 
+      &bull; 5 responses
+    </div>
+  </div>
+
 <% end -%>
+
+<% content_for :include_js do %>
+<script type="text/javascript">
+$(document).ready(function() {
+	Signalike.Source.top({
+		dimension: <%= @app.id %>,
+		success: function (sources) {
+			var source   = $("#_post").html();
+			var template = Handlebars.compile(source);
+			//sources.items is the list of sources
+			//sources.total is the number of sources in the list
+			var compiled = [];
+			var limit = 4;
+			var i;
+			limit = Math.min(limit,sources.items.length);
+			for(var x = 0; x < limit; x++) {
+				i = sources.items[x];
+				compiled.push(template(i) );
+			}
+			
+			$('#top_sources').html(compiled.join(''));
+			
+			console.log(sources);
+			//get the handlebar template
+			source   = $("#_post").html();
+			template = Handlebars.compile(source);
+			//sources.items is the list of sources
+			//sources.total is the number of sources in the list
+			compiled = [];
+			$.each(sources.items, function (idx, i) {
+				compiled.push(template(i));
+				// (new Signalike.Source(i.id)).fetch({
+				// 	success: function (d) {
+				// 		console.log(d);
+				// 		
+				// 	}
+				// });
+			});
+			
+			$('#latest_sources_list').html(compiled.join(''));
+		}
+	});
+	
+});
+</script>
+<% end %>
+<%= render partial: 'shared/handlebars/post'%>
+
 
 <div class="span7 pull-left">
   <h2>About</h2>
-  <p><em>Updated 3 days ago by Tess</em></p>
+  <p><em>Updated <%= time_ago_in_words(@app.updated_at) %> ago by <%= @app.try(:user_id) or "Unknown" %></em></p>
   <ul class="media-grid">
     <li>
       <a href="#">
@@ -32,18 +89,22 @@
       </a>
     </li>    
   </ul>
-  <p>Lorem ipsum dolor sit amet, pri quot fuisset mnesarchum ea. Cum odio inciderint no, eu putant verear sit, qui posse eripuit no. Fugit appetere his an. Delectus insolens at quo, mei invidunt adipisci temporibus ad.</p>
-  <p>Pri omnes denique cu, modus graeci eu pri. Ne suas esse atqui mei, inimicus pertinacia dissentiunt ut has. His et equidem senserit. Cu blandit reprimique est, nam an liber neglegentur. Alii option ocurreret eu sit, vix suas homero aeterno ad. <a href="">more &dArr;</a></p>
-  <h3>Technical Info</h3>
-  <p>Lorem ipsum dolor sit amet, pri quot fuisset mnesarchum ea. Cum odio inciderint no, eu putant verear sit, qui posse eripuit no. Fugit appetere his an. Delectus insolens at quo, mei invidunt adipisci temporibus ad. <a href="">more &dArr;</a></p>
+  <p><%= truncate(@app.about, :length => 50,:omission => "... <a href="">more &dArr;</a>").html_safe %></p>
+  
   <h3>Thanks To</h3>
-  <p>Pri omnes denique cu, modus graeci eu pri. Ne suas esse atqui mei, inimicus pertinacia dissentiunt ut has. His et equidem senserit. Cu blandit reprimique est, nam an liber neglegentur. Alii option ocurreret eu sit, vix suas homero aeterno ad. <a href="">more &dArr;</a></p>
+  <p><%= truncate(@app.thanks_to, :length => 50, :omission => "... more <a href="">more &dArr;</a>").html_safe %></p>
   <h3>Links</h3>
   <address>
+	<% if @app.website.presence %>
     <strong>Web Site</strong><br>
-    <a href="">http://www.example.com/</a><br>
+	<%= link_to @app.website, @app.website %>
+    <br>
+    <% end %>
+	<% if @app.twitter.presence %>
     <strong>Twitter</strong><br>
-    <a href="">@example</a><br>
+    <%= link_to ['@',@app.twitter].join, ["http://twitter.com", '/', @app.twitter].join %>
+    <a href="">@<%= @app.twitter%></a><br>
+    <% end %>
     <strong>Facebook</strong><br>
     <a href="">http://www.facebook.com/example</a><br>
     <strong>Google+</strong><br>
@@ -71,105 +132,8 @@
     <li><a href="#">Links</a></li>
     <li><a href="#">Questions</a></li>
   </ul>  
-
-  <div class="add-bottom">
-    <div class="pull-left"><img src="http://placehold.it/36x36" alt=""></div>
-    <div class="post-summary">
-      <h4><a href="/apps/1-example-com/posts/1">Blog post about authentication issue</a> <small>+10 -4</small> <span class="label">link</span></h4>
-      2 hours ago 
-      <span class="nowrap">by <%= image_tag("http://placehold.it/10x10", :class=>"inline") -%> Tess</span> 
-      &bull; 3 responses
-    </div>
-  </div>
-      
-  <div class="add-bottom">
-    <div class="pull-left"><img src="http://placehold.it/36x36" alt=""></div>
-    <div class="post-summary">
-      <h4><a href="/apps/1-example-com/posts/1">Needs a better sign-up process</a> <small>+783 -42</small> <span class="label">topic</span> <span class="label">file</span></h4>
-      3 hours ago 
-      <span class="nowrap">by <%= image_tag("http://placehold.it/10x10", :class=>"inline") -%> Jim</span> 
-      &bull; 129 responses
-    </div>
-  </div>
-
-  <div class="add-bottom">
-    <div class="pull-left"><img src="http://placehold.it/36x36" alt=""></div>
-    <div class="post-summary">
-      <h4><a href="/apps/1-example-com/posts/1">iOS versions</a> <small>+3 -0</small> <span class="label">topic</span></h4>
-      3 hours ago 
-      <span class="nowrap">by <%= image_tag("http://placehold.it/10x10", :class=>"inline") -%> Jim</span> 
-      &bull; 1 response
-    </div>
-  </div>
-      
-  <div class="add-bottom">
-    <div class="pull-left"><img src="http://placehold.it/36x36" alt=""></div>
-    <div class="post-summary">
-      <h4><a href="/apps/1-example-com/posts/1">What blog app is being used?</a> <small>+20 -0</small> <span class="label">question</span></h4>
-      7 hours ago 
-      <span class="nowrap">by <%= image_tag("http://placehold.it/10x10", :class=>"inline") -%> Tess</span> 
-      &bull; 0 responses
-    </div>
-  </div>
-
-  <div class="add-bottom">
-    <div class="pull-left"><img src="http://placehold.it/36x36" alt=""></div>
-    <div class="post-summary">
-      <h4><a href="/apps/1-example-com/posts/1">This is a very long post title that seems to keep going and going...</a> <small>+3 -0</small> <span class="label">topic</span> <span class="label">file</span> <span class="label">link</span></h4>
-      20 hours ago 
-      <span class="nowrap">by <%= image_tag("http://placehold.it/10x10", :class=>"inline") -%> devpopol</span> 
-      &bull; 5 responses
-    </div>
-  </div>
-
-  <div class="add-bottom">
-    <div class="pull-left"><img src="http://placehold.it/36x36" alt=""></div>
-    <div class="post-summary">
-      <h4><a href="/apps/1-example-com/posts/1">Blog post about authentication issue</a> <small>+10 -4</small> <span class="label">link</span></h4>
-      2 hours ago 
-      <span class="nowrap">by <%= image_tag("http://placehold.it/10x10", :class=>"inline") -%> Tess</span> 
-      &bull; 3 responses
-    </div>
-  </div>
-      
-  <div class="add-bottom">
-    <div class="pull-left"><img src="http://placehold.it/36x36" alt=""></div>
-    <div class="post-summary">
-      <h4><a href="/apps/1-example-com/posts/1">Needs a better sign-up process</a> <small>+783 -42</small> <span class="label">topic</span> <span class="label">file</span></h4>
-      3 hours ago 
-      <span class="nowrap">by <%= image_tag("http://placehold.it/10x10", :class=>"inline") -%> Jim</span> 
-      &bull; 129 responses
-    </div>
-  </div>
-
-  <div class="add-bottom">
-    <div class="pull-left"><img src="http://placehold.it/36x36" alt=""></div>
-    <div class="post-summary">
-      <h4><a href="/apps/1-example-com/posts/1">iOS versions</a> <small>+3 -0</small> <span class="label">topic</span></h4>
-      3 hours ago 
-      <span class="nowrap">by <%= image_tag("http://placehold.it/10x10", :class=>"inline") -%> Jim</span> 
-      &bull; 1 response
-    </div>
-  </div>
-      
-  <div class="add-bottom">
-    <div class="pull-left"><img src="http://placehold.it/36x36" alt=""></div>
-    <div class="post-summary">
-      <h4><a href="/apps/1-example-com/posts/1">What blog app is being used?</a> <small>+20 -0</small> <span class="label">question</span></h4>
-      7 hours ago 
-      <span class="nowrap">by <%= image_tag("http://placehold.it/10x10", :class=>"inline") -%> Tess</span> 
-      &bull; 0 responses
-    </div>
-  </div>
-
-  <div class="add-bottom">
-    <div class="pull-left"><img src="http://placehold.it/36x36" alt=""></div>
-    <div class="post-summary">
-      <h4><a href="/apps/1-example-com/posts/1">This is a very long post title that seems to keep going and going...</a> <small>+3 -0</small> <span class="label">topic</span> <span class="label">file</span> <span class="label">link</span></h4>
-      20 hours ago 
-      <span class="nowrap">by <%= image_tag("http://placehold.it/10x10", :class=>"inline") -%> devpopol</span> 
-      &bull; 5 responses
-    </div>
+  <div id="top_sources">
+	Loading...
   </div>
 
   <div class="pagination">
