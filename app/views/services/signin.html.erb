@@ -1,17 +1,17 @@
 <% content_for :page_title do -%>Login<% end -%>
 <% content_for :content_header do %>
-  <div class="row"><div class="twelve columns"><h2>Login</h2></div></div>
+  <div class="page-header"><h1>Login</h1></div>
 <% end %>
 
 <div class="row">
-  <div class="six columns">
-    <h5 class="subheader">Login to <%= t(:site_name) -%></h5>
-    <p class="bigger">
+  <div class="span6">
+    <h3>Login to <%= t(:site_name) -%></h3>
+    <p>
       You can sign up or sign in using one of your existing accounts at Facebook, Google, and Yahoo. Please select the service you want to use:
     </p>
     <div>
     <%= render "services_list" %>
     </div>
-    <p class="clear">Don't have any of these accounts? Get your <%= link_to "GoogleID", "http://mail.google.com/mail/signup" %> now!</p>
+    <p>Don't have any of these accounts? Get your <%= link_to "GoogleID", "http://mail.google.com/mail/signup" %> now!</p>
   </div>
 </div>
