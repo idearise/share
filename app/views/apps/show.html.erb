@@ -57,10 +57,33 @@ $(document).ready(function() {
 		}
 	});
 	
+	//new source form handler
+	$('#newsource').submit(function (data) {
+		console.log(data);
+		return false;
+	});
+	
+	$('#newsource-save').click(function () {
+		var f = $('#newsource');
+		f.submit();
+	});
+	
 });
 </script>
 <% end %>
-<%= render partial: 'shared/handlebars/post'%>
+<script id="_post" type="text/x-handlebars-template">
+  <div class="add-bottom">
+  <div class="pull-left"><img src="http://placehold.it/36x36" alt=""></div>
+  <div class="post-summary">
+    <h4><a href="/apps/<%= @app.id%>/posts/{{id}}">{{title}}</a> <small>+{{up}} -{{down}}</small> <span class="label"><a href="{{url}}">link</a></span></h4>
+    {{created_at}}
+    <span class="nowrap">by <%= image_tag("http://placehold.it/10x10", :class=>"inline") -%> {{user_id}}</span> 
+    in {{domain}} 
+    &bull; {{comments}} responses
+  </div>
+</div>
+</script>
+
 
 
 <div class="span7 pull-left">
@@ -141,18 +164,19 @@ $(document).ready(function() {
     <h3>Add Post</h3>
   </div>
   <div class="modal-body">
-    <form>
+	<%= form_tag [Share.config.endpoint, 'sources.json'].join('/') + "?api_key=" + Share.config.api_key, :method => :post, :id =>"newsource" do %>
+	  <%= hidden_field_tag "dimension_identifiers", @app.id%>
       <fieldset>
         <div class="clearfix">
           <label for="xlInput">Title *</label>
           <div class="input">
-            <input class="span5" id="xlInput" name="xlInput" size="30" type="text">
+			<%= text_field_tag "source[title]", nil, :id => "xlInput", :size => "30", :class => "span5", :placeholder => ""%>
           </div>
         </div><!-- /clearfix -->
         <div class="clearfix">
           <label for="prependedInput">Link</label>
           <div class="input">
-            <input class="span5" id="prependedInput" name="prependedInput" size="16" type="text" placeholder="">
+			<%= text_field_tag "source[url]", nil, :id => "prependedInput", :size => "16", :class => "span5",:placeholder =>""%>
           </div>
         </div>        
         <div class="clearfix">
@@ -164,14 +188,15 @@ $(document).ready(function() {
         <div class="clearfix">
           <label for="textarea">Text</label>
           <div class="input">
-            <textarea class="span6" id="textarea2" name="textarea2" rows="12"></textarea>
+			<%= text_area_tag "source[text]", nil, :id => "textarea2", :rows => "5", :class => "span6"%>
           </div>
         </div><!-- /clearfix -->        
       </fieldset>
-    </form>
+    <% end %>
   </div>
   <div class="modal-footer">
-    <a href="#" class="btn primary">Save</a>
+    <a href="#" id="newsource-save" class="btn primary">Save</a>
+	
     <a href="#" class="btn secondary">Preview</a>
   </div>
 </div>
