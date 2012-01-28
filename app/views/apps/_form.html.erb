@@ -37,7 +37,6 @@
           <% @platforms.each do |p| -%>
           <li>
             <label>
-              <input type="checkbox" name="optionsCheckboxes" value="option1">
               <%= check_box_tag :platform_ids, p.id, @app.platforms.include?(p), :name => 'app[platform_ids][]' -%>
               <span><%= p.name -%></span>
             </label>
@@ -53,31 +52,37 @@
 
   <fieldset class="add-top">
     <legend>Screenshots</legend>
-    <div class="clearfix">
-      <div class="input">
-      <%= app_form.link_to_add(:images, :class => "btn") do -%>
-        Add a screenshot
-      <% end -%>
-      </div>
-    </div>
-    <%= app_form.fields_for :images do |image_form| -%>
+    <%= app_form.fields_for :images do |image_fields| -%>
     <div class="clearfix">
       <%= label_tag(:image_description, "Description") -%>
       <div class="input">
-        <%= image_form.text_field :description, {:maxlength => 32, :class => "span5"} -%>
+        <%= image_fields.text_field :description, {:maxlength => 32, :class => "span5"} -%>
         <span class="help-block">32 characters or less.</span>
       </div>
     </div><!-- /clearfix -->
     <div class="clearfix">
       <%= label_tag(:image_file, "File") -%>
       <div class="input">
-        <%= image_form.file_field :file -%>
-        <%= image_form.link_to_remove(:class => "btn") do -%>
-          Remove this file
+        <%# if !image_fields.object.new_record? and image_fields.object.file?-%>
+        <% if image_fields.object.file?-%>
+          <%= "#{image_tag(image_fields.object.file.url, width: 105, height: 105, alt: image_fields.object.description )}<br/>".html_safe if image_fields.object.file? -%>
+          <%= image_fields.check_box :remove_file -%>
+            Delete
+        <% else -%>
+          <%= image_fields.file_field :file -%>
+          <%= image_fields.link_to_remove(:class => "btn") do -%>
+            Remove this upload
+          <% end -%>
+          <%= image_fields.hidden_field :file_cache %>
         <% end -%>
       </div>
     </div><!-- /clearfix --> 
     <% end -%>
+    <p>
+    <%= app_form.link_to_add(:images, :style => "margin-left: 150px;", :class => "btn") do -%>
+      Add a screenshot
+    <% end -%>
+    </p>
   </fieldset>
      
   <fieldset class="add-top">

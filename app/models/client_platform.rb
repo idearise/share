@@ -17,6 +17,7 @@ class ClientPlatform < ActiveRecord::Base
   # CONSTANTS
 
   # ATTRIBUTES
+  accepts_nested_attributes_for :platform
   attr_accessible :platform, :app
 
   # VALIDATIONS

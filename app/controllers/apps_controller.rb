@@ -19,11 +19,12 @@ class AppsController < ApplicationController
   # GET
   def new
     @app = App.new
+    # @app.images.build
   end
 
   # POST
   def create
-    @app = App.new(params[:app])
+    @app = App.new
     @app.attributes = {'platform_ids' => []}.merge(params[:app] || {})
     @app.user_id = current_user.id
     # TODO Sanitize links

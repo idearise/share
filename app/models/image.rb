@@ -17,7 +17,7 @@ class Image < ActiveRecord::Base
 
   # ATTRIBUTES
   # accepts_nested_attributes_for
-  # attr_accessible
+  attr_accessible :description, :file, :file_cache, :remove_file, :remove_file_cache
 
   # VALIDATIONS
 
