@@ -14,6 +14,7 @@ group :development, :test do
   gem 'rails-dev-boost', :git => 'git://github.com/thedarkone/rails-dev-boost.git', :require => 'rails_development_boost'
 end
 
+gem 'rest-client', :git => "git://github.com/archiloque/rest-client.git"
 gem 'omniauth'
 gem 'omniauth-openid'
 gem 'omniauth-facebook', :git => 'git://github.com/mkdynamic/omniauth-facebook.git'

@@ -24,7 +24,7 @@ $(document).ready(function() {
 			//sources.items is the list of sources
 			//sources.total is the number of sources in the list
 			var compiled = [];
-			var limit = 4;
+			var limit = 20;
 			var i;
 			limit = Math.min(limit,sources.items.length);
 			for(var x = 0; x < limit; x++) {
@@ -57,14 +57,33 @@ $(document).ready(function() {
 		}
 	});
 	
-	//new source form handler
-	$('#newsource').submit(function (data) {
+	var f = $('#newsource');
+	
+	f.submit(function () {
+		var url = f.attr('action');
+		var data = f.serialize();
+		console.log(url);
 		console.log(data);
+		$.ajax({
+		    type: 'POST',
+			url: url,
+			data: data,
+			success: function (object) {{
+				console.log(object)
+				if (object.success) {
+					window.location.reload();
+				}
+				else {
+					$('#errors').html(object.errors.join("<br />"));
+					$('#errors-container').attr("style", "visibility: visible");
+				}
+			}},
+			dataType: 'json'
+		})
 		return false;
 	});
 	
 	$('#newsource-save').click(function () {
-		var f = $('#newsource');
 		f.submit();
 	});
 	
@@ -164,9 +183,13 @@ $(document).ready(function() {
     <h3>Add Post</h3>
   </div>
   <div class="modal-body">
-	<%= form_tag [Share.config.endpoint, 'sources.json'].join('/') + "?api_key=" + Share.config.api_key, :method => :post, :id =>"newsource" do %>
+	<%= form_tag app_posts_path(@app.id, :format => :json), :method => :post, :id =>"newsource" do %>
 	  <%= hidden_field_tag "dimension_identifiers", @app.id%>
       <fieldset>
+		<div id="errors-container" class="clearfix" style="visibility: hidden;">
+          	<div id="errors" class="input">
+	         </div>          
+        </div>
         <div class="clearfix">
           <label for="xlInput">Title *</label>
           <div class="input">
