@@ -10,6 +10,7 @@ class App < ActiveRecord::Base
   belongs_to :user
   has_many :client_platforms, :dependent => :destroy
   has_many :platforms, :through => :client_platforms
+  has_many :images, :dependent => :destroy
 
   # CALLBACKS
 
@@ -18,9 +19,11 @@ class App < ActiveRecord::Base
   # CONSTANTS
 
   # ATTRIBUTES
-  # accepts_nested_attributes_for :client_platforms, :allow_destroy => true
-  # attr_accessible :client_platforms
-  attr_accessible :name, :website, :about, :platform_ids,:platforms, :thanks_to, :twitter, :facebook, :google_plus, :android, :itunes
+  accepts_nested_attributes_for :images
+  attr_accessible :name, :website, :about, :thanks_to, 
+                  :twitter, :facebook, :google_plus, :android, :itunes,
+                  :platform_ids, :platforms, 
+                  :images_attributes
 
   # VALIDATIONS
   validates :name, :presence => true

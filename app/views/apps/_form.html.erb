@@ -1,4 +1,4 @@
-<%= form_for app, {:url => form_url } do |app_form| -%>
+<%= nested_form_for app, {:url => form_url, :html=>{ :multipart => true } } do |app_form| -%>
 <%= app_form.error_messages :header_tag => :h4, 
                  :header_message => "The following issues kept the App from being added:", 
                  :message => nil,
@@ -37,7 +37,6 @@
           <% @platforms.each do |p| -%>
           <li>
             <label>
-              <input type="checkbox" name="optionsCheckboxes" value="option1">
               <%= check_box_tag :platform_ids, p.id, @app.platforms.include?(p), :name => 'app[platform_ids][]' -%>
               <span><%= p.name -%></span>
             </label>
@@ -48,13 +47,42 @@
           <strong>Note:</strong> Choose one or more.
         </span>
       </div>
+    </div><!-- /clearfix -->      
+  </fieldset>
+
+  <fieldset class="add-top">
+    <legend>Screenshots</legend>
+    <%= app_form.fields_for :images do |image_fields| -%>
+    <div class="clearfix">
+      <%= label_tag(:image_description, "Description") -%>
+      <div class="input">
+        <%= image_fields.text_field :description, {:maxlength => 32, :class => "span5"} -%>
+        <span class="help-block">32 characters or less.</span>
+      </div>
     </div><!-- /clearfix -->
     <div class="clearfix">
-      <label for="fileInput">Screenshots</label>
+      <%= label_tag(:image_file, "File") -%>
       <div class="input">
-        <input class="input-file" id="fileInput" name="fileInput" type="file">
+        <%# if !image_fields.object.new_record? and image_fields.object.file?-%>
+        <% if image_fields.object.file?-%>
+          <%= "#{image_tag(image_fields.object.file.url, width: 105, height: 105, alt: image_fields.object.description )}<br/>".html_safe if image_fields.object.file? -%>
+          <%= image_fields.check_box :remove_file -%>
+            Delete
+        <% else -%>
+          <%= image_fields.file_field :file -%>
+          <%= image_fields.link_to_remove(:class => "btn") do -%>
+            Remove this upload
+          <% end -%>
+          <%= image_fields.hidden_field :file_cache %>
+        <% end -%>
       </div>
-    </div><!-- /clearfix -->        
+    </div><!-- /clearfix --> 
+    <% end -%>
+    <p>
+    <%= app_form.link_to_add(:images, :style => "margin-left: 150px;", :class => "btn") do -%>
+      Add a screenshot
+    <% end -%>
+    </p>
   </fieldset>
      
   <fieldset class="add-top">

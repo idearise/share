@@ -7,4 +7,5 @@
 //= require jquery
 //= require jquery_ujs
 //= require handlebars
+//= require jquery_nested_form
 //= require_tree .

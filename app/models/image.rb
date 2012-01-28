@@ -1,13 +1,12 @@
-class ClientPlatform < ActiveRecord::Base
+class Image < ActiveRecord::Base
   # REQUIRES
 
   # INCLUDES
-  include SavedBy
+  mount_uploader :file, FileUploader
 
   # BEHAVIORS
 
   # ASSOCIATIONS
-  belongs_to :platform
   belongs_to :app
 
   # CALLBACKS
@@ -17,8 +16,8 @@ class ClientPlatform < ActiveRecord::Base
   # CONSTANTS
 
   # ATTRIBUTES
-  accepts_nested_attributes_for :platform
-  attr_accessible :platform, :app
+  # accepts_nested_attributes_for
+  attr_accessible :description, :file, :file_cache, :remove_file, :remove_file_cache
 
   # VALIDATIONS
 

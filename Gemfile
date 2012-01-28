@@ -1,6 +1,6 @@
 source 'http://rubygems.org'
 
-gem 'rails', '3.1.2'
+gem 'rails', '3.2.1'
 
 # Bundle edge Rails instead:
 # gem 'rails',     :git => 'git://github.com/rails/rails.git'
@@ -20,13 +20,17 @@ gem 'omniauth-openid'
 gem 'omniauth-facebook', :git => 'git://github.com/mkdynamic/omniauth-facebook.git'
 gem 'recaptcha', :require => 'recaptcha/rails'
 gem 'dynamic_form'
+gem 'fog'
+gem 'carrierwave'
+gem 'mini_magick'
+gem 'nested_form', :git => 'git://github.com/ryanb/nested_form.git'
 
 # Gems used only for assets and not required
 # in production environments by default.
 group :assets do
-  gem 'sass-rails',   '~> 3.1.5.rc.2'
-  gem 'coffee-rails', '~> 3.1.1'
-  gem 'uglifier', '>= 1.0.3'
+  gem 'sass-rails' #,   '~> 3.1.5.rc.2'
+  gem 'coffee-rails' #, '~> 3.1.1'
+  gem 'uglifier' #, '>= 1.0.3'
 end
 
 gem 'jquery-rails'
