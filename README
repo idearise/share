@@ -1,3 +1,7 @@
+set ENV variables for:
+  ENV['S3_KEY'] # used in carrierwave.rb
+  ENV['S3_SECRET'] # used in carrierwave.rb
+
 share.yml file in ./config should look like the following:
 
 development:
