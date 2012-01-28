@@ -80,7 +80,7 @@
       {{created_at}}
       <span class="nowrap">by <a href="/users/1">{{created_by}}</a></span> 
       &bull; {{score}} pt
-      &bull; <a href="">Permalink</a>
+      &bull; <a href="/apps/<%= params[:app_id]%>/posts/<%= params[:id] %>/comments/{{id}}">Permalink</a>
       </span>
       <p>{{text}}</p>
     </div>
@@ -111,17 +111,23 @@ $(document).ready(function() {
 					comment.width = level * 46;
 					//compile
 					compiled.push(commentTmpl(comment));
+					//console.log(comment);
 					
 					//check if this has children and render its children if it has
 					if (root[String(comment.id)]) {
 						compiled = compiled.concat(fun(root[String(comment.id)], root, level + 1));
 					}
 				});
-				return compiled; 
+				return compiled;
 			}
-			var all = fun(data.comments['-1'], data.comments, 0);
-			//console.log(all);
-			$('#comments-section').html(all.join());
+			var all = fun(data.comments['-1'] || [], data.comments, 0);
+			if (all.length > 0) {
+				$('#comments-section').html(all.join());
+			}
+			else {
+				$('#comments-section').html("No comments yet!");
+			}
+			
 		}
 		
 	});
