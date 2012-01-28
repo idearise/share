@@ -184,7 +184,6 @@ $(document).ready(function() {
   </div>
   <div class="modal-body">
 	<%= form_tag app_posts_path(@app.id, :format => :json), :method => :post, :id =>"newsource" do %>
-	  <%= hidden_field_tag "dimension_identifiers", @app.id%>
       <fieldset>
 		<div id="errors-container" class="clearfix" style="visibility: hidden;">
           	<div id="errors" class="input">

@@ -46,19 +46,23 @@
     <h3>Add Response</h3>
   </div>
   <div class="modal-body">
-    <form>
-      <fieldset>  
+    <%= form_tag app_post_comments_path(@app.id, @post_id, :format => :json), :method => :post, :id =>"newcomment" do %>
+      <fieldset>
+	    <div id="errors-container" class="clearfix" style="visibility: hidden;">
+          	<div id="errors" class="input">
+	         </div>          
+        </div>
         <div class="clearfix">
           <label for="textarea">Text</label>
           <div class="input">
-            <textarea class="span6" id="textarea2" name="textarea2" rows="12"></textarea>
+            <textarea class="span6" id="textarea2" name="comment[text]" rows="12"></textarea>
           </div>
         </div><!-- /clearfix -->        
       </fieldset>
-    </form>
+    <% end %>
   </div>
   <div class="modal-footer">
-    <a href="#" class="btn primary">Save</a>
+    <a id="newcomment-save" href="#" class="btn primary">Save</a>
     <a href="#" class="btn secondary">Preview</a>
   </div>
 </div>
@@ -80,7 +84,7 @@
       {{created_at}}
       <span class="nowrap">by <a href="/users/1">{{created_by}}</a></span> 
       &bull; {{score}} pt
-      &bull; <a href="/apps/<%= params[:app_id]%>/posts/<%= params[:id] %>/comments/{{id}}">Permalink</a>
+      &bull; <a href="/apps/<%= params[:app_id]%>/posts/<%= @post_id %>/comments/{{id}}">Permalink</a>
       </span>
       <p>{{text}}</p>
     </div>
@@ -95,7 +99,7 @@ $(document).ready(function() {
 	var commentNode = $('#node').html();
 	var commentTmpl = Handlebars.compile(commentNode);
 	
-	var s = new Signalike.Source(<%=@source_id%>);
+	var s = new Signalike.Source(<%=@post_id%>);
 	s.fetch({
 		success: function(data) {
 			//console.log(data);
@@ -112,7 +116,6 @@ $(document).ready(function() {
 					//compile
 					compiled.push(commentTmpl(comment));
 					//console.log(comment);
-					
 					//check if this has children and render its children if it has
 					if (root[String(comment.id)]) {
 						compiled = compiled.concat(fun(root[String(comment.id)], root, level + 1));
@@ -131,6 +134,38 @@ $(document).ready(function() {
 		}
 		
 	});
+	
+	//new comment
+	var f = $('#newcomment');
+	
+	f.submit(function () {
+		var url = f.attr('action');
+		var data = f.serialize();
+		console.log(url);
+		console.log(data);
+		$.ajax({
+		    type: 'POST',
+			url: url,
+			data: data,
+			success: function (object) {{
+				console.log(object)
+				if (object.success) {
+					window.location.reload();
+				}
+				else {
+					$('#errors').html(object.errors.join("<br />"));
+					$('#errors-container').attr("style", "visibility: visible");
+				}
+			}},
+			dataType: 'json'
+		})
+		return false;
+	});
+	
+	$('#newcomment-save').click(function () {
+		f.submit();
+	});
+	
 });
 </script>
 <% end %>
