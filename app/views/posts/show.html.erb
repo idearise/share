@@ -227,7 +227,6 @@ $(document).ready(function() {
 	s.fetch({
 		success: function(data) {
 			console.log(data);
-			
 			$('#post-title').html(template(data.source));
 			$('#post-text').html(data.source.text);
 			$('#post-link').html('<a href="'+data.source.url+'">'+data.source.url+'</url>');
