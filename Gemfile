@@ -19,6 +19,10 @@ gem 'omniauth-openid'
 gem 'omniauth-facebook', :git => 'git://github.com/mkdynamic/omniauth-facebook.git'
 gem 'recaptcha', :require => 'recaptcha/rails'
 gem 'dynamic_form'
+gem 'fog'
+gem 'carrierwave'
+gem 'mini_magick'
+gem 'nested_form', :git => 'git://github.com/ryanb/nested_form.git'
 
 # Gems used only for assets and not required
 # in production environments by default.

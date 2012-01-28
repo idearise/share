@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120109044005) do
+ActiveRecord::Schema.define(:version => 20120128164819) do
 
   create_table "apps", :force => true do |t|
     t.string   "name"
@@ -28,8 +28,8 @@ ActiveRecord::Schema.define(:version => 20120109044005) do
     t.string   "created_ip",  :limit => 39
     t.integer  "updated_by"
     t.string   "updated_ip",  :limit => 39
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.datetime "created_at",                :null => false
+    t.datetime "updated_at",                :null => false
   end
 
   add_index "apps", ["created_at"], :name => "index_apps_on_created_at"
@@ -40,18 +40,35 @@ ActiveRecord::Schema.define(:version => 20120109044005) do
   create_table "client_platforms", :force => true do |t|
     t.integer  "platform_id"
     t.integer  "app_id"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.datetime "created_at",  :null => false
+    t.datetime "updated_at",  :null => false
   end
 
   add_index "client_platforms", ["created_at"], :name => "index_client_platforms_on_created_at"
   add_index "client_platforms", ["updated_at"], :name => "index_client_platforms_on_updated_at"
 
+  create_table "images", :force => true do |t|
+    t.string   "description", :limit => 32
+    t.string   "file"
+    t.integer  "app_id"
+    t.integer  "created_by"
+    t.string   "created_ip",  :limit => 39
+    t.integer  "updated_by"
+    t.string   "updated_ip",  :limit => 39
+    t.datetime "created_at",                :null => false
+    t.datetime "updated_at",                :null => false
+  end
+
+  add_index "images", ["created_at"], :name => "index_images_on_created_at"
+  add_index "images", ["created_by"], :name => "index_images_on_created_by"
+  add_index "images", ["updated_at"], :name => "index_images_on_updated_at"
+  add_index "images", ["updated_by"], :name => "index_images_on_updated_by"
+
   create_table "platforms", :force => true do |t|
     t.string   "name"
     t.integer  "display_order", :default => 1
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.datetime "created_at",                   :null => false
+    t.datetime "updated_at",                   :null => false
   end
 
   create_table "services", :force => true do |t|
@@ -60,8 +77,8 @@ ActiveRecord::Schema.define(:version => 20120109044005) do
     t.string   "uid"
     t.string   "uname"
     t.string   "uemail"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
   end
 
   add_index "services", ["provider", "uid"], :name => "index_services_on_provider_and_uid", :unique => true
@@ -83,8 +100,8 @@ ActiveRecord::Schema.define(:version => 20120109044005) do
     t.string   "created_ip", :limit => 39
     t.integer  "updated_by"
     t.string   "updated_ip", :limit => 39
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.datetime "created_at",               :null => false
+    t.datetime "updated_at",               :null => false
   end
 
   add_index "users", ["created_by", "updated_by"], :name => "index_users_on_created_by_and_updated_by"

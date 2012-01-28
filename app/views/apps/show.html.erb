@@ -7,7 +7,7 @@
 
   <h1><%= @app.name%>
     <small><%= @platforms.map(&:name).join(' &bull; ').html_safe%></small>
-    <span class="label warning">unverified</span>
+    <!-- <span class="label warning">unverified</span> -->
   </h1>
 </div> 
 
@@ -90,21 +90,13 @@ $(document).ready(function() {
   <h2>About</h2>
   <p><em>Updated <%= time_ago_in_words(@app.updated_at) %> ago by <%= @app.try(:user_id) or "Unknown" %></em></p>
   <ul class="media-grid">
+    <% @app.images.each do |image| -%>
     <li>
       <a href="#">
-        <img class="thumbnail" src="http://placehold.it/105x105" alt="">
-      </a>
-    </li>  
-    <li>
-      <a href="/apps/1-example-com">
-        <img class="thumbnail" src="http://placehold.it/105x105" alt="">
+        <img class="thumbnail" src="<%= image.file.thumb.url -%>" alt="<%= image.description -%>" width=105 height=105>
       </a>
     </li>
-    <li>
-      <a href="/apps/1-example-com">
-        <img class="thumbnail" src="http://placehold.it/105x105" alt="">
-      </a>
-    </li>    
+    <% end -%>
   </ul>
   <p><%= truncate(@app.about, :length => 50,:omission => "... <a href="">more &dArr;</a>").html_safe %></p>
   

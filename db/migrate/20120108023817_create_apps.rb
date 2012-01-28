@@ -23,6 +23,6 @@ class CreateApps < ActiveRecord::Migration
     add_index :apps, :created_by
     add_index :apps, :created_at
     add_index :apps, :updated_by
-    add_index :apps, :updated_at   
+    add_index :apps, :updated_at
   end
 end
