@@ -89,7 +89,7 @@ $(document).ready(function() {
 	
 });
 </script>
-<% end %>
+<% end -%>
 <script id="_post" type="text/x-handlebars-template">
   <div class="add-bottom">
   <div class="pull-left"><img src="http://placehold.it/36x36" alt=""></div>
@@ -107,7 +107,7 @@ $(document).ready(function() {
 
 <div class="span7 pull-left">
   <h2>About</h2>
-  <p><em>Updated <%= time_ago_in_words(@app.updated_at) %> ago by <%= @app.try(:user_id) or "Unknown" %></em></p>
+  <p><em>Updated <%= time_ago_in_words(@app.updated_at) %> ago by <%= @app.try(:user) or "Unknown" %></em></p>
   <ul class="media-grid">
     <% @app.images.each do |image| -%>
     <li>
@@ -117,34 +117,37 @@ $(document).ready(function() {
     </li>
     <% end -%>
   </ul>
-  <p><%= truncate(@app.about, :length => 50,:omission => "... <a href="">more &dArr;</a>").html_safe %></p>
-  
+  <p><%= markdown(@app.about) -%></p>  
   <h3>Thanks To</h3>
-  <p><%= truncate(@app.thanks_to, :length => 50, :omission => "... more <a href="">more &dArr;</a>").html_safe %></p>
+  <p><%= markdown(@app.thanks_to) -%></p>
   <h3>Links</h3>
   <address>
-	<% if @app.website.presence %>
+	<% if @app.website.presence -%>
     <strong>Web Site</strong><br>
 	<%= link_to @app.website, @app.website %>
     <br>
-    <% end %>
-	<% if @app.twitter.presence %>
+    <% end -%>
+	<% if @app.twitter.presence -%>
     <strong>Twitter</strong><br>
-    <%= link_to ['@',@app.twitter].join, ["http://twitter.com", '/', @app.twitter].join %>
-    <a href="">@<%= @app.twitter%></a><br>
-    <% end %>
+    <a href="http://twitter.com/<%= @app.twitter -%>">@<%= @app.twitter%></a><br>
+  <% end -%>
+  <% if @app.facebook.presence -%>
     <strong>Facebook</strong><br>
-    <a href="">http://www.facebook.com/example</a><br>
+    <a href="http://www.facebook.com/<%= @app.facebook -%>">http://www.facebook.com/<%= @app.facebook -%></a><br>
+  <% end -%>
+  <% if @app.google_plus.presence -%>
     <strong>Google+</strong><br>
-    <a href="">http://plus.google.com/...</a><br>
+    <a href="http://plus.google.com/<%= @app.google_plus -%>">http://plus.google.com/<%= @app.facebook -%></a><br>
+  <% end -%>
+  <% if @app.itunes.presence -%>
     <strong>iTunes App Store</strong><br>
-    <a href="">http://itunes.apple.com/...</a>
+    <a href="http://itunes.apple.com/<%= @app.itunes -%>">http://itunes.apple.com/<%= @app.itunes -%></a>
+  <% end -%>
+  <% if @app.android.presence -%>
+    <strong>Android Market</strong><br>
+    <a href="https://market.android.com/<%= @app.android -%>">https://market.android.com/<%= @app.android -%></a>
+  <% end -%>
   </address>
-  <h3>Other Documents</h3>
-  <ul>
-    <li><a href="">Architecture Overview.pptx</a></li>
-    <li><a href="">Conference Presentation.pptx</a></li>
-  </ul>
 </div>
 
 <div class="span8 pull-right">
@@ -206,7 +209,7 @@ $(document).ready(function() {
           </div>
         </div><!-- /clearfix -->        
       </fieldset>
-    <% end %>
+    <% end -%>
   </div>
   <div class="modal-footer">
     <a href="#" id="newsource-save" class="btn primary">Save</a>

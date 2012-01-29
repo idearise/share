@@ -35,6 +35,10 @@ class App < ActiveRecord::Base
   validate :at_least_one_platform
   validates :thanks_to, :length => { :in => 0..1000 }
   validates :twitter, :length => { :in => 0..15 } # TODO increase for future?
+  validates :facebook, :length => { :in => 0..255 }
+  validates :google_plus, :length => { :in => 0..255 }
+  validates :android, :length => { :in => 0..255 }
+  validates :itunes, :length => { :in => 0..255 }
   # validates_format_of :facebook, :allow_blank => true, :with => /^(http|https):\/\/[a-z0-9]+([\-\.]{1}[a-z0-9]+)*\.[a-z]{2,6}(:[0-9]{1,5})?(\/.*)?$/ix
   # validates_format_of :google_plus, :allow_blank => true, :with => /^(http|https):\/\/[a-z0-9]+([\-\.]{1}[a-z0-9]+)*\.[a-z]{2,6}(:[0-9]{1,5})?(\/.*)?$/ix
   # validates_format_of :android, :allow_blank => true, :with => /^(http|https):\/\/[a-z0-9]+([\-\.]{1}[a-z0-9]+)*\.[a-z]{2,6}(:[0-9]{1,5})?(\/.*)?$/ix

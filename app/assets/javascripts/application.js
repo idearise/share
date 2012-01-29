@@ -9,3 +9,7 @@
 //= require handlebars
 //= require jquery_nested_form
 //= require_tree .
+
+$(function() {
+	$(".markitup").markItUp(mySettings);
+});

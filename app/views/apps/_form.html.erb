@@ -24,9 +24,9 @@
     <div class="clearfix">
       <%= label_tag(:app_about, "About *") -%>
       <div class="input">
-        <%= app_form.text_area :about, {:size => "80x12", :class => "span8"} -%>
+        <%= app_form.text_area :about, {:size => "80x12", :class => "span8 markitup"} -%>
         <span class="help-block">
-          Describe what your app offers, what's in it, who built it, how your spreading the word about it, and why it's important. 4000 characters max length.
+          Describe what your app offers, what's in it, who built it, how your spreading the word about it, and why it's important. 4000 characters max length. Markdown is supported.
         </span>
       </div>
     </div><!-- /clearfix -->        
@@ -89,9 +89,9 @@
     <div class="clearfix">
       <%= label_tag(:app_thanks_to, "Thanks To") -%>
       <div class="input">
-        <%= app_form.text_area :thanks_to, {:size => "80x4", :class => "span8"} -%>
+        <%= app_form.text_area :thanks_to, {:size => "80x4", :class => "span8 markitup"} -%>
         <span class="help-block">
-          Mention all the people you'd like to thank for helping make your app what it is today! 1000 character max length.
+          Mention all the people you'd like to thank for helping make your app what it is today! 1000 character max length. Markdown is supported.
         </span>
       </div>
     </div><!-- /clearfix --> 
@@ -139,13 +139,7 @@
           <%= app_form.text_field :itunes, {:maxlength => 50, :class => "span5", :placeholder=>"page"} -%>
         </div>
       </div>
-    </div>
-    <div class="clearfix">
-      <label for="fileInput">Other Documents</label>
-      <div class="input">
-        <input class="input-file" id="fileInput" name="fileInput" type="file">
-      </div>
-    </div><!-- /clearfix -->          
+    </div>        
   </fieldset>
   <div class="actions">
     <input type="submit" class="btn primary half-left" value="Save">

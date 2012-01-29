@@ -1,6 +1,6 @@
 Use Ruby 1.9.3
 
-bundle update
+bundle install
 
 Set ENV variables for:
   ENV['S3_KEY'] # used in carrierwave.rb

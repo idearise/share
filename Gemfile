@@ -25,6 +25,7 @@ gem 'carrierwave'
 gem 'mini_magick'
 gem 'nested_form', :git => 'git://github.com/ryanb/nested_form.git'
 gem 'kaminari'
+gem 'redcarpet', :git => 'git://github.com/tanoku/redcarpet'
 
 # Gems used only for assets and not required
 # in production environments by default.

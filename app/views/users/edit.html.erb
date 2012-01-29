@@ -76,7 +76,7 @@
       <div class="clearfix">
         <%= label_tag(:user_about, "About") -%>
         <div class="input">
-          <%= user_form.text_area :about, {:size => "80x12", :class => "span8"} -%>
+          <%= user_form.text_area :about, {:size => "80x12", :class => "span8 markitup"} -%>
           <span class="help-block">
             Feel free to describe your interests and expertise. 2000 characters max length.
           </span>
@@ -94,7 +94,7 @@
       </div><!-- /clearfix -->          
     </fieldset>
     <div class="actions">
-      <input type="submit" class="btn" value="Preview">&nbsp;<input type="submit" class="btn primary half-left" value="Save">
+      <input type="submit" class="btn primary half-left" value="Save">
     </div>
     </fieldset>
   <% end -%>

@@ -20,6 +20,12 @@ GIT
     nested_form (0.1.1)
 
 GIT
+  remote: git://github.com/tanoku/redcarpet
+  revision: e196b453b29c13e4b5c1817929785944f0c312e1
+  specs:
+    redcarpet (2.1.0)
+
+GIT
   remote: git://github.com/thedarkone/rails-dev-boost.git
   revision: c648d229fa981c5f9bcbd8ac6baa520582c248c6
   specs:
@@ -207,6 +213,7 @@ DEPENDENCIES
   rails (= 3.2.1)
   rails-dev-boost!
   recaptcha
+  redcarpet!
   rest-client!
   sass-rails
   sqlite3
