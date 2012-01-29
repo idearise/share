@@ -117,9 +117,11 @@ $(document).ready(function() {
     </li>
     <% end -%>
   </ul>
-  <p><%= markdown(@app.about) -%></p>  
+  <p><%= markdown(@app.about) -%></p>
+  <% if @app.thanks_to.presence -%>
   <h3>Thanks To</h3>
   <p><%= markdown(@app.thanks_to) -%></p>
+  <% end -%>
   <h3>Links</h3>
   <address>
 	<% if @app.website.presence -%>
