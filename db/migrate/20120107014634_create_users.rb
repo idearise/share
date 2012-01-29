@@ -9,7 +9,7 @@ class CreateUsers < ActiveRecord::Migration
       t.string :twitter, :limit => 32
       t.string :linkedin, :limit => 64
       t.string :facebook, :limit => 64
-      t.string :google, :limit => 64
+      t.string :google_plus, :limit => 64
       t.text :about
       t.string :last_ip, :limit => 39
       t.integer :created_by

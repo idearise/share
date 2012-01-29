@@ -12,7 +12,7 @@
 <% end -%>
 
 <div class="row">
-  <div class="span5 well panel pull-left">
+  <div class="span7 well panel pull-left">
     <p><%= image_tag(@user.picture(50)) -%></p>
     <address>
       <strong>Apps</strong><br>
@@ -21,19 +21,19 @@
       <% end -%>
       <br/>
       <strong>Web Site</strong><br>
-      <%= @user.website -%><br>
+      <%= link_to "http://#{@user.website}", "http://#{@user.website}" unless @user.website.blank? -%><br>
       <strong>Twitter</strong><br>
       <%= link_to "@#{@user.twitter}", "http://twitter.com/#{@user.twitter}" unless @user.twitter.blank? -%><br>
       <strong>LinkedIn</strong><br>
-      <%= @user.linkedin -%><br>
+      <%= link_to "http://linkedin.com/pub/#{@user.linkedin}", "http://linkedin.com/pub/#{@user.linkedin}" unless @user.linkedin.blank? -%><br>
       <strong>Facebook</strong><br>
-      <%= @user.facebook -%><br>
+      <%= link_to "http://facebook.com/#{@user.facebook}", "http://facebook.com/#{@user.facebook}" unless @user.facebook.blank? -%><br>
       <strong>Google+</strong><br>
-      <%= @user.google -%><br>
+      <%= link_to "https://plus.google.com/#{@user.google_plus}", "http://plus.google.com/#{@user.google_plus}" unless @user.google_plus.blank? -%><br>
     </address>
   </div>
 
-  <div class="span10 pull-right">
+  <div class="span8 pull-right">
     <%= markdown(@user.about) unless @user.about.blank? -%>
   </div>
 </div>

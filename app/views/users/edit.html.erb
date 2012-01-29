@@ -50,7 +50,7 @@
         <%= label_tag(:user_linkedin, "LinkedIn") -%>
         <div class="input">
           <div class="input-prepend">
-            <span class="add-on">http://www.linkedin.com/</span>
+            <span class="add-on">http://linkedin.com/pub/</span>
             <%= user_form.text_field :linkedin, {:maxlength => 50, :class => "span5", :placeholder=>"page"} -%>
           </div>
         </div>
@@ -59,17 +59,17 @@
         <%= label_tag(:user_facebook, "Facebook") -%>
         <div class="input">
           <div class="input-prepend">
-            <span class="add-on">http://www.facebook.com/</span>
+            <span class="add-on">http://facebook.com/</span>
             <%= user_form.text_field :facebook, {:maxlength => 50, :class => "span5", :placeholder=>"page"} -%>
           </div>
         </div>
       </div>
       <div class="clearfix">
-        <%= label_tag(:user_google, "Google+") -%>
+        <%= label_tag(:user_google_plus, "Google+") -%>
         <div class="input">
           <div class="input-prepend">
             <span class="add-on">https://plus.google.com/</span>
-            <%= user_form.text_field :google, {:maxlength => 50, :class => "span5", :placeholder=>"uniqueid/posts"} -%>
+            <%= user_form.text_field :google_plus, {:maxlength => 50, :class => "span5", :placeholder=>"uniqueid/posts"} -%>
           </div>
         </div>
       </div>

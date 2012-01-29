@@ -123,16 +123,15 @@ $(document).ready(function() {
   <address>
 	<% if @app.website.presence -%>
     <strong>Web Site</strong><br>
-	<%= link_to @app.website, @app.website %>
-    <br>
-    <% end -%>
+	  <a href="http://<%= @app.website -%>">http://<%= @app.website %></a><br>
+  <% end -%>
 	<% if @app.twitter.presence -%>
     <strong>Twitter</strong><br>
     <a href="http://twitter.com/<%= @app.twitter -%>">@<%= @app.twitter%></a><br>
   <% end -%>
   <% if @app.facebook.presence -%>
     <strong>Facebook</strong><br>
-    <a href="http://www.facebook.com/<%= @app.facebook -%>">http://www.facebook.com/<%= @app.facebook -%></a><br>
+    <a href="http://facebook.com/<%= @app.facebook -%>">http://facebook.com/<%= @app.facebook -%></a><br>
   <% end -%>
   <% if @app.google_plus.presence -%>
     <strong>Google+</strong><br>

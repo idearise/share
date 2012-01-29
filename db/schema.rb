@@ -85,23 +85,23 @@ ActiveRecord::Schema.define(:version => 20120129022159) do
   add_index "sessions", ["updated_at"], :name => "index_sessions_on_updated_at"
 
   create_table "users", :force => true do |t|
-    t.string   "name",       :limit => 64
+    t.string   "name",        :limit => 64
     t.string   "email"
-    t.string   "avatar",     :limit => 64
-    t.string   "nickname",   :limit => 32
-    t.string   "website",    :limit => 64
-    t.string   "twitter",    :limit => 32
-    t.string   "linkedin",   :limit => 64
-    t.string   "facebook",   :limit => 64
-    t.string   "google",     :limit => 64
+    t.string   "avatar",      :limit => 64
+    t.string   "nickname",    :limit => 32
+    t.string   "website",     :limit => 64
+    t.string   "twitter",     :limit => 32
+    t.string   "linkedin",    :limit => 64
+    t.string   "facebook",    :limit => 64
+    t.string   "google_plus", :limit => 64
     t.text     "about"
-    t.string   "last_ip",    :limit => 39
+    t.string   "last_ip",     :limit => 39
     t.integer  "created_by"
-    t.string   "created_ip", :limit => 39
+    t.string   "created_ip",  :limit => 39
     t.integer  "updated_by"
-    t.string   "updated_ip", :limit => 39
-    t.datetime "created_at",               :null => false
-    t.datetime "updated_at",               :null => false
+    t.string   "updated_ip",  :limit => 39
+    t.datetime "created_at",                :null => false
+    t.datetime "updated_at",                :null => false
   end
 
   add_index "users", ["created_by", "updated_by"], :name => "index_users_on_created_by_and_updated_by"

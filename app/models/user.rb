@@ -18,7 +18,9 @@ class User < ActiveRecord::Base
   # CONSTANTS
 
   # ATTRIBUTES
-  attr_accessible :nickname, :avatar, :last_ip, :website, :twitter, :linkedin, :facebook, :google, :about
+  attr_accessible :nickname, :avatar, :last_ip, 
+                  :website, :twitter, :linkedin, :facebook, :google_plus, 
+                  :about
 
   # VALIDATIONS
   validates :name, :presence => true
@@ -28,10 +30,10 @@ class User < ActiveRecord::Base
   validates :twitter, :length => { :in => 0..15 } # TODO increase for future?
   validates :linkedin, :length => { :in => 0..64 }
   validates :facebook, :length => { :in => 0..64 }
-  validates :google, :length => { :in => 0..64 }
+  validates :google_plus, :length => { :in => 0..64 }
   # validates_format_of :linkedin, :allow_blank => true, :with => /^(http|https):\/\/[a-z0-9]+([\-\.]{1}[a-z0-9]+)*\.[a-z]{2,6}(:[0-9]{1,5})?(\/.*)?$/ix
   # validates_format_of :facebook, :allow_blank => true, :with => /^(http|https):\/\/[a-z0-9]+([\-\.]{1}[a-z0-9]+)*\.[a-z]{2,6}(:[0-9]{1,5})?(\/.*)?$/ix
-  # validates_format_of :google, :allow_blank => true, :with => /^(http|https):\/\/[a-z0-9]+([\-\.]{1}[a-z0-9]+)*\.[a-z]{2,6}(:[0-9]{1,5})?(\/.*)?$/ix
+  # validates_format_of :google_plus, :allow_blank => true, :with => /^(http|https):\/\/[a-z0-9]+([\-\.]{1}[a-z0-9]+)*\.[a-z]{2,6}(:[0-9]{1,5})?(\/.*)?$/ix
   # validates_inclusion_of :is_notifiable, :in => [true, false]
 
   # CLASS METHODS
