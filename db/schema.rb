@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120128164819) do
+ActiveRecord::Schema.define(:version => 20120129022159) do
 
   create_table "apps", :force => true do |t|
     t.string   "name"
@@ -51,18 +51,9 @@ ActiveRecord::Schema.define(:version => 20120128164819) do
     t.string   "description", :limit => 32
     t.string   "file"
     t.integer  "app_id"
-    t.integer  "created_by"
-    t.string   "created_ip",  :limit => 39
-    t.integer  "updated_by"
-    t.string   "updated_ip",  :limit => 39
     t.datetime "created_at",                :null => false
     t.datetime "updated_at",                :null => false
   end
-
-  add_index "images", ["created_at"], :name => "index_images_on_created_at"
-  add_index "images", ["created_by"], :name => "index_images_on_created_by"
-  add_index "images", ["updated_at"], :name => "index_images_on_updated_at"
-  add_index "images", ["updated_by"], :name => "index_images_on_updated_by"
 
   create_table "platforms", :force => true do |t|
     t.string   "name"
@@ -83,6 +74,16 @@ ActiveRecord::Schema.define(:version => 20120128164819) do
 
   add_index "services", ["provider", "uid"], :name => "index_services_on_provider_and_uid", :unique => true
   add_index "services", ["user_id"], :name => "index_services_on_user_id"
+
+  create_table "sessions", :force => true do |t|
+    t.string   "session_id", :null => false
+    t.text     "data"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
+  add_index "sessions", ["session_id"], :name => "index_sessions_on_session_id"
+  add_index "sessions", ["updated_at"], :name => "index_sessions_on_updated_at"
 
   create_table "users", :force => true do |t|
     t.string   "name",       :limit => 64

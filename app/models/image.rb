@@ -20,6 +20,7 @@ class Image < ActiveRecord::Base
   attr_accessible :description, :file, :file_cache, :remove_file, :remove_file_cache
 
   # VALIDATIONS
+  validates :description, :length => { :in => 0..32 }
 
   # CLASS METHODS
 
