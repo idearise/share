@@ -63,9 +63,9 @@
     <div class="clearfix">
       <%= label_tag(:image_file, "File") -%>
       <div class="input">
-        <%# if !image_fields.object.new_record? and image_fields.object.file?-%>
         <% if image_fields.object.file?-%>
           <%= "#{image_tag(image_fields.object.file.url, width: 105, height: 105, alt: image_fields.object.description )}<br/>".html_safe if image_fields.object.file? -%>
+          <%= image_fields.hidden_field :file_cache %>
           <%= image_fields.check_box :remove_file -%>
             Delete
         <% else -%>
@@ -73,7 +73,6 @@
           <%= image_fields.link_to_remove(:class => "btn") do -%>
             Remove this upload
           <% end -%>
-          <%= image_fields.hidden_field :file_cache %>
         <% end -%>
       </div>
     </div><!-- /clearfix --> 
