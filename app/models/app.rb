@@ -9,6 +9,8 @@ class App < ActiveRecord::Base
 
   # ASSOCIATIONS
   belongs_to :user
+  belongs_to :creator, :foreign_key => "created_by"
+  belongs_to :updater, :foreign_key => "updated_by"
   has_many :client_platforms, :dependent => :destroy
   has_many :platforms, :through => :client_platforms
   has_many :images, :dependent => :destroy
@@ -23,7 +25,7 @@ class App < ActiveRecord::Base
 
   # ATTRIBUTES
   accepts_nested_attributes_for :images
-  attr_accessible :name, :website, :about, :thanks_to, 
+  attr_accessible :name, :website, :about,
                   :twitter, :facebook, :google_plus, :android, :itunes,
                   :platform_ids, :platforms, 
                   :images_attributes
@@ -33,7 +35,6 @@ class App < ActiveRecord::Base
   validates_uniqueness_of :name
   validates :about, :presence => true, :length => { :in => 32..4000 }
   validate :at_least_one_platform
-  validates :thanks_to, :length => { :in => 0..1000 }
   validates :twitter, :length => { :in => 0..15 } # TODO increase for future?
   validates :facebook, :length => { :in => 0..255 }
   validates :google_plus, :length => { :in => 0..255 }

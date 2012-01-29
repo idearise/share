@@ -70,3 +70,11 @@ class User < ActiveRecord::Base
   private
 
 end
+
+class Creator < User
+  has_many :apps, :foreign_key => "created_by"
+end
+
+class Updater < User
+  has_many :apps, :foreign_key => "updated_by"
+end

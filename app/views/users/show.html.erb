@@ -1,7 +1,7 @@
 <% content_for :page_title do -%>Adding Your App<% end -%>
 <% content_for :content_header do -%>
 <div class="page-header">
-  <% if @user.id == current_user.id -%>
+  <% if user_signed_in? and (@user.id == current_user.id) -%>
   <div class="pull-right">
     <%= link_to "Edit Profile & Preferences &rarr;".html_safe, edit_user_path(@user), :class => "btn large primary" -%>
   </div>
@@ -34,6 +34,6 @@
   </div>
 
   <div class="span10 pull-right">
-    <%= markdown(@user.about) -%>
+    <%= markdown(@user.about) unless @user.about.blank? -%>
   </div>
 </div>

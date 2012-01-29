@@ -13,13 +13,18 @@ platforms = Platform.create([
   { name: "Windows Phone", display_order: 4 }
 ])
 
+user = User.new
+user.nickname = Forgery(:name).first_name
+user.name = user.nickname + " " + Forgery(:name).last_name
+user.email = Forgery(:email).address
+user.save
 
 app = App.new(
   :name => "example.com", 
   :website => "http://www.example.com",
   :about => "This is just an example of how apps in inthisapp might be created",
-  :thanks_to => "the internet gods",
   :platforms => platforms.values_at(0, 1)
 )
+app.user_id = user.id
 app.id = 1
-app.save!
+app.save_new_by(user.id, '127.0.0.1')

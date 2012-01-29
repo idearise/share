@@ -4,7 +4,6 @@ class CreateApps < ActiveRecord::Migration
       t.string :name
       t.string :website
       t.text :about
-      t.text :thanks_to
       t.string :twitter
       t.string :facebook
       t.string :google_plus

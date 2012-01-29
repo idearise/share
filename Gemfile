@@ -12,6 +12,7 @@ end
 group :development, :test do
   gem 'sqlite3'
   gem 'rails-dev-boost', :git => 'git://github.com/thedarkone/rails-dev-boost.git', :require => 'rails_development_boost'
+  gem 'forgery'
 end
 
 gem 'rest-client', :git => "git://github.com/archiloque/rest-client.git"

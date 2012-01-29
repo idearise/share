@@ -2,7 +2,7 @@
 <% content_for :content_header do -%>
 <div class="page-header">
   <div class="pull-right">
-    <%= link_to "Edit &rarr;".html_safe, edit_app_path(@app), :class => "btn large primary" -%>
+    <%= link_to("Edit &rarr;".html_safe, edit_app_path(@app), :class => "btn large primary") if user_signed_in? and (@app.user.id == current_user.id) -%>
   </div>
 
   <h1><%= @app.name%>
@@ -107,7 +107,7 @@ $(document).ready(function() {
 
 <div class="span7 pull-left">
   <h2>About</h2>
-  <p><em>Updated <%= time_ago_in_words(@app.updated_at) %> ago by <%= @app.try(:user) or "Unknown" %></em></p>
+  <p><em>Updated <%= time_ago_in_words(@app.updated_at) %> ago by <%= link_to @app.updater, user_path(@app.updater) -%></em></p>
   <ul class="media-grid">
     <% @app.images.each do |image| -%>
     <li>
@@ -118,10 +118,7 @@ $(document).ready(function() {
     <% end -%>
   </ul>
   <p><%= markdown(@app.about) -%></p>
-  <% if @app.thanks_to.presence -%>
-  <h3>Thanks To</h3>
-  <p><%= markdown(@app.thanks_to) -%></p>
-  <% end -%>
+
   <h3>Links</h3>
   <address>
 	<% if @app.website.presence -%>

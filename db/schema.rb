@@ -17,7 +17,6 @@ ActiveRecord::Schema.define(:version => 20120129022159) do
     t.string   "name"
     t.string   "website"
     t.text     "about"
-    t.text     "thanks_to"
     t.string   "twitter"
     t.string   "facebook"
     t.string   "google_plus"
