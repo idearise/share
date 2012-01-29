@@ -5,6 +5,7 @@ bundle update
 Set ENV variables for:
   ENV['S3_KEY'] # used in carrierwave.rb
   ENV['S3_SECRET'] # used in carrierwave.rb
+  ENV['RAILS_SECRET_TOKEN'] # used in session_store.rb
 
 In your S3 account, add a bucket named 'inthisapp' 
 

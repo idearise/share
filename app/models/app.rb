@@ -5,6 +5,7 @@ class App < ActiveRecord::Base
   include SavedBy
 
   # BEHAVIORS
+  paginates_per 8
 
   # ASSOCIATIONS
   belongs_to :user
@@ -15,6 +16,8 @@ class App < ActiveRecord::Base
   # CALLBACKS
 
   # SCOPES
+  scope :order_recent, order("updated_at DESC")
+  scope :order_created, order("created_at DESC")
 
   # CONSTANTS
 
@@ -38,6 +41,14 @@ class App < ActiveRecord::Base
   # validates_format_of :itunes, :allow_blank => true, :with => /^(http|https):\/\/[a-z0-9]+([\-\.]{1}[a-z0-9]+)*\.[a-z]{2,6}(:[0-9]{1,5})?(\/.*)?$/ix
 
   # CLASS METHODS
+  def self.by_platform(platform_id)
+    joins(:client_platforms).
+    where("client_platforms.platform_id = ?", platform_id)
+  end
+
+  def self.by_updated_at(d)
+    where("updated_at > ?", d.to_i.days.ago)
+  end
 
   # INSTANCE METHODS
 

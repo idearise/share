@@ -5,16 +5,25 @@ class AppsController < ApplicationController
   protect_from_forgery :except => [:index, :popular, :recent]
 
   # GET
-  # def index
-  # end
+  def index
+    if params[:platform].blank?
+      @apps = App.order_created.page(params[:page]).per(8)
+    else
+      @apps = App.by_platform(params[:platform]).
+                  order_created.page(params[:page]).per(8)
+    end
+  end
 
   # GET
   # def popular
   # end
 
   # GET
-  # def recent
-  # end
+  def recent
+    days = (params[:days].blank? ? 30 : params[:days]) 
+    @apps = App.by_updated_at(days).
+            order_recent.page(params[:page]).per(8)
+  end
 
   # GET
   def new

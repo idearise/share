@@ -5,72 +5,41 @@
     <a href="/apps/new" class="btn large success">Add Your App &rarr;</a>
   </div>
 
-  <h1>Recent Apps <small>page 1 of 1 &bull; 6 apps</small></h1>
+  <h1>Recent Apps <%= "<small>page #{@apps.current_page} of #{@apps.num_pages} &bull; #{pluralize(@apps.total_count, 'app')}</small>".html_safe if @apps.num_pages > 0 -%></h1>
 </div>
 <% end -%>
 
 <div class="span16 pull-left">
   <ul class="pills">
-    <li class="active"><a href="#">7 days</a></li>
-    <li><a href="#">2 weeks</a></li>
-    <li><a href="#">30 days</a></li>
+    <li<%= " class=""active""" if params[:days].blank? -%>><a href="/apps/recent">30 days</a></li>
+    <li<%= " class=""active""" if params[:days] == "60" -%>><a href="/apps/recent?days=60">60 days</a></li>
+    <li<%= " class=""active""" if params[:days] == "90" -%>><a href="/apps/recent?days=90">90 days</a></li>
   </ul>
 
   <ul class="media-grid">
+    <% @apps.each do |app| -%>
     <li>
-      <a href="/apps/1-example-com">
-        <img class="thumbnail" src="http://placehold.it/210x210" alt="">
-        <h3>example.com</h3>
-        30 Posts &bull; 
-        <span class="nowrap"><%= image_tag("http://placehold.it/10x10", :class=>"inline") -%> Tess</span>
+      <a href="<%= app_path(app) -%>">
+        <% if app.images.size > 0 -%>
+          <%= image_tag(app.images.last.file.thumb.url, :class=> "thumbnail", :alt => app.images.last.description) -%>
+        <% else -%>
+          <img class="thumbnail" src="http://placehold.it/210x210" alt="">
+        <% end -%>
+        <h3><%= app.name -%></h3>
+        30 Posts
       </a>
     </li>
-    <li>
-      <a href="#">
-        <img class="thumbnail" src="http://placehold.it/210x210" alt="">
-        <h3>anotherapp</h3>
-        10 Posts &bull; 
-        <span class="nowrap"><%= image_tag("http://placehold.it/10x10", :class=>"inline") -%> Tess</span>
-      </a>
-    </li>
-    <li>
-      <a href="#">
-        <img class="thumbnail" src="http://placehold.it/210x210" alt="">
-        <h3>stephenpaul.me</h3>
-        8 Posts &bull; 
-        <span class="nowrap"><%= image_tag("http://placehold.it/10x10", :class=>"inline") -%> devpopol</span>
-      </a>
-    </li>
-    <li>
-      <a href="#">
-        <img class="thumbnail" src="http://placehold.it/210x210" alt="">
-        <h3>nextbigthingapp</h3>
-        120 Posts &bull; 
-        <span class="nowrap"><%= image_tag("http://placehold.it/10x10", :class=>"inline") -%> Tess</span>
-      </a>
-    </li>
-    <li>
-      <a href="#">
-        <img class="thumbnail" src="http://placehold.it/210x210" alt="">
-        <h3>windowsapp</h3>
-        29 Posts &bull; 
-        <span class="nowrap"><%= image_tag("http://placehold.it/10x10", :class=>"inline") -%> Tess</span>
-      </a>
-    </li>
-    <li>
+    <% end -%>
+<!-- <li>
       <a href="#">
         <img class="thumbnail" src="http://placehold.it/210x210" alt="">
         <h3>iosapp</h3>
         19 Posts &bull; 
         <span class="nowrap"><%= image_tag("http://placehold.it/10x10", :class=>"inline") -%> Tess</span>
       </a>
-    </li>
+    </li> -->
   </ul>
-  <div class="pagination">
-    <ul>
-      <li class="prev disabled"><a href="#">&larr; Previous</a></li>
-      <li class="active"><a href="#">1</a></li>
-      <li class="next disabled"><a href="#">Next &rarr;</a></li>
-    </ul>
-  </div>    
+  <% if @apps.num_pages > 1 -%>
+    <%= paginate @apps -%>
+  <% end -%>  
 </div>
