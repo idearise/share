@@ -12,7 +12,7 @@ class PostsController < ApplicationController
   def create
     #[Share.config.endpoint, 'sources.json'].join('/') + "?api_key=" + Share.config.api_key
     response = RestClient.post(([Share.config.endpoint, 'sources.json'].join('/') + "?api_key=" + Share.config.api_key), {
-      :source => params[:source], :dimension_identifiers => @app.id
+      :source => params[:source], :dimension_ids => @app.id
     })
     
     render :text => response.body

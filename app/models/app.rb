@@ -9,8 +9,8 @@ class App < ActiveRecord::Base
 
   # ASSOCIATIONS
   belongs_to :user
-  belongs_to :creator, :foreign_key => "created_by"
-  belongs_to :updater, :foreign_key => "updated_by"
+  belongs_to :creator, :class_name => "User", :foreign_key => "created_by"
+  belongs_to :updater, :class_name => "User", :foreign_key => "updated_by"
   has_many :client_platforms, :dependent => :destroy
   has_many :platforms, :through => :client_platforms
   has_many :images, :dependent => :destroy
@@ -32,7 +32,7 @@ class App < ActiveRecord::Base
 
   # VALIDATIONS
   validates :name, :presence => true
-  validates_uniqueness_of :name
+  validates_uniqueness_of :name, :case_sensitive => false
   validates :about, :presence => true, :length => { :in => 32..4000 }
   validate :at_least_one_platform
   validates :twitter, :length => { :in => 0..15 } # TODO increase for future?
