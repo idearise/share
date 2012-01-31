@@ -18,6 +18,12 @@ test:
   pool: 5
   timeout: 5000
 
+demo:
+  adapter: postgresql
+  database: inthisapp_demo
+  pool: 5
+  timeout: 5000
+
 staging:
   adapter: postgresql
   database: inthisapp_staging
