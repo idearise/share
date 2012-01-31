@@ -22,17 +22,9 @@ class UsersController < ApplicationController
     if @user.id == current_user.id
       @user.attributes = params[:user]
       # TODO Sanitize links
-      # TODO Use sanitized basic html or use markdown with a markdown editor
       # [:nickname, :email, :website, :twitter, :linkedin, :facebook, :google].each do |x|
       #   @user.attributes[x] = Sanitize.clean(@user.attributes[x])
       # end    
-      # @user.bio = Sanitize.clean(
-      #               view_context.auto_link(
-      #                 view_context.truncate(@user.bio, 
-      #                                         :length => 2000, 
-      #                                         :omission => '... (truncated)'),
-      #                                         :sanitize => false),
-      #               Sanitize::Config::RELAXED)
       if @user.save_update_by(current_user.id, request.remote_ip)
         flash[:notice] = "Successfully updated."
         redirect_to user_path(@user)

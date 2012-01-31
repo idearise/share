@@ -37,18 +37,8 @@ class AppsController < ApplicationController
     @app.attributes = {'platform_ids' => []}.merge(params[:app] || {})
     @app.user_id = current_user.id
     # TODO Sanitize links
-    # TODO Use sanitized basic html or use markdown with a markdown editor
     # [:name, :website, :twitter, :facebook, :google_plus, :android, :itunes].each do |x|
     #   @app.attributes[x] = Sanitize.clean(@app.attributes[x])
-    # end
-    # [:about, :thanks_to].each do |y|
-    #   @app.attributes[y] = Sanitize.clean(
-    #   view_context.auto_link(
-    #     view_context.truncate(@app.attributes[y], 
-    #                           :length => 2000, 
-    #                           :omission => '... (truncated)'),
-    #                           :sanitize => false),
-    #   Sanitize::Config::RELAXED)
     # end
     if @app.save_new_by(current_user.id, request.remote_ip)
       flash[:notice] = "Successfully added."
@@ -75,19 +65,9 @@ class AppsController < ApplicationController
       # @app.attributes = params[:app]
       @app.attributes = {'platform_ids' => []}.merge(params[:app] || {})
       # TODO Sanitize links
-      # TODO Use sanitized basic html or use markdown with a markdown editor
       # [:name, :website, :twitter, :facebook, :google_plus, :android, :itunes].each do |x|
       #   @app.attributes[x] = Sanitize.clean(@app.attributes[x])
       # end    
-      # [:about, :thanks_to].each do |y|
-      #   @app.attributes[y] = Sanitize.clean(
-      #                         view_context.auto_link(
-      #                           view_context.truncate(@app.attributes[y], 
-      #                                                 :length => 2000, 
-      #                                                 :omission => '... (truncated)'),
-      #                                                 :sanitize => false),
-      #                         Sanitize::Config::RELAXED)
-      # end
       if @app.save_update_by(current_user.id, request.remote_ip)
         flash[:notice] = "Successfully updated."
         redirect_to app_path(@app)
