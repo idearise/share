@@ -22,7 +22,16 @@ Share::Application.routes.draw do
 
   resources :apps, :only => [:index, :new, :create, :show, :edit, :update, :destroy] do
     resources :posts, :only => [:new, :create, :show, :edit, :update, :hide] do
+      member do
+        put :voteup
+        put :votedown
+      end
+
       resources :comments, :only => [:new, :create, :show, :edit, :update, :hide] do
+        member do
+          put :voteup
+          put :votedown
+        end
       end
     end
     collection do

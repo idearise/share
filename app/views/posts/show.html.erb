@@ -2,8 +2,8 @@
 <% content_for :content_header do -%>
 <div class="page-header">
   <div class="pull-right add-left">
-    <a class="btn large default">+</a> 
-    <a class="btn large default">&#8722;</a>
+    <a class="btn large default votesourceup">+</a> 
+    <a class="btn large default votesourcedown">&#8722;</a>
     <a class="btn large primary">Edit &rarr;</a>
   </div>
   <div class="pull-left add-right">
@@ -75,8 +75,8 @@
 <script id="node" type="text/x-handlebars-template">
 <div style="margin-left: {{width}}px;" class="add-bottom">
     <div class="pull-right half-left">
-      <a class="btn small default">+</a> 
-      <a class="btn small default">&#8722;</a>
+      <a class="btn small default voteup" data-comment-id="{{id}}">+</a> 
+      <a class="btn small default votedown" data-comment-id="{{id}}">&#8722;</a>
     </div>  
     <div class="pull-left"><img src="http://placehold.it/36x36" alt=""></div>
     <div class="post-response">
@@ -158,14 +158,82 @@ $(document).ready(function() {
 				}
 			}},
 			dataType: 'json'
-		})
+		});
 		return false;
 	});
 	
 	$('#newcomment-save').click(function () {
 		f.submit();
 	});
-	
+
+
+	//vote handler
+	var voteComment = function (type) { //type can be up or down, 
+		var id = $(this).attr('data-comment-id');
+			
+		$.ajax({
+		    type: 'POST',
+			url: '/apps/<%= params[:app_id]%>/posts/<%= @post_id %>/comments/' + id + '/vote' + type,
+			data: {
+				_method: "put"
+			},
+			success: function (object) {{
+				console.log(object)
+				if (object.success) {
+					window.location.reload();
+				}
+				else {
+					//$('#errors').html(object.errors.join("<br />"));
+					//$('#errors-container').attr("style", "visibility: visible");
+				}
+			}},
+			dataType: 'json'
+		});
+	};
+
+	$('.voteup').live({
+		click: function () {
+			voteComment.call(this, 'up');
+		}
+	});
+
+	$('.votedown').live({
+		click: function () {
+			voteComment.call(this, 'down');
+		}
+	});
+
+	//vote source
+	var voteSource = function (type) { //type can be up or down, 
+		$.ajax({
+		    type: 'POST',
+			url: '/apps/<%= params[:app_id]%>/posts/<%= @post_id %>/vote' + type,
+			data: {
+				_method: "put"
+			},
+			success: function (object) {{
+				console.log(object)
+				if (object.success) {
+					window.location.reload();
+				}
+				else {
+					//$('#errors').html(object.errors.join("<br />"));
+					//$('#errors-container').attr("style", "visibility: visible");
+				}
+			}},
+			dataType: 'json'
+		});
+	};
+	$('.votesourceup').live({
+		click: function () {
+			voteSource('up');
+		}
+	});
+	$('.votesourcedown').live({
+		click: function () {
+			voteSource('down');
+		}
+	});
 });
 </script>
 <% end %>
