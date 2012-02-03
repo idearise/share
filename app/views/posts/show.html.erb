@@ -30,7 +30,7 @@
 
 <div class="span8 pull-right">
   <div class="pull-right">
-    <a href="#" data-controls-modal="modal-add-response" data-backdrop="static" class="btn small primary">Add Response</a>
+    <a href="#" data-controls-modal="modal-add-response" data-backdrop="static" class="btn small primary response">Add Response</a>
   </div>
   
   <h2 class="add-bottom">Responses <small>5 responses</small></h2> 
@@ -48,42 +48,16 @@
   <div class="modal-body">
     <%= form_tag app_post_comments_path(@app.id, @post_id, :format => :json), :method => :post, :id =>"newcomment" do %>
       <fieldset>
+		
 	    <div id="errors-container" class="clearfix" style="visibility: hidden;">
           	<div id="errors" class="input">
 	         </div>          
         </div>
         <div class="clearfix">
           <label for="textarea">Text</label>
+		  <input type="hidden" name="comment[parent_id]" id="comment_parent_id" />
           <div class="input">
-            <textarea class="span6" id="textarea2" name="comment[text]" rows="12"></textarea>
-          </div>
-        </div><!-- /clearfix -->        
-      </fieldset>
-    <% end %>
-  </div>
-  <div class="modal-footer">
-    <a id="newcomment-save" href="#" class="btn primary">Save</a>
-    <a href="#" class="btn secondary">Preview</a>
-  </div>
-</div>
-
-<div id="modal-comment-response" class="modal hide fade" style="display: none; ">
-  <div class="modal-header">
-    <a href="#" class="close">×</a>
-    <h3>Reply to</h3>
-  </div>
-  <div class="modal-body">
-    <%= form_tag app_post_comments_path(@app.id, @post_id, :format => :json), :method => :post, :id =>"newcomment" do %>
-      <input type="hidden" name="parent_id" id="comment_response_parent_id">
-      <fieldset>
-	    <div id="errors-container" class="clearfix" style="visibility: hidden;">
-          	<div id="errors" class="input">
-	         </div>          
-        </div>
-        <div class="clearfix">
-          <label for="textarea">Text</label>
-          <div class="input">
-            <textarea class="span6" id="textarea2" name="comment[text]" rows="12"></textarea>
+            <textarea class="span6" id="comment_text" name="comment[text]" rows="12"></textarea>
           </div>
         </div><!-- /clearfix -->        
       </fieldset>
@@ -106,7 +80,7 @@
     <div class="pull-right half-left">
       <a class="btn small default voteup" data-comment-id="{{id}}">+</a> 
       <a class="btn small default votedown" data-comment-id="{{id}}">&#8722;</a>
-      <a class="btn large primary commentreply" data-controls-modal="modal-comment-response" data-backdrop="static" data-comment-id="{{id}}">Reply &rarr;</a>
+      <a class="btn large primary response" data-controls-modal="modal-add-response" data-backdrop="static" data-comment-id="{{id}}">Reply &rarr;</a>
     </div>  
     <div class="pull-left"><img src="http://placehold.it/36x36" alt=""></div>
     <div class="post-response">
@@ -266,16 +240,19 @@ $(document).ready(function() {
 	});
 
 	//comment reply handler
-	$('.commentreply').live({
+	$('.response').live({
 		click: function () {
 			var commentId = $(this).attr('data-comment-id');
-			console.log('hey!');
+			$('#comment_parent_id').attr('value', commentId);
+			
+			$('#comment_text').val('');
 			//refresh modal data
 			//then show modal
 			//var $this = $(this).data('show', true)
 			//$('#modal-comment-response').modal($this.data());	
 		}
 	});
+	
 });
 </script>
 <% end %>
