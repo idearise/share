@@ -1,21 +1,4 @@
-<!-- HANDLEBARS TEMPLATES-->
-<script id="recent_source" type="text/x-handlebars-template">
-<a href="{{url}}">
-  <img class="thumbnail" src="http://placehold.it/210x210" alt="">
-  <h3>{{domain}}</h3>
-  <span class="nowrap"><%= image_tag("http://placehold.it/10x10", :class=>"inline") -%> {{user_id}}</span>
-</a>
-</script>
-
-<script id="featured_source" type="text/x-handlebars-template">
-
-<a href="{{url}}">
-  <img class="thumbnail" src="http://placehold.it/210x210" alt="">
-  <h3>{{title}}</h3>
-  {{comments}} Posts
-</a>
-</script>
-
+<!-- HANDLEBARS TEMPLATES -->
 <%= render partial: 'shared/handlebars/post'%>
 <!-- END HANDLEBARS TEMPLATES-->
 
@@ -24,28 +7,12 @@
 $(document).ready(function() {
 	Signalike.Source.latest({
 		success: function (sources) {
-			var source   = $("#featured_source").html();
+			//get the handlebar template
+			var source   = $("#_post").html();
 			var template = Handlebars.compile(source);
 			//sources.items is the list of sources
 			//sources.total is the number of sources in the list
 			var compiled = [];
-			var limit = 4;
-			var i;
-			limit = Math.min(limit,sources.items.length);
-			for(var x = 0; x < limit; x++) {
-				i = sources.items[x];
-				compiled.push('<li>' + template(i) + '</li>');
-			}
-			
-			$('#popular_container').html('<ul class="media-grid">'+ compiled.join('') + '</ul>');
-			
-			console.log(sources);
-			//get the handlebar template
-			source   = $("#_post").html();
-			template = Handlebars.compile(source);
-			//sources.items is the list of sources
-			//sources.total is the number of sources in the list
-			compiled = [];
 			$.each(sources.items, function (idx, i) {
 				compiled.push(template(i));
 				// (new Signalike.Source(i.id)).fetch({
@@ -59,28 +26,7 @@ $(document).ready(function() {
 			$('#latest_sources_list').html(compiled.join(''));
 		}
 	});
-	Signalike.Source.latest({
-		success: function (sources) {
-			console.log(sources);
-			//get the handlebar template
-			//
-			var source   = $("#recent_source").html();
-			var template = Handlebars.compile(source);
-			//sources.items is the list of sources
-			//sources.total is the number of sources in the list
-			var compiled = [];
-			var limit = 3;
-			var i;
-			limit = Math.min(limit,sources.items.length);
-			for(var x = 0; x < limit; x++) {
-				i = sources.items[x];
-				compiled.push('<li>' + template(i) + '</li>');
-			}
-			
-			$('#recent_container').html('<ul class="media-grid">'+ compiled.join('') + '</ul>');
-			
-		}
-	});
+	
 });
 </script>
 <% end %>
@@ -88,7 +34,17 @@ $(document).ready(function() {
   <div class="hero-unit panel span8 pull-left">
     <h1>Popular Apps <small><strong><a href="/apps/popular">more &rarr;</a></strong></small></h1>
 	<div id="popular_container">
-		Loading..
+		<ul class="media-grid">
+		<% @apps.each do |app|%>
+			<li>
+				<a href="<%= app.website%>">
+				  <img class="thumbnail" src="http://placehold.it/210x210" alt="">
+				  <h3><%= app.name %></h3>
+				  5 Posts
+				</a>
+			</li>
+		<% end %>
+		</ul>
 	</div>
 
     <h2 class="add-top half-bottom">Popular Posts <small><strong><a href="/posts/recent">more &rarr;</a></strong></small></h2>
@@ -124,7 +80,17 @@ $(document).ready(function() {
   <div class="span5 well panel pull-right">
     <h2 class="half-bottom">Recent Apps <small><a href="/posts/recent">more &rarr;</a></small></h2>
     <div id="recent_container">
-	  Loading...
+	  	<ul class="media-grid">
+		<% @recent.each do |app|%>
+			<li>
+				<a href="<%= app.website%>">
+				  <img class="thumbnail" src="http://placehold.it/210x210" alt="">
+				  <h3><%= app.name %></h3>
+				  5 Posts
+				</a>
+			</li>
+		<% end %>
+		</ul>
 	</div>
   </div>  
 </div>
