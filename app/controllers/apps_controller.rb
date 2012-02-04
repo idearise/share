@@ -40,9 +40,25 @@ class AppsController < ApplicationController
     # [:name, :website, :twitter, :facebook, :google_plus, :android, :itunes].each do |x|
     #   @app.attributes[x] = Sanitize.clean(@app.attributes[x])
     # end
+    
     if @app.save_new_by(current_user.id, request.remote_ip)
-      flash[:notice] = "Successfully added."
-      redirect_to app_path(@app)
+      
+      response = RestClient.post(([Share.config.endpoint, 'dimensions.json'].join('/') + "?api_key=" + Share.config.api_key), {
+        :dimension_type_key => Share.config.dimension_type_key, 
+        :dimension => {
+          :name => @app.name,
+          :key => @app.id
+        }
+      })
+
+      json = HashWithIndifferentAccess.new(ActiveSupport::JSON.decode(response.body))
+      if json[:success]
+        redirect_to app_path(@app), :notice => "Successfully added."
+      else
+        redirect_to app_path(@app), :notice => "Successfully added."#"But posts are disabled. . :("
+      end
+      
+      
     else
       render "new"
     end

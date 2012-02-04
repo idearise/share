@@ -37,7 +37,7 @@ $(document).ready(function() {
 		<ul class="media-grid">
 		<% @apps.each do |app|%>
 			<li>
-				<a href="<%= app.website%>">
+				<a href="/apps/<%= app.id%>">
 				  <img class="thumbnail" src="http://placehold.it/210x210" alt="">
 				  <h3><%= app.name %></h3>
 				  5 Posts
@@ -83,7 +83,7 @@ $(document).ready(function() {
 	  	<ul class="media-grid">
 		<% @recent.each do |app|%>
 			<li>
-				<a href="<%= app.website%>">
+				<a href="/apps/<%= app.id%>">
 				  <img class="thumbnail" src="http://placehold.it/210x210" alt="">
 				  <h3><%= app.name %></h3>
 				  5 Posts

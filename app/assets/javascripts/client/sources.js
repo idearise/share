@@ -38,8 +38,8 @@ Signalike.Source.top = function (conf) {
 		context: conf.context || this
 	};
 	config.data = config.data || {};
-	if (config.dimension) {
-		config.data.dimension = dimension;
+	if (conf.dimension) {
+		config.data.dimension = conf.dimension;
 	}
 
 	$.ajax(Signalike.urlFor('sources'), {
@@ -69,8 +69,8 @@ Signalike.Source.latest = function (conf) {
 	};
 	
 	config.data = config.data || {};
-	if (config.dimension) {
-		config.data.dimension = dimension;
+	if (conf.dimension) {
+		config.data.dimension = conf.dimension;
 	}
 
 	$.ajax(Signalike.urlFor('sources','latest'), {
