@@ -14,5 +14,5 @@ Share::Application.config.session = {
   :secure       => false,                   # force https if true
   :httponly     => true,                    # a measure against XSS attacks, prevent client side scripts from accessing the cookie
   
-  :secret      => 'asdiajskldjklajsdkjalksjdlkajlsdjlkajdkajsdkalsjk' || ENV['RAILS_SECRET_TOKEN']
+  :secret      => ENV['RAILS_SECRET_TOKEN']
 }
