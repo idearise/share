@@ -21,7 +21,7 @@ class ApplicationController < ActionController::Base
     
     def authenticate_user!
       if !current_user
-        Rails.logger.info(current_user.inspect)
+        # Rails.logger.info(current_user.inspect)
         session[:requested_url] = request.fullpath
         flash[:error] = 'You need to sign in before accessing this page!'
         redirect_to signin_services_path

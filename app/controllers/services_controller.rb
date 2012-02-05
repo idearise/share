@@ -30,7 +30,7 @@ class ServicesController < ApplicationController
       redirect_to root_url
     else  # create account
       @newuser = User.new_by_service_session_and_request(session, request)      
-      if (!Rails.env.production?) or verify_recaptcha(:model => @newuser, :message => "Sorry, there was an error with your reCAPTCHA answer!") 
+      if (Rails.env.development?) or verify_recaptcha(:model => @newuser, :message => "Sorry, there was an error with your reCAPTCHA answer!") 
         if @newuser.save!
           # signin existing user
           # in the session his user id and the service id used for signing in is stored

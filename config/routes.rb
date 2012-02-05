@@ -37,7 +37,6 @@ Share::Application.routes.draw do
     collection do
       get 'popular'
       get 'recent'
-      get '1-example-com' => 'apps#show'
     end
   end
 
@@ -49,7 +48,6 @@ Share::Application.routes.draw do
   end
 
   get "posts/recent"
-  get "apps/1-example-com/posts/1" => 'posts#show'
   
   # The priority is based upon order of creation:
   # first created -> highest priority.
