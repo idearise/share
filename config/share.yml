@@ -1,0 +1,9 @@
+development:
+  endpoint: http://192.168.1.2:8081/api/v1
+  api_key: 46181685de0c22b5169a6519861eced18f9a0a26
+demo:
+  endpoint: http://demo.sortary.com/api/v1
+  api_key: 46181685de0c22b5169a6519861eced18f9a0a26
+staging:
+  endpoint: http://s.sortary.com/api/v1
+  api_key: 46181685de0c22b5169a6519861eced18f9a0a26

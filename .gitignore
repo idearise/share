@@ -16,4 +16,6 @@
 .rvmrc
 
 .rbenv-*
-config/share.yml
+
+# We need this to be committed for a deployment to Heroku
+#config/share.yml
