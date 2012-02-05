@@ -2,10 +2,10 @@
   <div class="add-bottom">
   <div class="pull-left"><img src="http://placehold.it/36x36" alt=""></div>
   <div class="post-summary">
-    <h4><a href="{{url}}">{{title}}</a> <small>+{{up}} -{{down}}</small> <span class="label"><a href="{{url}}">link</a></span></h4>
+    <h4><a href="/apps/{{dimension_ids}}/posts/{{id}}">{{title}}</a> <small>{{dimension_names}} +{{up}} -{{down}}</small> <span class="label"><a href="{{url}}">link</a></span></h4>
     {{created_at}}
     <span class="nowrap">by <%= image_tag("http://placehold.it/10x10", :class=>"inline") -%> {{user_id}}</span> 
-    in {{domain}} 
+    &bull; {{domain}} 
     &bull; {{comments}} responses
   </div>
 </div>

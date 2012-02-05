@@ -72,7 +72,7 @@
 <% content_for :include_js do %>
 <script id="_post_title" type="text/x-handlebars-template">
 {{title}}<br/>
-<small>+{{up}} -{{down}} &bull; {{updated_at}} by <a href="/users/{{user_id}}">{{user_id}}{{user_name}}</a> &bull; <a href="{{url}}">{{domain}}</a></small> 
+<small><%= link_to @app.name, app_path(@app) -%> &bull; +{{up}} -{{down}} &bull; {{updated_at}} by <a href="/users/{{user_id}}">{{user_id}}{{user_name}}</a> &bull; <a href="{{url}}">{{domain}}</a></small> 
 <span class="label">topic</span> <span class="label">file</span> <span class="label">link</span>
 </script>
 <script id="node" type="text/x-handlebars-template">
