@@ -12,7 +12,7 @@
 	<h5>Name: <%= @authhash[:name] %></h5>
 	<h5>Email: <%= @authhash[:email] %></h5>
 
-	<%= form_tag :controller => "services", :action => "newaccount", :class => "nice" do -%>
+	<%= form_tag :controller => "services", :action => "newaccount" do -%>
 		<%= recaptcha_tags(:ssl => true) if !Rails.env.development? -%>
 		<div class="add-top">
 			<button type="submit" class="btn primary">Create A New Account</button> &nbsp;<%= submit_tag "Cancel", :class=>"btn" -%>
