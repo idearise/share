@@ -22,7 +22,7 @@ gem 'omniauth-facebook', :git => 'git://github.com/mkdynamic/omniauth-facebook.g
 gem 'recaptcha', :require => 'recaptcha/rails'
 gem 'dynamic_form'
 gem 'fog'
-gem 'carrierwave'
+gem 'carrierwave', git: 'git://github.com/jnicklas/carrierwave.git'
 gem 'mini_magick'
 gem 'nested_form', :git => 'git://github.com/ryanb/nested_form.git'
 gem 'kaminari'

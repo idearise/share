@@ -8,11 +8,15 @@ class ApplicationController < ActionController::Base
   private  
     
     def current_user  
-      @current_user ||= User.find_by_id(session[:user_id]) if session[:user_id]  
+      @current_user ||= User.find_by_id(session[:user_id]) if session[:user_id]
+      !session[:user_id].nil? ? logger.debug("session #{session[:user_id]}") : logger.debug("no session[:user_id]")
+      !@current_user.nil? ? logger.debug("user #{@current_user.to_xml}") : logger.debug("no user")
+      !session.nil? ? logger.debug("session #{session.to_xml}") : logger.debug("no session")
+      @current_user
     end  
     
     def user_signed_in?
-      return 1 if current_user 
+      return true if current_user 
     end
     
     def logged_in?
@@ -21,7 +25,7 @@ class ApplicationController < ActionController::Base
     
     def authenticate_user!
       if !current_user
-        # Rails.logger.info(current_user.inspect)
+        # Rails.logger.debug(current_user.inspect)
         session[:requested_url] = request.fullpath
         flash[:error] = 'You need to sign in before accessing this page!'
         redirect_to signin_services_path

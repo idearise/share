@@ -9,7 +9,7 @@ Share::Application.config.session_store :active_record_store
 
 Share::Application.config.session = {
   :key          => '_share_session',        # name of cookie that stores the data
-  :domain       => nil,                     # you can share between subdomains here: '.inthisapp.com'
+  :domain       => '.inthisapp.com',        # you can share between subdomains here: '.inthisapp.com'
   :expire_after => 1.month,                 # expire cookie
   :secure       => false,                   # force https if true
   :httponly     => true,                    # a measure against XSS attacks, prevent client side scripts from accessing the cookie

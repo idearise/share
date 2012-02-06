@@ -21,10 +21,9 @@
   <ul>
     <li id="post-link">Loading...</li>
   </ul>
-  <h3>Files</h3>
+  <h3>File</h3>
   <ul>
     <li><a href="">Architecture Overview.pptx</a></li>
-    <li><a href="">Conference Presentation.pptx</a></li>
   </ul>   
 </div>
 
@@ -71,8 +70,8 @@
 
 <% content_for :include_js do %>
 <script id="_post_title" type="text/x-handlebars-template">
-{{title}}<br/>
-<small><%= link_to @app.name, app_path(@app) -%> &bull; +{{up}} -{{down}} &bull; {{updated_at}} by <a href="/users/{{user_id}}">{{user_id}}{{user_name}}</a> &bull; <a href="{{url}}">{{domain}}</a></small> 
+{{title}} <small>in <%= link_to @app.name, app_path(@app) -%> +{{up}} -{{down}}</small><br/>
+<small>{{updated_at}} &bull; <a href="/users/{{user_id}}">{{user_id}}{{user_name}}</a> &bull; <a href="{{url}}">{{domain}}</a></small> 
 <span class="label">topic</span> <span class="label">file</span> <span class="label">link</span>
 </script>
 <script id="node" type="text/x-handlebars-template">
@@ -80,13 +79,13 @@
     <div class="pull-right half-left">
       <a class="btn small default voteup" data-comment-id="{{id}}">+</a> 
       <a class="btn small default votedown" data-comment-id="{{id}}">&#8722;</a>
-      <a class="btn large primary response" data-controls-modal="modal-add-response" data-backdrop="static" data-comment-id="{{id}}">Reply &rarr;</a>
+      <a class="btn small response" data-controls-modal="modal-add-response" data-backdrop="static" data-comment-id="{{id}}">Reply</a>
     </div>  
     <div class="pull-left"><img src="http://placehold.it/36x36" alt=""></div>
     <div class="post-response">
       <span class="info">
-      {{created_at}}
-      <span class="nowrap">by <a href="/users/1">{{created_by}}</a></span> 
+      {{created_at}} &bull; 
+      <span class="nowrap"> <a href="/users/1">{{created_by}}</a></span> 
       &bull; {{score}} pt
       &bull; <a href="/apps/<%= params[:app_id]%>/posts/<%= @post_id %>/comments/{{id}}">Permalink</a>
       </span>

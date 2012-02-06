@@ -1,14 +1,14 @@
 class PostsController < ApplicationController
-  before_filter :current_app
+  before_filter :authenticate_user!, :except => [:show]
+  before_filter :find_app #, :only => [:new, :create, :show, :edit, :update, :destroy]
+  # protect_from_forgery :except => [:show]
   
+  # GET
   def show
     @post_id = params[:id] #this is actually the source key
   end
   
-  def current_app
-    @app ||= App.find(params[:app_id])
-  end
-  
+  # POST
   def create
     #[Share.config.endpoint, 'sources.json'].join('/') + "?api_key=" + Share.config.api_key
     response = RestClient.post(([Share.config.endpoint, 'sources.json'].join('/') + "?api_key=" + Share.config.api_key), {
@@ -18,6 +18,7 @@ class PostsController < ApplicationController
     render :text => response.body
   end
 
+  # POST
   def voteup
     response = RestClient.post(([Share.config.endpoint, 'sources', params[:id] ,'up.json'].join('/') + "?api_key=" + Share.config.api_key), {
       :source_id => params[:post_id], 
@@ -27,6 +28,7 @@ class PostsController < ApplicationController
     render :text => response.body
   end
 
+  # POST
   def votedown
     response = RestClient.post(([Share.config.endpoint, 'sources', params[:id],'down.json'].join('/') + "?api_key=" + Share.config.api_key), {
       :source_id => params[:post_id], 
@@ -35,5 +37,9 @@ class PostsController < ApplicationController
     #Rails.logger.debug(response.inspect)
     render :text => response.body
   end
-  
+
+  protected
+  def find_app
+    @app ||= App.find(params[:app_id])
+  end
 end

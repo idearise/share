@@ -42,7 +42,6 @@ class AppsController < ApplicationController
     # end
     
     if @app.save_new_by(current_user.id, request.remote_ip)
-      
       response = RestClient.post(([Share.config.endpoint, 'dimensions.json'].join('/') + "?api_key=" + Share.config.api_key), {
         :dimension_type_key => Share.config.dimension_type_key, 
         :dimension => {

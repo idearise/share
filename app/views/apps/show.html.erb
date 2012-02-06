@@ -95,9 +95,9 @@ $(document).ready(function() {
   <div class="pull-left"><img src="http://placehold.it/36x36" alt=""></div>
   <div class="post-summary">
     <h4><a href="/apps/<%= @app.id%>/posts/{{id}}">{{title}}</a> <small>+{{up}} -{{down}}</small> <span class="label"><a href="{{url}}">link</a></span></h4>
-    {{created_at}}
-    <span class="nowrap">by <%= image_tag("http://placehold.it/10x10", :class=>"inline") -%> {{user_id}}</span> 
-    in {{domain}} 
+    {{created_at}} &bull; 
+    <span class="nowrap"><%= image_tag("http://placehold.it/10x10", :class=>"inline") -%> {{user_id}}</span> 
+    &bull; {{domain}} 
     &bull; {{comments}} responses
   </div>
 </div>
