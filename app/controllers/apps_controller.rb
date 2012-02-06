@@ -15,8 +15,15 @@ class AppsController < ApplicationController
   end
 
   # GET
-  # def popular
-  # end
+  # FIXME Get popularity from Sortary
+  def popular
+    if params[:platform].blank?
+      @apps = App.order_recent.page(params[:page]).per(8)
+    else
+      @apps = App.by_platform(params[:platform]).
+                  order_recent.page(params[:page]).per(8)
+    end
+  end
 
   # GET
   def recent

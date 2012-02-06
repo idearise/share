@@ -20,17 +20,8 @@
 
   <ul class="media-grid">
     <% @apps.each do |app| -%>
-    <li>
-      <a href="<%= app_path(app) -%>">
-        <% if app.images.size > 0 -%>
-          <%= image_tag(app.images.last.file.thumb.url, :class=> "thumbnail", :alt => app.images.last.description) -%>
-        <% else -%>
-          <img class="thumbnail" src="http://placehold.it/210x210" alt="">
-        <% end -%>
-        <h3><%= app.name -%></h3>
-        30 Posts
-      </a>
-    </li>
+      <%= render :partial => 'card', 
+                 :locals => { :app => app } -%>
     <% end -%>
 <!--  <li>
       <a href="#">

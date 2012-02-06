@@ -5,95 +5,34 @@
     <a href="/apps/new" class="btn large success">Add Your App &rarr;</a>
   </div>
 
-  <h1>Popular Apps <small>page 1 of 6 &bull; 65 apps</small></h1>
+  <h1>Popular Apps  <%= "<small>page #{@apps.current_page} of #{@apps.num_pages} &bull; #{pluralize(@apps.total_count, 'app')}</small>".html_safe if @apps.num_pages > 0 -%></h1>
 </div>
 <% end -%>
 
 <div class="span16 pull-left">
   <ul class="pills">
-    <li class="active"><a href="#">All</a></li>
-    <li><a href="#">Web</a></li>
-    <li><a href="#">Android</a></li>
-    <li><a href="#">iOS</a></li>
-    <li><a href="#">Windows Phone</a></li>
+    <li<%= " class=""active""" if params[:platform].blank? -%>><a href="/apps/popular">All</a></li>
+    <li<%= " class=""active""" if params[:platform] == "1" -%>><a href="/apps/popular?platform=1">Web</a></li>
+    <li<%= " class=""active""" if params[:platform] == "2" -%>><a href="/apps/popular?platform=2">Android</a></li>
+    <li<%= " class=""active""" if params[:platform] == "3" -%>><a href="/apps/popular?platform=3">iOS</a></li>
+    <li<%= " class=""active""" if params[:platform] == "4" -%>><a href="/apps/popular?platform=4">Windows Phone</a></li>
   </ul>
 
   <ul class="media-grid">
-    <li>
-      <a href="#">
-        <img class="thumbnail" src="http://placehold.it/210x210" alt="">
-        <h3>nextbigthingapp</h3>
-        120 Posts &bull; 
-        <span class="nowrap"><%= image_tag("http://placehold.it/10x10", :class=>"inline") -%> Tess</span>
-      </a>
-    </li>  
-    <li>
-      <a href="/apps/1-example-com">
-        <img class="thumbnail" src="http://placehold.it/210x210" alt="">
-        <h3>example.com</h3>
-        30 Posts &bull; 
-        <span class="nowrap"><%= image_tag("http://placehold.it/10x10", :class=>"inline") -%> Tess</span>
-      </a>
-    </li>
-    <li>
-      <a href="#">
-        <img class="thumbnail" src="http://placehold.it/210x210" alt="">
-        <h3>windowsapp</h3>
-        29 Posts &bull; 
-        <span class="nowrap"><%= image_tag("http://placehold.it/10x10", :class=>"inline") -%> Tess</span>
-      </a>
-    </li>
-    <li>
-      <a href="#">
-        <img class="thumbnail" src="http://placehold.it/210x210" alt="">
-        <h3>iosapp</h3>
-        19 Posts &bull; 
-        <span class="nowrap"><%= image_tag("http://placehold.it/10x10", :class=>"inline") -%> Tess</span>
-      </a>
-    </li>
-    <li>
-      <a href="#">
-        <img class="thumbnail" src="http://placehold.it/210x210" alt="">
-        <h3>androidapp</h3>
-        12 Posts &bull; 
-        <span class="nowrap"><%= image_tag("http://placehold.it/10x10", :class=>"inline") -%> Tess</span>
-      </a>
-    </li>    
-    <li>
+    <% @apps.each do |app| -%>
+      <%= render :partial => 'card', 
+                 :locals => { :app => app } -%>
+    <% end -%>
+<!--  <li>
       <a href="#">
         <img class="thumbnail" src="http://placehold.it/210x210" alt="">
         <h3>anotherapp</h3>
         10 Posts &bull; 
         <span class="nowrap"><%= image_tag("http://placehold.it/10x10", :class=>"inline") -%> Tess</span>
       </a>
-    </li>
-    <li>
-      <a href="#">
-        <img class="thumbnail" src="http://placehold.it/210x210" alt="">
-        <h3>stephenpaul.me</h3>
-        8 Posts &bull; 
-        <span class="nowrap"><%= image_tag("http://placehold.it/10x10", :class=>"inline") -%> devpopol</span>
-      </a>
-    </li>
-    <li>
-      <a href="#">
-        <img class="thumbnail" src="http://placehold.it/210x210" alt="">
-        <h3>somesite.com</h3>
-        3 Posts &bull; 
-        <span class="nowrap"><%= image_tag("http://placehold.it/10x10", :class=>"inline") -%> Tess</span>
-      </a>
-    </li>
+    </li> -->
   </ul>
-  <div class="pagination">
-    <ul>
-      <li class="prev disabled"><a href="#">&larr; Previous</a></li>
-      <li class="active"><a href="#">1</a></li>
-      <li><a href="#">2</a></li>
-      <li><a href="#">3</a></li>
-      <li><a href="#">4</a></li>
-      <li><a href="#">5</a></li>
-      <li><a href="#">6</a></li>
-      <li class="next"><a href="#">Next &rarr;</a></li>
-    </ul>
-  </div>    
+  <% if @apps.num_pages > 1 -%>
+    <%= paginate @apps -%>
+  <% end -%>
 </div>
