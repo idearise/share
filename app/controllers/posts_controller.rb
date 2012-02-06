@@ -1,7 +1,11 @@
 class PostsController < ApplicationController
-  before_filter :authenticate_user!, :except => [:show]
-  before_filter :find_app #, :only => [:new, :create, :show, :edit, :update, :destroy]
+  before_filter :authenticate_user!, :except => [:index, :show]
+  before_filter :find_app, :except => [:index] #, :only => [:new, :create, :show, :edit, :update, :destroy]
   # protect_from_forgery :except => [:show]
+
+  # GET
+  # def index
+  # end
   
   # GET
   def show

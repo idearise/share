@@ -17,8 +17,8 @@ Share::Application.routes.draw do
     end
   end 
 
-  get "home/about"
-  get "home/terms_of_service"
+  get 'home/about'
+  get 'home/terms_of_service'
 
   resources :apps, :only => [:index, :new, :create, :show, :edit, :update, :destroy] do
     resources :posts, :only => [:new, :create, :show, :edit, :update, :hide] do
@@ -47,7 +47,7 @@ Share::Application.routes.draw do
     end
   end
 
-  get "posts/recent"
+  get 'posts' => 'posts#index'
   
   # The priority is based upon order of creation:
   # first created -> highest priority.

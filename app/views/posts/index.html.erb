@@ -1,0 +1,64 @@
+<% content_for :page_title do -%>Posts<% end -%>
+<% content_for :content_header do -%>
+<div class="page-header">
+  <div class="pull-right">
+    <a href="/apps/new" class="btn large success">Add Your App &rarr;</a>
+  </div>
+
+  <h1>Posts</h1>
+</div>
+<% end -%>
+
+<div class="span16 row">
+  <div class="span7">
+    <h2>Popular</h2>
+    <div id="popular"></div>
+  </div>
+  <div class="span7 offset1 pull-right">
+    <h2>Recent</h2>
+    <div id="recent"></div>
+  </div>
+</div>
+
+
+<!-- HANDLEBARS TEMPLATES -->
+<%= render partial: 'shared/handlebars/post'%>
+<!-- END HANDLEBARS TEMPLATES-->
+
+<% content_for :include_js do %>
+<script type="text/javascript">
+$(document).ready(function() {
+  Signalike.Source.top({
+    success: function (sources) {
+      //get the handlebar template
+      var source   = $("#_post").html();
+      var template = Handlebars.compile(source);
+      //sources.items is the list of sources
+      //sources.total is the number of sources in the list
+      var compiled = [];
+      $.each(sources.items, function (idx, i) {
+        compiled.push(template(i));
+      });
+      
+      $('#popular').html(compiled.join(''));
+    }
+  });
+
+  Signalike.Source.latest({
+    success: function (sources) {
+      //get the handlebar template
+      var source   = $("#_post").html();
+      var template = Handlebars.compile(source);
+      //sources.items is the list of sources
+      //sources.total is the number of sources in the list
+      var compiled = [];
+      $.each(sources.items, function (idx, i) {
+        compiled.push(template(i));
+      });
+      
+      $('#recent').html(compiled.join(''));
+    }
+  });  
+});
+</script>
+<% end %>
