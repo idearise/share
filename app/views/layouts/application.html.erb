@@ -21,7 +21,6 @@
 
   <!-- CSS
   ================================================== -->
-  <link rel="stylesheet" href="http://twitter.github.com/bootstrap/1.4.0/bootstrap.min.css">
   <link href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8/themes/base/jquery-ui.css" rel="stylesheet" type="text/css"/>
   <link href='http://fonts.googleapis.com/css?family=Open+Sans:400italic,700italic,400,700' rel='stylesheet' type='text/css'>
   <%= stylesheet_link_tag "application" %>
@@ -41,33 +40,44 @@
 </head>
 <body>
 
-<div class="topbar">
-  <div class="fill">
+<div class="navbar navbar-fixed-top">
+  <div class="navbar-inner">
     <div class="container">
+      <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </a>
       <a class="brand" href="/"><%=t(:site_name)-%></a>
-      <ul class="nav">
-        <li><a href="/apps/popular">Popular</a></li>
-        <li><a href="/apps/recent">Recent</a></li>
-        <li><a href="/apps/">Browse</a></li>        
-        <li><a href="/posts">Posts</a></li>  
-      </ul>
-      <form class="pull-left" action="">
-        <input class="span3" type="text" placeholder="Search">
-      </form>
+      <div class="nav-collapse">
+        <ul class="nav">
+          <li><a href="/apps/popular">Popular</a></li>
+          <li><a href="/apps/recent">Recent</a></li>
+          <li><a href="/apps/">Browse</a></li>        
+          <li><a href="/posts">Posts</a></li>  
+        </ul>
+        <form class="pull-left navbar-search" action="">
+          <input class="span3 search-query" type="text" placeholder="Search">
+        </form>
+      </div>
       <% if user_signed_in? -%>
-      <p class="pull-right">
-      <%= link_to image_tag("#{current_user.picture(10)}"), 
-          main_app.user_path(current_user) -%>
-      <%# FIXME Fix user score -%>
-      <%= link_to "#{current_user.nickname} | #{current_user.email} | 1 pt", main_app.user_path(current_user) -%>
-      </p>
+      <ul class="nav pull-right">
+        <li>
+          <%= link_to image_tag("#{current_user.picture(10)}"), 
+              main_app.user_path(current_user) -%>
+          <%# FIXME Fix user score -%>
+          <%= link_to "#{current_user.nickname} | #{current_user.email} | 1 pt", main_app.user_path(current_user) -%>
+        </li>
+      </ul>
       <% else -%>
-      <p class="pull-right">
-        <%= link_to "Login With", "/signin" -%> 
-        <a href="/auth/facebook" title="Facebook"><%= image_tag('facebook_32.png', :height=>"22", :width=>"22", :style=>"vertical-align:sub;") -%></a> 
-        <a href="/auth/google" title="Google"><%= image_tag('google_32.png', :height=>"22", :width=>"22", :style=>"vertical-align:sub;") -%></a> 
-        <a href="/auth/yahoo" title="Yahoo!"><%= image_tag('yahoo_32.png', :height=>"22", :width=>"22", :style=>"vertical-align:sub;") -%></a>
-      </p>
+      <ul class="nav pull-right">
+        <li>
+          <%= link_to "Login With", "/signin", style: "display:inline-block;" -%> 
+          <a href="/auth/facebook" title="Facebook" style="display:inline-block;"><%= image_tag('facebook_32.png', height:"22", width:"22", style:"vertical-align:sub;") -%></a> 
+          <a href="/auth/google" title="Google" style="display:inline-block;"><%= image_tag('google_32.png', height:"22", width:"22", style:"vertical-align:sub;") -%></a> 
+          <a href="/auth/yahoo" title="Yahoo!" style="display:inline-block;"><%= image_tag('yahoo_32.png', height:"22", width:"22", style:"vertical-align:sub;") -%></a>
+        </li>
+      </ul>
       <% end -%>
     </div>
   </div>
@@ -86,14 +96,14 @@
 <footer class="footer">
   <div class="container">
     <div class="row">
-      <div class="span11">
+      <div class="span8">
         <h6><strong>InThisApp.com</strong></h6>
         <p>
           <a href="/home/about">About This Site</a> &bull; 
           <a href="/home/terms_of_service">Terms Of Service</a>
         </p>      
       </div>
-      <div class="span5 pull-right">
+      <div class="span4 pull-right">
         <h6><strong>Share</strong></h6>      
         <p>
           <a href="">StumbleUpon</a> &bull; 

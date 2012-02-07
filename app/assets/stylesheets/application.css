@@ -2,7 +2,10 @@
  * This is a manifest file that'll automatically include all the stylesheets available in this directory
  * and any sub-directories. You're free to add application-wide styles to this file and they'll appear at
  * the top of the compiled file, but it's generally better to create a new file per style scope.
- *= require_tree . 
+ *= require bootstrap.min
+ *= require bootstrap-responsive.min
+ *= require markdown
+ *= require markitup
  *= require_self
 */
 
@@ -13,7 +16,7 @@ body {
   font-family: "Open Sans","Helvetica Neue",Helvetica,Arial,sans-serif;
 }
 
-.topbar .fill { background: url('random_grey_variations.png'); }
+.navbar .navbar-inner { background: url('random_grey_variations.png'); }
 .brand { font-weight: 900; }
 
 .panel {  
@@ -47,6 +50,7 @@ body {
 
 .hero-unit { 
   border: 1px solid #eee; 
+  padding: 20px 30px 20px 30px;
   background: #3c424c;
   background: -moz-linear-gradient(top, #3c424c 0%, #9ea1a6 100%);
   background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#3c424c), color-stop(100%,#9ea1a6));
@@ -57,9 +61,11 @@ body {
 }
 .hero-unit h1 { font-size: 58px; color: #eee; text-shadow: 1px 1px 2px #000; }
 .hero-unit h2 { color: #EEE; text-shadow: 1px 1px 2px #000; }
+.hero-unit .thumbnail { background: #ffffff; }
 .hero-unit a { color: #0AE; }
 .hero-unit .post-summary a.link { color: #404040; }
 .hero-unit h1 a { color: #0AE; text-shadow: 1px 1px 2px #000; }
+.hero-unit h4 small { color: #333; }
 .hero-unit h4 a { color: #EEE; text-shadow: 1px 1px 2px #000; }
 
 /*.media-grid a { background: url('polaroid.png'); }*/

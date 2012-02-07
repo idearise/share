@@ -31,21 +31,25 @@ $(document).ready(function() {
 </script>
 <% end %>
 <div class="row">
-  <div class="hero-unit panel span8 pull-left">
+  <div class="hero-unit panel span7 pull-left">
     <h1>Popular Apps <small><strong><a href="/apps/popular">more &rarr;</a></strong></small></h1>
-	<div id="popular_container">
-		<ul class="media-grid">
-		<% @apps.each do |app|%>
-			<li>
-				<a href="/apps/<%= app.id%>">
-				  <img class="thumbnail" src="http://placehold.it/210x210" alt="">
-				  <h3><%= app.name %></h3>
-				  5 Posts
-				</a>
-			</li>
-		<% end %>
-		</ul>
-	</div>
+  	<div id="popular_container">
+  		<ul class="thumbnails">
+  		<% @apps.each do |app|%>
+  			<li class="span3">
+          <div class="thumbnail">
+    				<a href="/apps/<%= app.id%>">
+    				  <img src="http://placehold.it/210x210" alt="">
+              <div class="caption">
+    				  <h3><%= app.name %></h3>
+    				  5 Posts
+              </div>
+    				</a>
+          </div>
+  			</li>
+  		<% end %>
+  		</ul>
+  	</div>
 
     <h2 class="add-top half-bottom">Popular Posts <small><strong><a href="/posts/recent">more &rarr;</a></strong></small></h2>
     <div id="latest_sources_list" />
@@ -53,43 +57,45 @@ $(document).ready(function() {
 
   </div>
 
-  <div class="span5 well panel yellow pull-right">
+  <div class="span3 well panel yellow pull-right">
     <h3>Showcase + Discuss + Grow</h3>
     <ul>
       <li class="black">Add your app and talk about how you made things work.</li>
       <li class="black">Get feedback from other developers and web + mobile experts.</li>
       <li class="black">Expand your userbase!</li>
     </ul>
-    <a href="/apps/new" class="btn large success">Add Your App &rarr;</a>
+    <a href="/apps/new" class="btn btn-large btn-success">Add Your App &rarr;</a>
   </div>
 
-  <div class="span5 well panel pull-right">  
+  <div class="span3 well panel pull-right">  
     <h3>How Did They Do That?</h3>
     <p>
       If you're looking for information on how something was done, you've come in the right place!
     </p>
     <form action class="no-bottom">
       <div class="clearfix">
-        <input class="span5" id="" name="" type="text" placeholder="Search by app name, techology, or person">
+        <input class="span3" id="" name="" type="text" placeholder="Search by app name, techology, or person">
       </div>
-      <a class="btn large primary">Find An App &rarr;</a>
+      <a class="btn btn-large btn-primary">Find An App &rarr;</a>
     </form>
   </div>
 
-  <div class="span5 well panel pull-right">
+  <div class="span3 well panel pull-right">
     <h2 class="half-bottom">Recent <small><a href="/posts/recent">more &rarr;</a></small></h2>
     <div id="recent_container">
-	  	<ul class="media-grid">
-		<% @recent.each do |app|%>
-			<li>
-				<a href="/apps/<%= app.id%>">
-				  <img class="thumbnail" src="http://placehold.it/210x210" alt="">
-				  <h3><%= app.name %></h3>
-				  5 Posts
-				</a>
-			</li>
-		<% end %>
-		</ul>
-	</div>
+	  	<ul class="thumbnails">
+  		<% @recent.each do |app|%>
+  			<li class="span3">
+          <div class="thumbnail">
+    				<a href="/apps/<%= app.id%>">
+    				  <img src="http://placehold.it/210x210" alt="">
+    				  <h3><%= app.name %></h3>
+    				  5 Posts
+    				</a>
+          </div>
+  			</li>
+  		<% end %>
+  		</ul>
+  	</div>
   </div>  
 </div>
