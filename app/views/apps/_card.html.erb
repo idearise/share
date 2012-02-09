@@ -1,7 +1,7 @@
 <li>
   <div class="thumbnail">
       <a href="<%= app_path(app) -%>">
-        <% if app.images.size > 0 -%>
+        <% if app.images.size > 0 and !app.images.last.file.blank? -%>
           <%= image_tag(app.images.last.file.thumb.url, :alt => app.images.last.description) -%>
         <% else -%>
           <img src="http://placehold.it/260x210" alt="">
