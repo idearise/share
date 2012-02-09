@@ -61,21 +61,22 @@
       <%= label_tag(:image_file, "File", :class => "control-label") -%>
       <div class="controls">
         <% if image_fields.object.file?-%>
-          <%= "#{image_tag(image_fields.object.file.url, width: 105, height: 105, alt: image_fields.object.description )}<br/>".html_safe if image_fields.object.file? -%>
+          <%= "#{image_tag(image_fields.object.file.url, width: 105, height: 105, alt: image_fields.object.description )} &nbsp;".html_safe if image_fields.object.file? -%>
           <%= image_fields.hidden_field :file_cache %>
-          <%= image_fields.check_box :remove_file -%>
-            Delete
+          <%= image_fields.link_to_remove(:class => "btn btn-small", :style=>"display:inline-block;") do -%>
+            Remove this screenshot
+          <% end -%>
         <% else -%>
           <%= image_fields.file_field :file -%>
-          <%= image_fields.link_to_remove(:class => "btn") do -%>
-            Remove this upload
+          <%= image_fields.link_to_remove(:class => "btn btn-small", :style=>"display:inline-block;") do -%>
+            Remove this screenshot
           <% end -%>
         <% end -%>
       </div>
     </div> 
     <% end -%>
     <div class="control-group">
-    <%= app_form.link_to_add(:images, :style => "margin-left: 150px;", :class => "btn") do -%>
+    <%= app_form.link_to_add(:images, :style => "margin-left: 155px;", :class => "btn add-top") do -%>
       Add a screenshot
     <% end -%>
     </div>

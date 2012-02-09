@@ -89,7 +89,7 @@ class AppsController < ApplicationController
       # TODO Sanitize links
       # [:name, :website, :twitter, :facebook, :google_plus, :android, :itunes].each do |x|
       #   @app.attributes[x] = Sanitize.clean(@app.attributes[x])
-      # end    
+      # end
       if @app.save_update_by(current_user.id, request.remote_ip)
         flash[:notice] = "Successfully updated."
         redirect_to app_path(@app)

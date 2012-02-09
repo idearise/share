@@ -24,7 +24,7 @@ class App < ActiveRecord::Base
   # CONSTANTS
 
   # ATTRIBUTES
-  accepts_nested_attributes_for :images
+  accepts_nested_attributes_for :images, :allow_destroy => true
   attr_accessible :name, :website, :about,
                   :twitter, :facebook, :google_plus, :android, :itunes,
                   :platform_ids, :platforms, 
