@@ -6,101 +6,101 @@
 <% end -%>
 
 <div class="row">
-  <div class="span11 pull-left">
-  <%= form_for @user, {:url => user_path(@user) } do |user_form| -%>
+  <div class="span8">
+  <%= form_for @user, {:url => user_path(@user), :html=>{ :class => "form-horizontal" } } do |user_form| -%>
   <%= user_form.error_messages :header_tag => :h4, 
                    :header_message => "The following issues kept the profile from being saved:", 
                    :message => nil,
                    :class => "alert-message block-message error" -%>
     <fieldset>
       <legend>User Profile</legend>
-      <div class="clearfix">
-        <%= label_tag(:user_nickname, "Nickname *") -%>
-        <div class="input">
-          <%= user_form.text_field :nickname, {:maxlength => 32, :class => "span5"} -%>
-          <span class="help-block">32 characters max length.</span>
+      <div class="control-group">
+        <%= label_tag(:user_nickname, "Nickname *", :class => "control-label") -%>
+        <div class="controls">
+          <%= user_form.text_field :nickname, {:maxlength => 32, :class => "span3"} -%>
+          <p class="help-block">32 characters max length.</p>
         </div>
-      </div><!-- /clearfix -->
-      <div class="clearfix">
-        <%= label_tag(:user_nickname, "Picture") -%>
-        <div class="input">
+      </div>
+      <div class="control-group">
+        <%= label_tag(:user_nickname, "Picture", :class => "control-label") -%>
+        <div class="controls">
           <%= image_tag(@user.picture(50)) -%>
-          <span class="help-block">Change your picture at <a href="http://www.gravatar.com/">gravatar.com</a>.</span>
+          <p class="help-block">Change your picture at <a href="http://www.gravatar.com/">gravatar.com</a>.</p>
         </div>
-      </div><!-- /clearfix -->
-      <div class="clearfix">
-      <%= label_tag(:user_website, "Web Site") -%>
-        <div class="input">
+      </div>
+      <div class="control-group">
+      <%= label_tag(:user_website, "Web Site", :class => "control-label") -%>
+        <div class="controls">
           <div class="input-prepend">
             <span class="add-on">http://</span>
-            <%= user_form.text_field :website, {:maxlength => 64, :class => "span5", :placeholder=>"domain/page"} -%>
+            <%= user_form.text_field :website, {:maxlength => 64, :class => "span3", :placeholder=>"domain/page"} -%>
           </div>
         </div>
-      </div><!-- /clearfix -->
-      <div class="clearfix">
-        <%= label_tag(:user_twitter, "Twitter") -%>
-        <div class="input">
+      </div>
+      <div class="control-group">
+        <%= label_tag(:user_twitter, "Twitter", :class => "control-label") -%>
+        <div class="controls">
           <div class="input-prepend">
             <span class="add-on">@</span>
-            <%= user_form.text_field :twitter, {:maxlength => 15, :class => "span3", :placeholder=>"accountname"} -%>
+            <%= user_form.text_field :twitter, {:maxlength => 15, :class => "span2", :placeholder=>"accountname"} -%>
           </div>
         </div> 
       </div>
-      <div class="clearfix">
-        <%= label_tag(:user_linkedin, "LinkedIn") -%>
-        <div class="input">
+      <div class="control-group">
+        <%= label_tag(:user_linkedin, "LinkedIn", :class => "control-label") -%>
+        <div class="controls">
           <div class="input-prepend">
             <span class="add-on">http://linkedin.com/pub/</span>
-            <%= user_form.text_field :linkedin, {:maxlength => 50, :class => "span5", :placeholder=>"page"} -%>
+            <%= user_form.text_field :linkedin, {:maxlength => 50, :class => "span3", :placeholder=>"page"} -%>
           </div>
         </div>
       </div>
-      <div class="clearfix">
-        <%= label_tag(:user_facebook, "Facebook") -%>
-        <div class="input">
+      <div class="control-group">
+        <%= label_tag(:user_facebook, "Facebook", :class => "control-label") -%>
+        <div class="controls">
           <div class="input-prepend">
             <span class="add-on">http://facebook.com/</span>
-            <%= user_form.text_field :facebook, {:maxlength => 50, :class => "span5", :placeholder=>"page"} -%>
+            <%= user_form.text_field :facebook, {:maxlength => 50, :class => "span3", :placeholder=>"page"} -%>
           </div>
         </div>
       </div>
-      <div class="clearfix">
-        <%= label_tag(:user_google_plus, "Google+") -%>
-        <div class="input">
+      <div class="control-group">
+        <%= label_tag(:user_google_plus, "Google+", :class => "control-label") -%>
+        <div class="controls">
           <div class="input-prepend">
             <span class="add-on">https://plus.google.com/</span>
-            <%= user_form.text_field :google_plus, {:maxlength => 50, :class => "span5", :placeholder=>"uniqueid/posts"} -%>
+            <%= user_form.text_field :google_plus, {:maxlength => 50, :class => "span3", :placeholder=>"uniqueid/posts"} -%>
           </div>
         </div>
       </div>
-      <div class="clearfix">
-        <%= label_tag(:user_about, "About") -%>
-        <div class="input">
-          <%= user_form.text_area :about, {:size => "80x12", :class => "span8 markitup"} -%>
-          <span class="help-block">
+      <div class="control-group">
+        <%= label_tag(:user_about, "About", :class => "control-label") -%>
+        <div class="controls">
+          <%= user_form.text_area :about, {:size => "80x12", :class => "span6 markitup"} -%>
+          <p class="help-block">
             Feel free to describe your interests and expertise. 2000 characters max length.
-          </span>
+          </p>
         </div>
-      </div><!-- /clearfix -->    
+      </div>    
     </fieldset>
        
     <fieldset class="add-top">
       <legend>Preferences</legend>
-      <div class="clearfix">
+      <div class="control-group">
         <label for="input">Notifications</label>
-        <div class="input">
+        <div class="controls">
           TODO
         </div>
-      </div><!-- /clearfix -->          
+      </div>          
     </fieldset>
-    <div class="actions">
-      <input type="submit" class="btn primary half-left" value="Save">
+    <div class="form-actions">
+      <input type="submit" class="btn btn-primary half-left" value="Save">
     </div>
     </fieldset>
   <% end -%>
   </div>
 
-  <div class="span4 well panel pull-right">
+  <div class="span3 well panel pull-right">
     <h2>Login Services</h2>
     <p>You can use these accounts to login:</p>
   
@@ -126,7 +126,7 @@
         <% if session[:service_id] == service.id %>
           <span class="btn disabled success small">Logged in</span>
         <% else %>
-          <%= link_to "Remove this service", service, :confirm => 'Are you sure you want to remove this authentication?', :method => :delete, :class => "btn small" %>
+          <%= link_to "Remove this service", service, :confirm => 'Are you sure you want to remove this authentication?', :method => :delete, :class => "btn btn-small" %>
         <% end %>
         </div>
       </div>

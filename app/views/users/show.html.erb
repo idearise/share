@@ -3,7 +3,7 @@
 <div class="page-header">
   <% if user_signed_in? and (@user.id == current_user.id) -%>
   <div class="pull-right">
-    <%= link_to "Edit Profile & Preferences &rarr;".html_safe, edit_user_path(@user), :class => "btn large primary" -%>
+    <%= link_to "Edit Profile & Preferences &rarr;".html_safe, edit_user_path(@user), :class => "btn btn-large btn-primary" -%>
   </div>
   <% end -%>
 
@@ -12,7 +12,7 @@
 <% end -%>
 
 <div class="row">
-  <div class="span7 well panel pull-left">
+  <div class="span4 well panel">
     <p><%= image_tag(@user.picture(50)) -%></p>
     <address>
       <strong>Apps</strong><br>
@@ -33,7 +33,7 @@
     </address>
   </div>
 
-  <div class="span8 pull-right">
+  <div class="span7">
     <%= markdown(@user.about) unless @user.about.blank? -%>
   </div>
 </div>

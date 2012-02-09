@@ -1,13 +1,13 @@
 <% content_for :page_title do -%>Editing Your App<% end -%>
 <% content_for :content_header do -%>
 <div class="page-header">
-  <div id="form-status" class="alert-message info pull-right" style="display: none;"></div>
+  <div id="form-status" class="alert alert-info pull-right" style="display: none;"></div>
   <h1>Editing Your App</h1>
 </div>
 <% end -%>
 
 <div class="row">
-  <div class="span4 well panel yellow pull-left">
+  <div class="span3 well panel yellow">
     <h2>What's Behind It?</h2>
     <p>People come to this site to know more about what makes your app tick.</p>
     <p>We recommend describing the following in the <strong>About</strong> field:</p>
@@ -26,7 +26,7 @@
     <p>Also, upload a few <strong>Screenshots</strong>!</p>
   </div>
 
-  <div class="span11 pull-right">
+  <div class="span8">
     <%= render :partial => "form", :locals => { :app => @app, 
           :form_url => app_path(@app) } %>
   </div>

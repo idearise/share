@@ -1,11 +1,15 @@
 <li>
-  <a href="<%= app_path(app) -%>">
-    <% if app.images.size > 0 -%>
-      <%= image_tag(app.images.last.file.thumb.url, :class=> "thumbnail", :alt => app.images.last.description) -%>
-    <% else -%>
-      <img class="thumbnail" src="http://placehold.it/260x210" alt="">
-    <% end -%>
-    <h3><%= app.name -%></h3>
-    30 Posts
-  </a>
+  <div class="thumbnail">
+      <a href="<%= app_path(app) -%>">
+        <% if app.images.size > 0 -%>
+          <%= image_tag(app.images.last.file.thumb.url, :alt => app.images.last.description) -%>
+        <% else -%>
+          <img src="http://placehold.it/260x210" alt="">
+        <% end -%>
+        <div class="caption">
+          <h3><%= app.name -%></h3>
+          30 Posts
+        </div>
+      </a>
+  </div>
 </li>

@@ -2,37 +2,35 @@
 <% content_for :content_header do -%>
 <div class="page-header">
   <div class="pull-right">
-    <a href="/apps/new" class="btn large success">Add Your App &rarr;</a>
+    <a href="/apps/new" class="btn btn-large btn-success">Add Your App &rarr;</a>
   </div>
 
   <h1>Browse Apps <%= "<small>page #{@apps.current_page} of #{@apps.num_pages} &bull; #{pluralize(@apps.total_count, 'app')}</small>".html_safe if @apps.num_pages > 0 -%></h1>
 </div>
 <% end -%>
 
-<div class="span16 pull-left">
-  <ul class="pills">
-    <li<%= " class=""active""" if params[:platform].blank? -%>><a href="/apps">All</a></li>
-    <li<%= " class=""active""" if params[:platform] == "1" -%>><a href="/apps?platform=1">Web</a></li>
-    <li<%= " class=""active""" if params[:platform] == "2" -%>><a href="/apps?platform=2">Android</a></li>
-    <li<%= " class=""active""" if params[:platform] == "3" -%>><a href="/apps?platform=3">iOS</a></li>
-    <li<%= " class=""active""" if params[:platform] == "4" -%>><a href="/apps?platform=4">Windows Phone</a></li>
-  </ul>
+<ul class="nav nav-pills">
+  <li<%= " class=""active""" if params[:platform].blank? -%>><a href="/apps">All</a></li>
+  <li<%= " class=""active""" if params[:platform] == "1" -%>><a href="/apps?platform=1">Web</a></li>
+  <li<%= " class=""active""" if params[:platform] == "2" -%>><a href="/apps?platform=2">Android</a></li>
+  <li<%= " class=""active""" if params[:platform] == "3" -%>><a href="/apps?platform=3">iOS</a></li>
+  <li<%= " class=""active""" if params[:platform] == "4" -%>><a href="/apps?platform=4">Windows Phone</a></li>
+</ul>
 
-  <ul class="media-grid">
-    <% @apps.each do |app| -%>
-      <%= render :partial => 'card', 
-                 :locals => { :app => app } -%>
-    <% end -%>
-<!--  <li>
-      <a href="#">
-        <img class="thumbnail" src="http://placehold.it/210x210" alt="">
-        <h3>anotherapp</h3>
-        10 Posts &bull; 
-        <span class="nowrap"><%= image_tag("http://placehold.it/10x10", :class=>"inline") -%> Tess</span>
-      </a>
-    </li> -->
-  </ul>
-  <% if @apps.num_pages > 1 -%>
-    <%= paginate @apps -%>
+<ul class="thumbnails">
+  <% @apps.each do |app| -%>
+    <%= render :partial => 'card', 
+               :locals => { :app => app } -%>
   <% end -%>
-</div>
+<!--  <li>
+    <a href="#">
+      <img class="thumbnail" src="http://placehold.it/210x210" alt="">
+      <h3>anotherapp</h3>
+      10 Posts &bull; 
+      <span class="nowrap"><%= image_tag("http://placehold.it/10x10", :class=>"inline") -%> Tess</span>
+    </a>
+  </li> -->
+</ul>
+<% if @apps.num_pages > 1 -%>
+  <%= paginate @apps -%>
+<% end -%>

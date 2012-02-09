@@ -28,9 +28,9 @@
 				<%= service.uname if service.uname != '' %><br />
 			    <%= service.uemail if service.uemail != '' %><br />
 				<% if session[:service_id] == service.id %>
-					<span class="btn success disabled small">Logged in</span>
+					<span class="btn btn-success btn-disabled btn-small">Logged in</span>
 				<% else %>
-					<%= link_to "Remove this service", service, :confirm => 'Are you sure you want to remove this authentication?', :method => :delete, :class => "btn small" %>
+					<%= link_to "Remove this service", service, :confirm => 'Are you sure you want to remove this authentication?', :method => :delete, :class => "btn btn-small" %>
 				<% end %>
 			  </div>
 		  </div>  

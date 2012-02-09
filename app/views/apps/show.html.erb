@@ -2,7 +2,7 @@
 <% content_for :content_header do -%>
 <div class="page-header">
   <div class="pull-right">
-    <%= link_to("Edit &rarr;".html_safe, edit_app_path(@app), :class => "btn large primary") if user_signed_in? and (@app.user.id == current_user.id) -%>
+    <%= link_to("Edit &rarr;".html_safe, edit_app_path(@app), :class => "btn btn-large btn-primary") if user_signed_in? and (@app.user.id == current_user.id) -%>
   </div>
 
   <h1><%= @app.name%>
@@ -104,113 +104,117 @@ $(document).ready(function() {
 </script>
 
 
-
-<div class="span7 pull-left">
-  <h2>About</h2>
-  <p><em>Updated <%= time_ago_in_words(@app.updated_at) %> ago by <%= link_to @app.updater, user_path(@app.updater) -%></em></p>
-  <ul class="media-grid">
-    <% @app.images.each do |image| -%>
-    <li>
-      <a href="#">
-        <img class="thumbnail" src="<%= image.file.thumb.url -%>" alt="<%= image.description -%>" width=105 height=105>
-      </a>
-    </li>
+<div class="row">
+  <div class="span6">
+    <h2>About</h2>
+    <p><em>Updated <%= time_ago_in_words(@app.updated_at) %> ago by <%= link_to @app.updater, user_path(@app.updater) -%></em></p>
+    <% if @app.images.size > 0 -%>
+      <ul class="thumbnails">
+        <% @app.images.each do |image| -%>
+        <li>
+          <div class="thumbnail">
+            <a href="#">
+              <img src="<%= image.file.thumb.url -%>" alt="<%= image.description -%>" width="130" height="105">
+            </a>
+          </div>
+        </li>
+        <% end -%>
+      </ul>
     <% end -%>
-  </ul>
-  <p><%= markdown(@app.about) -%></p>
+    <p><%= markdown(@app.about) -%></p>
 
-  <h3>Links</h3>
-  <address>
-	<% if @app.website.presence -%>
-    <strong>Web Site</strong><br>
-	  <a href="http://<%= @app.website -%>">http://<%= @app.website %></a><br>
-  <% end -%>
-	<% if @app.twitter.presence -%>
-    <strong>Twitter</strong><br>
-    <a href="http://twitter.com/<%= @app.twitter -%>">@<%= @app.twitter%></a><br>
-  <% end -%>
-  <% if @app.facebook.presence -%>
-    <strong>Facebook</strong><br>
-    <a href="http://facebook.com/<%= @app.facebook -%>">http://facebook.com/<%= @app.facebook -%></a><br>
-  <% end -%>
-  <% if @app.google_plus.presence -%>
-    <strong>Google+</strong><br>
-    <a href="http://plus.google.com/<%= @app.google_plus -%>">http://plus.google.com/<%= @app.facebook -%></a><br>
-  <% end -%>
-  <% if @app.itunes.presence -%>
-    <strong>iTunes App Store</strong><br>
-    <a href="http://itunes.apple.com/<%= @app.itunes -%>">http://itunes.apple.com/<%= @app.itunes -%></a>
-  <% end -%>
-  <% if @app.android.presence -%>
-    <strong>Android Market</strong><br>
-    <a href="https://market.android.com/<%= @app.android -%>">https://market.android.com/<%= @app.android -%></a>
-  <% end -%>
-  </address>
-</div>
-
-<div class="span8 pull-right">
-  <div class="pull-right">
-    <a href="#" data-controls-modal="modal-add-post" data-backdrop="static" class="btn small primary">Add Post</a>
-  </div>
-  
-  <h2>Posts <small>page 1 of 3 &bull; 30 posts</small></h2>
-  <ul class="pills">
-    <li class="active"><a href="#">Popular</a></li>
-    <li><a href="#">Recent</a></li>
-    <li><a href="#">Files</a></li>
-    <li><a href="#">Links</a></li>
-    <li><a href="#">Questions</a></li>
-  </ul>  
-  <div id="top_sources">
-	Loading...
+    <h3>Links</h3>
+    <address>
+  	<% if @app.website.presence -%>
+      <strong>Web Site</strong><br>
+  	  <a href="http://<%= @app.website -%>">http://<%= @app.website %></a><br>
+    <% end -%>
+  	<% if @app.twitter.presence -%>
+      <strong>Twitter</strong><br>
+      <a href="http://twitter.com/<%= @app.twitter -%>">@<%= @app.twitter%></a><br>
+    <% end -%>
+    <% if @app.facebook.presence -%>
+      <strong>Facebook</strong><br>
+      <a href="http://facebook.com/<%= @app.facebook -%>">http://facebook.com/<%= @app.facebook -%></a><br>
+    <% end -%>
+    <% if @app.google_plus.presence -%>
+      <strong>Google+</strong><br>
+      <a href="http://plus.google.com/<%= @app.google_plus -%>">http://plus.google.com/<%= @app.facebook -%></a><br>
+    <% end -%>
+    <% if @app.itunes.presence -%>
+      <strong>iTunes App Store</strong><br>
+      <a href="http://itunes.apple.com/<%= @app.itunes -%>">http://itunes.apple.com/<%= @app.itunes -%></a>
+    <% end -%>
+    <% if @app.android.presence -%>
+      <strong>Android Market</strong><br>
+      <a href="https://market.android.com/<%= @app.android -%>">https://market.android.com/<%= @app.android -%></a>
+    <% end -%>
+    </address>
   </div>
 
-  <div id="pagination" class="pagination">
-   
-  </div>   
+  <div class="span6">
+    <div class="pull-right">
+      <a href="#" data-controls-modal="modal-add-post" data-backdrop="static" class="btn btn-small btn-primary">Add Post</a>
+    </div>
+    
+    <h2>Posts <small>page 1 of 3 &bull; 30 posts</small></h2>
+    <ul class="nav nav-pills">
+      <li class="active"><a href="#">Popular</a></li>
+      <li><a href="#">Recent</a></li>
+      <li><a href="#">Files</a></li>
+      <li><a href="#">Links</a></li>
+      <li><a href="#">Questions</a></li>
+    </ul>  
+    <div id="top_sources">
+  	Loading...
+    </div>
+
+    <div id="pagination" class="pagination">
+    </div>
+  </div>
 </div>
 
 <div id="modal-add-post" class="modal hide fade" style="display: none; ">
   <div class="modal-header">
-    <a href="#" class="close">×</a>
+    <a href="#" data-dismiss="modal" class="close">×</a>
     <h3>Add Post</h3>
   </div>
   <div class="modal-body">
 	<%= form_tag app_posts_path(@app.id, :format => :json), :method => :post, :id =>"newsource" do %>
       <fieldset>
-		<div id="errors-container" class="clearfix" style="visibility: hidden;">
-          	<div id="errors" class="input">
-	         </div>          
+      	<div id="errors-container" class="clearfix" style="visibility: hidden;">
+        	<div id="errors" class="input">
+          </div>     
         </div>
-        <div class="clearfix">
-          <label for="xlInput">Title *</label>
-          <div class="input">
-			<%= text_field_tag "source[title]", nil, :id => "xlInput", :size => "30", :class => "span5", :placeholder => ""%>
+        <div class="control-group">
+          <label for="" class="control-label">Title *</label>
+          <div class="controls">
+      			<%= text_field_tag "source[title]", nil, :id => "xlInput", :size => "30", :class => "span5", :placeholder => ""%>
           </div>
-        </div><!-- /clearfix -->
-        <div class="clearfix">
-          <label for="prependedInput">Link</label>
-          <div class="input">
-			<%= text_field_tag "source[url]", nil, :id => "prependedInput", :size => "16", :class => "span5",:placeholder =>""%>
+        </div>
+        <div class="control-group">
+          <label for="" class="control-label">Link</label>
+          <div class="controls">
+      			<%= text_field_tag "source[url]", nil, :id => "prependedInput", :size => "16", :class => "span5",:placeholder =>""%>
           </div>
         </div>        
-        <div class="clearfix">
-          <label for="fileInput">Files</label>
-          <div class="input">
+        <div class="control-group">
+          <label for="" class="control-label">File</label>
+          <div class="controls">
             <input class="input-file" id="fileInput" name="fileInput" type="file">
           </div>
-        </div><!-- /clearfix -->        
-        <div class="clearfix">
-          <label for="textarea">Text</label>
-          <div class="input">
-			<%= text_area_tag "source[text]", nil, :id => "textarea2", :rows => "5", :class => "span6"%>
+        </div>        
+        <div class="control-group">
+          <label for="textarea" class="control-label">Text</label>
+          <div class="controls">
+      			<%= text_area_tag "source[text]", nil, :id => "textarea2", :rows => "5", :class => "span5"%>
           </div>
-        </div><!-- /clearfix -->        
+        </div>        
       </fieldset>
     <% end -%>
   </div>
   <div class="modal-footer">
-    <a href="#" id="newsource-save" class="btn primary">Save</a>
+    <a href="#" id="newsource-save" class="btn btn-primary">Save</a>
   </div>
 </div>
 

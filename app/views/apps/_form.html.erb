@@ -1,68 +1,65 @@
-<%= nested_form_for app, {:url => form_url, :html=>{ :multipart => true } } do |app_form| -%>
+<%= nested_form_for app, {:url => form_url, :html=>{ :multipart => true, :class => "form-horizontal" } } do |app_form| -%>
 <%= app_form.error_messages :header_tag => :h4, 
                  :header_message => "The following issues kept the App from being added:", 
                  :message => nil,
                  :class => "alert-message block-message error" -%>
   <fieldset>
     <legend>App Information</legend>
-    <div class="clearfix">
-      <%= label_tag(:app_name, "App Name *") -%>
-      <div class="input">
-        <%= app_form.text_field :name, {:maxlength => 30, :class => "span5"} -%>
-        <span class="help-block">Use your app's name or domain name. We suggest keeping it to 30 characters or less.</span>
+    <div class="control-group">
+      <%= label_tag(:app_name, "App Name *", :class => "control-label") -%>
+      <div class="controls">
+        <%= app_form.text_field :name, {:maxlength => 30, :class => "span2"} -%>
+        <p class="help-block">Use your app's name or domain name. We suggest keeping it to 30 characters or less.</p>
       </div>
-    </div><!-- /clearfix -->
-    <div class="clearfix">
-    <%= label_tag(:app_website, "Web Site") -%>
-      <div class="input">
+    </div>
+    <div class="control-group">
+    <%= label_tag(:app_website, "Web Site", :class => "control-label") -%>
+      <div class="controls">
         <div class="input-prepend">
           <span class="add-on">http://</span>
-          <%= app_form.text_field :website, {:maxlength => 64, :class => "span5", :placeholder=>"domain/page"} -%>
+          <%= app_form.text_field :website, {:maxlength => 64, :class => "span4", :placeholder=>"domain/page"} -%>
         </div>
       </div>
-    </div><!-- /clearfix -->
-    <div class="clearfix">
-      <%= label_tag(:app_about, "About *") -%>
-      <div class="input">
-        <%= app_form.text_area :about, {:size => "80x12", :class => "span8 markitup"} -%>
-        <span class="help-block">
+    </div>
+    <div class="control-group">
+      <%= label_tag(:app_about, "About *", :class => "control-label") -%>
+      <div class="controls">
+        <%= app_form.text_area :about, {:size => "80x12", :class => "span6 markitup"} -%>
+        <p class="help-block">
           Describe what your app offers, what's in it, who built it, how your spreading the word about it, and why it's important. 4000 characters max length. Markdown is supported.
-        </span>
+        </p>
       </div>
-    </div><!-- /clearfix -->        
-    <div class="clearfix">
+    </div>        
+    <div class="control-group">
       <label id="optionsCheckboxes">User Platforms *</label>
-      <div class="input">
-        <ul class="inputs-list">
-          <% @platforms.each do |p| -%>
-          <li>
-            <label>
-              <%= check_box_tag :platform_ids, p.id, @app.platforms.include?(p), :name => 'app[platform_ids][]' -%>
-              <span><%= p.name -%></span>
-            </label>
-          </li>
-          <% end -%>
-        </ul>
-        <span class="help-block">
+      <div class="controls">
+        <% @platforms.each do |p| -%>
+          <label class="checkbox">
+            <%= check_box_tag :platform_ids, p.id, @app.platforms.include?(p), :name => 'app[platform_ids][]' -%>
+            <span><%= p.name -%></span>
+          </label>
+        </li>
+        <% end -%>
+        <p class="help-block">
           <strong>Note:</strong> Choose one or more.
-        </span>
+        </p>
       </div>
-    </div><!-- /clearfix -->      
+    </div>      
   </fieldset>
 
   <fieldset class="add-top">
     <legend>Screenshots</legend>
     <%= app_form.fields_for :images do |image_fields| -%>
-    <div class="clearfix">
-      <%= label_tag(:image_description, "Description") -%>
-      <div class="input">
-        <%= image_fields.text_field :description, {:maxlength => 32, :class => "span5"} -%>
-        <span class="help-block">32 characters or less.</span>
+    <div class="control-group">
+      <%= label_tag(:image_description, "Description", :class => "control-label") -%>
+      <div class="controls">
+        <%= image_fields.text_field :description, {:maxlength => 32, :class => "span4"} -%>
+        <p class="help-block">32 characters or less.</p>
       </div>
-    </div><!-- /clearfix -->
-    <div class="clearfix">
-      <%= label_tag(:image_file, "File") -%>
-      <div class="input">
+    </div>
+    <div class="control-group">
+      <%= label_tag(:image_file, "File", :class => "control-label") -%>
+      <div class="controls">
         <% if image_fields.object.file?-%>
           <%= "#{image_tag(image_fields.object.file.url, width: 105, height: 105, alt: image_fields.object.description )}<br/>".html_safe if image_fields.object.file? -%>
           <%= image_fields.hidden_field :file_cache %>
@@ -75,64 +72,64 @@
           <% end -%>
         <% end -%>
       </div>
-    </div><!-- /clearfix --> 
+    </div> 
     <% end -%>
-    <p>
+    <div class="control-group">
     <%= app_form.link_to_add(:images, :style => "margin-left: 150px;", :class => "btn") do -%>
       Add a screenshot
     <% end -%>
-    </p>
+    </div>
   </fieldset>
      
   <fieldset class="add-top">
     <legend>Other Details</legend>
-    <div class="clearfix">
-      <%= label_tag(:app_twitter, "Twitter") -%>
-      <div class="input">
+    <div class="control-group">
+      <%= label_tag(:app_twitter, "Twitter", :class => "control-label") -%>
+      <div class="controls">
         <div class="input-prepend">
           <span class="add-on">@</span>
-          <%= app_form.text_field :twitter, {:maxlength => 15, :class => "span3", :placeholder=>"accountname"} -%>
+          <%= app_form.text_field :twitter, {:maxlength => 15, :class => "span2", :placeholder=>"accountname"} -%>
         </div>
       </div> 
     </div>
-    <div class="clearfix">
-      <%= label_tag(:app_facebook, "Facebook") -%>
-      <div class="input">
+    <div class="control-group">
+      <%= label_tag(:app_facebook, "Facebook", :class => "control-label") -%>
+      <div class="controls">
         <div class="input-prepend">
           <span class="add-on">http://facebook.com/</span>
-          <%= app_form.text_field :facebook, {:maxlength => 50, :class => "span5", :placeholder=>"page"} -%>
+          <%= app_form.text_field :facebook, {:maxlength => 50, :class => "span4", :placeholder=>"page"} -%>
         </div>
       </div>
     </div>
-    <div class="clearfix">
-      <%= label_tag(:app_google_plus, "Google+") -%>
-      <div class="input">
+    <div class="control-group">
+      <%= label_tag(:app_google_plus, "Google+", :class => "control-label") -%>
+      <div class="controls">
         <div class="input-prepend">
           <span class="add-on">https://plus.google.com/</span>
-          <%= app_form.text_field :google_plus, {:maxlength => 50, :class => "span5", :placeholder=>"uniqueid/posts"} -%>
+          <%= app_form.text_field :google_plus, {:maxlength => 50, :class => "span4", :placeholder=>"uniqueid/posts"} -%>
         </div>
       </div>
     </div>
-    <div class="clearfix">
-      <%= label_tag(:app_android, "Android Market") -%>
-      <div class="input">
+    <div class="control-group">
+      <%= label_tag(:app_android, "Android Market", :class => "control-label") -%>
+      <div class="controls">
         <div class="input-prepend">
           <span class="add-on">https://market.android.com/</span>
-          <%= app_form.text_field :android, {:maxlength => 50, :class => "span5", :placeholder=>"page"} -%>
+          <%= app_form.text_field :android, {:maxlength => 50, :class => "span4", :placeholder=>"page"} -%>
         </div>
       </div>
     </div>
-    <div class="clearfix">
-      <%= label_tag(:app_itunes, "iTunes App Store") -%>
-      <div class="input">
+    <div class="control-group">
+      <%= label_tag(:app_itunes, "iTunes App Store", :class => "control-label") -%>
+      <div class="controls">
         <div class="input-prepend">
           <span class="add-on">http://itunes.apple.com/</span>
-          <%= app_form.text_field :itunes, {:maxlength => 50, :class => "span5", :placeholder=>"page"} -%>
+          <%= app_form.text_field :itunes, {:maxlength => 50, :class => "span4", :placeholder=>"page"} -%>
         </div>
       </div>
     </div>        
   </fieldset>
-  <div class="actions">
-    <input type="submit" class="btn primary half-left" value="Save">
+  <div class="form-actions">
+    <input type="submit" class="btn btn-primary half-left" value="Save">
   </div>
 <% end -%>
