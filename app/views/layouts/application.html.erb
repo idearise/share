@@ -63,16 +63,14 @@
       <% if user_signed_in? -%>
       <ul class="nav pull-right">
         <li>
-          <%= link_to image_tag("#{current_user.picture(10)}"), 
-              main_app.user_path(current_user) -%>
           <%# FIXME Fix user score -%>
-          <%= link_to "#{current_user.nickname} | #{current_user.email} | 1 pt", main_app.user_path(current_user) -%>
+          <%= link_to image_tag("#{current_user.picture(10)}") + " #{current_user.nickname} | 1 pt".html_safe, main_app.user_path(current_user), style: "display:inline-block;" -%>
         </li>
       </ul>
       <% else -%>
       <ul class="nav pull-right">
         <li>
-          <%= link_to "Login With", "/signin", style: "display:inline-block;" -%> 
+          <%= link_to "Login With", "/signin", style: "display:inline-block;padding-top:0px;" -%> 
           <a href="/auth/facebook" title="Facebook" style="display:inline-block;"><%= image_tag('facebook_32.png', height:"22", width:"22", style:"vertical-align:sub;") -%></a> 
           <a href="/auth/google" title="Google" style="display:inline-block;"><%= image_tag('google_32.png', height:"22", width:"22", style:"vertical-align:sub;") -%></a> 
           <a href="/auth/yahoo" title="Yahoo!" style="display:inline-block;"><%= image_tag('yahoo_32.png', height:"22", width:"22", style:"vertical-align:sub;") -%></a>
