@@ -69,9 +69,10 @@
 
 <% content_for :include_js do %>
 <script id="_post_title" type="text/x-handlebars-template">
-{{title}} <small>in <%= link_to @app.name, app_path(@app) -%> +{{up}} -{{down}}</small><br/>
-<small>{{updated_at}} &bull; <a href="/users/{{user_id}}">{{user_id}}{{user_name}}</a> &bull; <a href="{{url}}">{{domain}}</a></small> 
-<span class="label">topic</span> <span class="label">file</span> <span class="label">link</span>
+{{title}} 
+<small>at <a href="{{url}}">{{domain}}</a> +{{up}} -{{down}} <span class="label">topic</span> <span class="label">file</span> <span class="label">link</span></small><br/>
+<small><a href="/users/{{user_id}}">{{user_id}}{{user_name}}</a> &bull; {{updated_at}} &bull; <%= link_to @app.name, app_path(@app) -%></small> 
+
 </script>
 <script id="node" type="text/x-handlebars-template">
 <div style="margin-left: {{width}}px;" class="add-bottom">
@@ -83,8 +84,8 @@
     <div class="pull-left"><img src="http://placehold.it/36x36" alt=""></div>
     <div class="post-response">
       <span class="info">
-      {{created_at}} &bull; 
       <span class="nowrap"> <a href="/users/1">{{created_by}}</a></span> 
+      &bull; {{created_at}} 
       &bull; {{score}} pt
       &bull; <a href="/apps/<%= params[:app_id]%>/posts/<%= @post_id %>/comments/{{id}}">Permalink</a>
       </span>

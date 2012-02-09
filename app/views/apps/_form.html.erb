@@ -8,7 +8,7 @@
     <div class="control-group">
       <%= label_tag(:app_name, "App Name *", :class => "control-label") -%>
       <div class="controls">
-        <%= app_form.text_field :name, {:maxlength => 30, :class => "span2"} -%>
+        <%= app_form.text_field :name, {:maxlength => 30, :class => "span3"} -%>
         <p class="help-block">Use your app's name or domain name. We suggest keeping it to 30 characters or less.</p>
       </div>
     </div>
@@ -17,7 +17,8 @@
       <div class="controls">
         <div class="input-prepend">
           <span class="add-on">http://</span>
-          <%= app_form.text_field :website, {:maxlength => 64, :class => "span4", :placeholder=>"domain/page"} -%>
+          <%= app_form.text_field :website, {:maxlength => 64, :class => "span3", :placeholder=>"domain/page"} -%>
+          <p class="help-block"><a href="#" class="btn btn-small">Get humans.txt</a> We can also grab your humans.txt file to prepopulate the app's About text.</p>
         </div>
       </div>
     </div>
@@ -53,7 +54,7 @@
     <div class="control-group">
       <%= label_tag(:image_description, "Description", :class => "control-label") -%>
       <div class="controls">
-        <%= image_fields.text_field :description, {:maxlength => 32, :class => "span4"} -%>
+        <%= image_fields.text_field :description, {:maxlength => 32, :class => "span3"} -%>
         <p class="help-block">32 characters or less.</p>
       </div>
     </div>
@@ -98,7 +99,7 @@
       <div class="controls">
         <div class="input-prepend">
           <span class="add-on">http://facebook.com/</span>
-          <%= app_form.text_field :facebook, {:maxlength => 50, :class => "span4", :placeholder=>"page"} -%>
+          <%= app_form.text_field :facebook, {:maxlength => 50, :class => "span3", :placeholder=>"page"} -%>
         </div>
       </div>
     </div>
@@ -107,7 +108,7 @@
       <div class="controls">
         <div class="input-prepend">
           <span class="add-on">https://plus.google.com/</span>
-          <%= app_form.text_field :google_plus, {:maxlength => 50, :class => "span4", :placeholder=>"uniqueid/posts"} -%>
+          <%= app_form.text_field :google_plus, {:maxlength => 50, :class => "span3", :placeholder=>"uniqueid/posts"} -%>
         </div>
       </div>
     </div>
@@ -116,7 +117,7 @@
       <div class="controls">
         <div class="input-prepend">
           <span class="add-on">https://market.android.com/</span>
-          <%= app_form.text_field :android, {:maxlength => 50, :class => "span4", :placeholder=>"page"} -%>
+          <%= app_form.text_field :android, {:maxlength => 50, :class => "span3", :placeholder=>"page"} -%>
         </div>
       </div>
     </div>
@@ -125,7 +126,7 @@
       <div class="controls">
         <div class="input-prepend">
           <span class="add-on">http://itunes.apple.com/</span>
-          <%= app_form.text_field :itunes, {:maxlength => 50, :class => "span4", :placeholder=>"page"} -%>
+          <%= app_form.text_field :itunes, {:maxlength => 50, :class => "span3", :placeholder=>"page"} -%>
         </div>
       </div>
     </div>        
