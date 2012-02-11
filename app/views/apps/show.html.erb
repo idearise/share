@@ -37,7 +37,7 @@ $(document).ready(function() {
 			if (data.length > 0) {
 				Users.getLabels(user_ids, function (user_data) {
 					$.each(data, function (idx, i) {
-						i.username = user_data[i["user_id"]];
+						i.username = user_data[i["user_id"]]["username"];
 						compiled.push(template(i))
 					});
 					$('#top_sources').html(compiled.join(''));

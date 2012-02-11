@@ -20,7 +20,7 @@ $(document).ready(function() {
 				return i.user_id;
 			}), function (user_data) {
 				$.each(sources.items, function (idx, i) {
-					i.username = user_data[i["user_id"]];
+					i.username = user_data[i["user_id"]]["username"];
 					compiled.push(template(i))
 				});
 				$('#latest_sources_list').html(compiled.join(''));

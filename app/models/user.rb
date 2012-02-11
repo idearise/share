@@ -60,6 +60,11 @@ class User < ActiveRecord::Base
       avatar
     end
   end
+  
+  def small_picture(size =16)
+    hash = Digest::MD5.hexdigest(self.email)
+    "http://www.gravatar.com/avatar/#{hash}.jpg?s=#{size}"
+  end
 
   def to_s
     self.nickname.blank? ? self.name : self.nickname

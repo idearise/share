@@ -12,7 +12,10 @@ var Users = {
 					//organize the data
 					var data = {};
 					$.each(json.labels, function (idx, val) {
-						data[String(val["id"])] = val["nickname"];
+						data[String(val["id"])] = {
+							username: val["nickname"],
+							picture: val["small_picture"]
+						};
 					}); 
 					callback.call(scope, data);
 				}
