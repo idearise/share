@@ -16,11 +16,12 @@ class UsersController < ApplicationController
   # def edit
   # end
 
-  # PUT / POST
+  # GET
   def user_labels
     @users = User.find(params[:user_ids].split(",").map(&:to_i).uniq)
   end
   
+  # PUT / POST
   def update
     # TODO permissions
     if @user.id == current_user.id

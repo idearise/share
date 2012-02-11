@@ -36,11 +36,26 @@ $(document).ready(function() {
       //sources.items is the list of sources
       //sources.total is the number of sources in the list
       var compiled = [];
-      $.each(sources.items, function (idx, i) {
-        compiled.push(template(i));
-      });
-      
-      $('#popular').html(compiled.join(''));
+      var limit = 20;
+      var i;
+      var data = [];
+      var user_ids = [];
+      limit = Math.min(limit,sources.items.length);
+      for(var x = 0; x < limit; x++) {
+        i = sources.items[x];
+        user_ids.push(i.user_id);
+        data.push(i);
+      }
+      if (data.length > 0) {
+        Users.getLabels(user_ids, function (user_data) {
+          $.each(data, function (idx, i) {
+            i.username = user_data[i["user_id"]]["username"];
+            i.picture_small = user_data[i["user_id"]]["picture_small"];
+            compiled.push(template(i))
+          });
+          $('#popular').html(compiled.join(''));
+        });
+      }
     }
   });
 
@@ -52,11 +67,26 @@ $(document).ready(function() {
       //sources.items is the list of sources
       //sources.total is the number of sources in the list
       var compiled = [];
-      $.each(sources.items, function (idx, i) {
-        compiled.push(template(i));
-      });
-      
-      $('#recent').html(compiled.join(''));
+      var limit = 20;
+      var i;
+      var data = [];
+      var user_ids = [];
+      limit = Math.min(limit,sources.items.length);
+      for(var x = 0; x < limit; x++) {
+        i = sources.items[x];
+        user_ids.push(i.user_id);
+        data.push(i);
+      }
+      if (data.length > 0) {
+        Users.getLabels(user_ids, function (user_data) {
+          $.each(data, function (idx, i) {
+            i.username = user_data[i["user_id"]]["username"];
+            i.picture_small = user_data[i["user_id"]]["picture_small"];
+            compiled.push(template(i))
+          });
+          $('#recent').html(compiled.join(''));
+        });
+      }
     }
   });  
 });

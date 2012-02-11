@@ -6,12 +6,9 @@
     <a class="btn btn-large votesourcedown">&#8722;</a>
     <a class="btn btn-large btn-primary">Edit &rarr;</a>
   </div>
-  <div class="pull-left add-right">
-    <%= image_tag("http://placehold.it/36x36", :class=>"inline") -%>
+  <div id="post-header">
+    Loading...
   </div>
-  <h1 class="post-title" id="post-title">
-	Loading...
-  </h1>
 </div>
 <% end -%>
 
@@ -68,11 +65,15 @@
 </div>
 
 <% content_for :include_js do %>
-<script id="_post_title" type="text/x-handlebars-template">
-{{title}} 
-<small>at <a href="{{url}}">{{domain}}</a> +{{up}} -{{down}} <span class="label">topic</span> <span class="label">file</span> <span class="label">link</span></small><br/>
-<small><img src="{{picture}}"><a href="/users/{{user_id}}">{{username}}</a> &bull; {{updated_at}} &bull; <%= link_to @app.name, app_path(@app) -%></small> 
-
+<script id="_post_header" type="text/x-handlebars-template">
+  <div class="pull-left">
+    <img src="{{picture}}" class="inline">
+  </div>
+  <h1 class="post-title">
+  {{title}} 
+  <small>at <a href="{{url}}">{{domain}}</a> +{{up}} -{{down}} <span class="label">topic</span> <span class="label">file</span> <span class="label">link</span></small><br/>
+  <small><a href="/users/{{user_id}}">{{username}}</a> &bull; {{updated_at}} &bull; <%= link_to @app.name, app_path(@app) -%></small> 
+  </h1>
 </script>
 <script id="node" type="text/x-handlebars-template">
 <div style="margin-left: {{width}}px;" class="add-bottom">
@@ -97,7 +98,7 @@
 <script type="text/javascript">
 $(document).ready(function() {
 	
-	var source = $("#_post_title").html();
+	var source = $("#_post_header").html();
 	var template = Handlebars.compile(source);
 	var commentNode = $('#node').html();
 	var commentTmpl = Handlebars.compile(commentNode);
@@ -142,7 +143,7 @@ $(document).ready(function() {
 				data.source.username = user_data[String(data.source.user_id)]["username"];
 				data.source.picture = user_data[String(data.source.user_id)]["picture"];
 				
-				$('#post-title').html(template(data.source));
+				$('#post-header').html(template(data.source));
 				$('#post-text').html(data.source.text);
 				$('#post-link').html('<a href="'+data.source.url+'">'+data.source.url+'</url>');
 				

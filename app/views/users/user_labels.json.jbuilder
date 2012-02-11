@@ -1,2 +1,2 @@
-json.labels @users, :id, :nickname, :small_picture
+json.labels @users, :id, :nickname, :picture, :picture_small
 json.success true

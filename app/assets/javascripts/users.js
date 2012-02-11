@@ -14,7 +14,8 @@ var Users = {
 					$.each(json.labels, function (idx, val) {
 						data[String(val["id"])] = {
 							username: val["nickname"],
-							picture: val["small_picture"]
+							picture: val["picture"],
+							picture_small: val["picture_small"]
 						};
 					}); 
 					callback.call(scope, data);
