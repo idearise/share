@@ -1,5 +1,5 @@
 class ApplicationController < ActionController::Base
-  protect_from_forgery
+  #protect_from_forgery
 
   helper_method :current_user
   helper_method :user_signed_in?
@@ -13,7 +13,7 @@ class ApplicationController < ActionController::Base
       # !@current_user.nil? ? logger.debug("user #{@current_user.to_xml}") : logger.debug("no user")
       # !session.nil? ? logger.debug("session #{session.to_xml}") : logger.debug("no session")
       @current_user
-    end  
+    end
     
     def user_signed_in?
       return true if current_user 
@@ -21,7 +21,7 @@ class ApplicationController < ActionController::Base
     
     def logged_in?
       user_signed_in?
-    end    
+    end
     
     def authenticate_user!
       if !current_user
