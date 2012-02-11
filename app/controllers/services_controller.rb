@@ -136,7 +136,7 @@ class ServicesController < ApplicationController
             end
           else
             # this is a new user; show signup; @authhash is available to the view and stored in the sesssion for creation of a new user
-            session[:authhash] = @authhash          
+            session[:authhash] = @authhash
             render signup_services_path
           end
         end

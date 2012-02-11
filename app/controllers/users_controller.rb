@@ -1,5 +1,5 @@
 class UsersController < ApplicationController
-  before_filter :authenticate_user!, :except => [:index, :show]
+  before_filter :authenticate_user!, :except => [:index, :show, :user_labels]
   before_filter :find_user, :only => [:show, :edit, :update, :destroy]
   before_filter :find_services, :only => [:edit, :update]
   protect_from_forgery :except => [:index, :show]
@@ -17,6 +17,10 @@ class UsersController < ApplicationController
   # end
 
   # PUT / POST
+  def user_labels
+    @users = User.find(params[:user_ids].split(",").map(&:to_i).uniq)
+  end
+  
   def update
     # TODO permissions
     if @user.id == current_user.id

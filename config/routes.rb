@@ -41,6 +41,9 @@ Share::Application.routes.draw do
   end
 
   resources :users, :only => [:index, :show, :edit, :update] do
+    collection do
+      get "user_labels"
+    end
     member do
       get 'votes'
       get 'posts'
