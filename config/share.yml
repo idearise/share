@@ -1,9 +1,9 @@
 development:
   endpoint: http://ubuntu-dev:8081/api/v1
-  api_key: <%= ENV['SORTARY_API_KEY'] -%>
+  api_key: 46181685de0c22b5169a6519861eced18f9a0a26
 demo:
-  endpoint: <%= ENV['SORTARY_ENDPOINT'] -%>
-  api_key: <%= ENV['SORTARY_API_KEY'] -%>
+  endpoint: http://demo.sortary.com/api/v1
+  api_key: 46181685de0c22b5169a6519861eced18f9a0a26
 staging:
-  endpoint: <%= ENV['SORTARY_ENDPOINT'] -%>
-  api_key: <%= ENV['SORTARY_API_KEY'] -%>
+  endpoint: http://s.sortary.com/api/v1
+  api_key: 46181685de0c22b5169a6519861eced18f9a0a26
