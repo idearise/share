@@ -3,6 +3,7 @@
 * Use Ruby 1.9.3
 * Install imagemagick for carrierwave mini_magick
 * bundle install
+* Create a database.yml file using database.yml.example
 * Set ENV variables for:
     * ENV['S3_KEY'] # used in carrierwave.rb
     * ENV['S3_SECRET'] # used in carrierwave.rb
@@ -26,6 +27,6 @@
 
     git push demo master
     heroku pg:reset SHARED_DATABASE --remote demo
-    heroku run rake setup_heroku --app inthisappdemo
+    heroku run rake setup_heroku --app inthisappdemo --confirm inthisappdemo
     heroku db:push --app inthisappdemo
     heroku restart --app inthisappdemo

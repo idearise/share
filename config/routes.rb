@@ -51,6 +51,8 @@ Share::Application.routes.draw do
   end
 
   get 'posts' => 'posts#index'
+
+  get 'search' => 'search#index'
   
   # The priority is based upon order of creation:
   # first created -> highest priority.
