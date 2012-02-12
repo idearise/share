@@ -9,9 +9,11 @@
     * ENV['RAILS_SECRET_TOKEN'] # used in session_store.rb
     * ENV["RECAPTCHA_PRIVATE_KEY"] # Production
     * ENV["RECAPTCHA_PUBLIC_KEY"] # Production
-    * Heroku
+    * ENV["SORTARY_API_KEY"] # 
+    * Heroku uses all of the above plus the following
         * heroku config:add RACK_ENV=demo --remote demo # for Heroku staging, demo, etc.
         * heroku config:add RAILS_ENV=demo --remote demo # for Heroku staging, demo, etc.
+        * heroku config:add SORTARY_ENDPOINT=http://demo.sortary.com/api/v1 --remote demo # for Heroku staging, demo, etc.
 * In your S3 account, add a bucket named 'inthisapp' 
 * share.yml file in ./config should look like the following:
 
