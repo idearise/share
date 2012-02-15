@@ -38,7 +38,9 @@ class ServicesController < ApplicationController
           session[:service_id] = @newuser.services.first.id
         
           flash[:notice] = "Your account has been created and you have been signed in! Don't forget to fill out your profile!".html_safe
-          if request.env['omniauth.origin']
+          if !session[:requested_url].nil?
+            redirect_back
+          elsif request.env['omniauth.origin']
             redirect_to request.env['omniauth.origin']
           else
             redirect_back
@@ -129,7 +131,9 @@ class ServicesController < ApplicationController
             session[:service_id] = auth.id
           
             flash[:notice] = "Signed in successfully via " + @authhash[:provider].capitalize + ". Make sure your profile is up-to-date!"
-            if request.env['omniauth.origin']
+            if !session[:requested_url].nil?
+              redirect_back
+            elsif request.env['omniauth.origin']
               redirect_to request.env['omniauth.origin']
             else
               redirect_back

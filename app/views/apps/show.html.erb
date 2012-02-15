@@ -161,7 +161,11 @@ $(document).ready(function() {
 
   <div class="span6">
     <div class="pull-right">
+    <% if user_signed_in? -%>
       <a href="#" data-controls-modal="modal-add-post" data-backdrop="static" class="btn btn-small btn-primary">Add Post</a>
+    <% else -%>
+      <a href="/signin" class="btn btn-small btn-success">Login to Post</a>
+    <% end -%>
     </div>
     
     <h2>Posts <small>page 1 of 3 &bull; 30 posts</small></h2>

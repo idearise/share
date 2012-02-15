@@ -1,5 +1,6 @@
 class AppsController < ApplicationController
   before_filter :authenticate_user!, :except => [:index, :popular, :recent, :show]
+  before_filter :set_requested_url, :only => [:show]
   before_filter :find_app, :only => [:show, :edit, :update, :destroy]
   before_filter :find_platforms, :only => [:new, :create, :edit, :update]
   protect_from_forgery :except => [:index, :popular, :recent]
@@ -72,7 +73,6 @@ class AppsController < ApplicationController
 
   # GET
   def show
-    @app = App.find(params[:id])
     @platforms = @app.platforms
   end
 
@@ -113,5 +113,11 @@ class AppsController < ApplicationController
 
   def find_platforms
     @platforms = Platform.order_display
+  end
+
+  def set_requested_url
+    if !user_signed_in?
+      session[:requested_url] = app_url(params[:id])
+    end
   end
 end

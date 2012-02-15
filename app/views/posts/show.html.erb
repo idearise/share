@@ -27,9 +27,13 @@
 
   <div class="span6">
     <div class="pull-right">
+    <% if user_signed_in? -%>
       <a href="#" data-controls-modal="modal-add-response" data-backdrop="static" class="btn btn-small btn-primary response">Add Response</a>
+    <% else -%>
+      <a href="/signin" class="btn btn-small btn-success">Login to Respond</a>
+    <% end -%>
     </div>
-    
+
     <h2 class="add-bottom">Responses <small>5 responses</small></h2> 
     <div id="comments-section">
   	Loading..
