@@ -4,7 +4,7 @@
   <div class="pull-right add-left">
     <a class="btn btn-large votesourceup">+</a> 
     <a class="btn btn-large votesourcedown">&#8722;</a>
-    <a class="btn btn-large btn-primary">Edit &rarr;</a>
+    <a data-controls-modal="modal-edit-post" data-backdrop="static" class="btn btn-large btn-primary">Edit &rarr;</a>
   </div>
   <div id="post-header">
     Loading...
@@ -64,6 +64,33 @@
   </div>
 </div>
 
+<div id="modal-edit-response" class="modal hide fade" style="display: none; ">
+  <div class="modal-header">
+    <a href="#" class="close">×</a>
+    <h3>Edit Response</h3>
+  </div>
+  <div class="modal-body">
+    <%= form_tag app_post_path(@app.id, @post_id), :method => :put, :id =>"editcomment" do %>
+      <fieldset>
+  	    <div id="errors-container" class="clearfix" style="visibility: hidden;">
+          <div id="errors" class="input">
+          </div>          
+        </div>
+        <div class="control-group">
+          <label for="textarea">Text</label>
+          <input type="hidden" name="comment[parent_id]" id="edit_comment_parent_id" />
+          <div class="controls">
+            <textarea class="span5" id="edit_comment_text" name="comment[text]" rows="12"></textarea>
+          </div>
+        </div>
+      </fieldset>
+    <% end %>
+  </div>
+  <div class="modal-footer">
+    <a id="editcomment-save" href="#" class="btn primary">Save</a>
+  </div>
+</div>
+
 <% content_for :include_js do %>
 <script id="_post_header" type="text/x-handlebars-template">
   <div class="pull-left">
@@ -80,6 +107,7 @@
     <div class="pull-right half-left">
       <a class="btn btn-small voteup" data-comment-id="{{id}}">+</a> 
       <a class="btn btn-small votedown" data-comment-id="{{id}}">&#8722;</a>
+	  <a class="btn btn-small editcomment" data-controls-modal="modal-edit-response" data-backdrop="static" data-comment-id="{{id}}" data-parent-id="{{parent_id}}">Edit &rarr;</a>
       <a class="btn btn-small response" data-controls-modal="modal-add-response" data-backdrop="static" data-comment-id="{{id}}">Reply</a>
     </div>  
     <div class="pull-left"><img src="http://placehold.it/36x36" alt=""></div>
@@ -90,10 +118,55 @@
       &bull; {{score}} pt
       &bull; <a href="/apps/<%= params[:app_id]%>/posts/<%= @post_id %>/comments/{{id}}">Permalink</a>
       </span>
-      <p>{{text}}</p>
+      <p id="{{id}}_comment_text">{{text}}</p>
     </div>
   </div>
 </script>
+
+
+<div id="modal-edit-post" class="modal hide fade" style="display: none; ">
+  <div class="modal-header">
+    <a href="#" data-dismiss="modal" class="close">×</a>
+    <h3>Edit Post</h3>
+  </div>
+  <div class="modal-body">
+	<%= form_tag app_post_path(@app.id, @post_id, :format => :json), :method => :put, :id =>"editsource" do %>
+      <fieldset>
+      	<div id="errors-container" class="clearfix" style="visibility: hidden;">
+        	<div id="errors" class="input">
+          </div>     
+        </div>
+        <div class="control-group">
+          <label for="" class="control-label">Title *</label>
+          <div class="controls">
+      			<%= text_field_tag "source[title]", nil, :id => "xlInput", :size => "30", :class => "span5", :placeholder => ""%>
+          </div>
+        </div>
+        <div class="control-group">
+          <label for="" class="control-label">Link</label>
+          <div class="controls">
+      			<%= text_field_tag "source[url]", nil, :id => "prependedInput", :size => "16", :class => "span5",:placeholder =>""%>
+          </div>
+        </div>        
+        <div class="control-group">
+          <label for="" class="control-label">File</label>
+          <div class="controls">
+            <input class="input-file" id="fileInput" name="fileInput" type="file">
+          </div>
+        </div>        
+        <div class="control-group">
+          <label for="textarea" class="control-label">Text</label>
+          <div class="controls">
+      			<%= text_area_tag "source[text]", nil, :id => "textarea2", :rows => "5", :class => "span5"%>
+          </div>
+        </div>        
+      </fieldset>
+    <% end -%>
+  </div>
+  <div class="modal-footer">
+    <a href="#" id="editsource-save" class="btn btn-primary">Save</a>
+  </div>
+</div>
 
 <script type="text/javascript">
 $(document).ready(function() {
@@ -146,6 +219,12 @@ $(document).ready(function() {
 				$('#post-header').html(template(data.source));
 				$('#post-text').html(data.source.text);
 				$('#post-link').html('<a href="'+data.source.url+'">'+data.source.url+'</url>');
+				
+				//the edit form
+				$('#xlInput').val(data.source.title);
+				$('#prependedInput').val(data.source.url);
+				$('#textarea2').val(data.source.text);
+				
 				
 				if (all.length > 0) {
 					$('#comments-section').html(all.join());
@@ -270,6 +349,88 @@ $(document).ready(function() {
 			//var $this = $(this).data('show', true)
 			//$('#modal-comment-response').modal($this.data());	
 		}
+	});
+	
+	var editPost = $('#editsource');
+	
+	editPost.submit(function () {
+		var url = editPost.attr('action');
+		var data = editPost.serialize();
+		console.log(url);
+		console.log(data);
+		$.ajax({
+		    type: 'POST',
+			url: url,
+			data: data,
+			success: function (object) {{
+				console.log(object)
+				if (object.success) {
+					window.location.reload();
+				}
+				else {
+					$('#errors').html(object.errors.join("<br />"));
+					$('#errors-container').attr("style", "visibility: visible");
+				}
+			}},
+			dataType: 'json'
+		})
+		return false;
+	});
+	
+	
+	
+	$('#editsource-save').click(function () {
+		editPost.submit();
+	});
+	
+	
+	$('.editcomment').live({
+		click: function () {
+			var commentId = $(this).attr('data-comment-id');
+			var parentId = $(this).attr('data-parent-id');
+			$('#edit_comment_parent_id').attr('value', parentId);
+			//console.log(commentId);
+			//console.log(parentId);
+			//console.log($(commentId+'_comment_text').text())
+			$('#editcomment').attr('action', $('#editcomment').attr('action') + '/comments/' +commentId + '.json');
+			$('#edit_comment_text').val($('#'+commentId+'_comment_text').text());
+			//refresh modal data
+			//then show modal
+			//var $this = $(this).data('show', true)
+			//$('#modal-comment-response').modal($this.data());	
+		}
+	});
+	
+	var editPost = $('#editcomment');
+	
+	editPost.submit(function () {
+		var url = editPost.attr('action');
+		var data = editPost.serialize();
+		console.log(url);
+		console.log(data);
+		$.ajax({
+		    type: 'POST',
+			url: url,
+			data: data,
+			success: function (object) {{
+				console.log(object)
+				if (object.success) {
+					window.location.reload();
+				}
+				else {
+					$('#errors').html(object.errors.join("<br />"));
+					$('#errors-container').attr("style", "visibility: visible");
+				}
+			}},
+			dataType: 'json'
+		})
+		return false;
+	});
+	
+	
+	
+	$('#editcomment-save').click(function () {
+		editPost.submit();
 	});
 	
 });

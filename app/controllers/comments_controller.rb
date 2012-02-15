@@ -15,6 +15,20 @@ class CommentsController < ApplicationController
     render :text => response.body
     
   end
+  
+  def update
+    hash = params[:comment].dup
+    hash.delete('parent_id') unless hash['parent_id'].presence
+    response = RestClient.post(([Share.config.endpoint, 'sources', params[:post_id], 'comments', params[:id]+'.json'].join('/') + "?api_key=" + Share.config.api_key), {
+      :comment => hash.merge(:source_id => params[:post_id]), 
+      :dimension_keys => params[:app_id],
+      :user_id => current_user.id,
+      :_method => :put
+    })
+    #Rails.logger.debug(response.inspect)
+    render :text => response.body
+    
+  end
 
   # POST
   def voteup

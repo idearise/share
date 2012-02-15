@@ -21,6 +21,14 @@ class PostsController < ApplicationController
     
     render :text => response.body
   end
+  
+  def update
+    response = RestClient.post(([Share.config.endpoint,  'sources', params[:id] + '.json'].join('/') + "?api_key=" + Share.config.api_key), {
+      :source => params[:source], :dimension_ids => @app.id, :user_id => current_user.id, :_method => :put
+    })
+    
+    render :text => response.body
+  end
 
   # POST
   def voteup
