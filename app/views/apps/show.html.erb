@@ -9,8 +9,7 @@
     <small><%= @platforms.map(&:name).join(' &bull; ').html_safe%></small>
     <!-- <span class="label warning">unverified</span> -->
   </h1>
-</div> 
-
+</div>
 <% end -%>
 
 <% content_for :include_js do %>
@@ -41,7 +40,7 @@ $(document).ready(function() {
             i.picture_small = user_data[i["user_id"]]["picture_small"];
 						compiled.push(template(i))
 					});
-					$('#top_sources').html(compiled.join(''));
+					$('#sources').html(compiled.join(''));
 
 					//console.log(sources);
 					//console.log($("#pagination"))
@@ -49,7 +48,7 @@ $(document).ready(function() {
 				});
 			}
 			else {
-				$('#top_sources').html("No posts yet!");
+				$('#sources').html("No posts yet!");
 			}
 			
 			//get the handlebar template
@@ -173,7 +172,7 @@ $(document).ready(function() {
       <li><a href="#">Links</a></li>
       <li><a href="#">Questions</a></li>
     </ul>  
-    <div id="top_sources">
+    <div id="sources">
   	Loading...
     </div>
 

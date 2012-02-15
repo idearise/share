@@ -5,7 +5,7 @@
 // the compiled file.
 //
 //= require guard
-//= require jquery
+// #require jquery # already include Google CDN jQuery in application.html.erb
 //= require jquery_ujs
 //= require handlebars
 //= require jquery_nested_form

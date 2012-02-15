@@ -42,6 +42,13 @@ GIT
     redcarpet (2.1.0)
 
 GIT
+  remote: git://github.com/tenderlove/texticle
+  revision: 5badef616aa2a9241775d1a968c44ea223e23c9c
+  specs:
+    texticle (2.0.3)
+      activerecord (~> 3.0)
+
+GIT
   remote: git://github.com/thedarkone/rails-dev-boost.git
   revision: c648d229fa981c5f9bcbd8ac6baa520582c248c6
   specs:
@@ -235,6 +242,7 @@ DEPENDENCIES
   rest-client!
   sass-rails
   sqlite3
+  texticle!
   thin
   turn (~> 0.8.3)
   uglifier

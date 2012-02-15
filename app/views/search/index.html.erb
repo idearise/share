@@ -1,0 +1,60 @@
+<% content_for :page_title do -%>Search Results for <%= params[:query] -%><% end -%>
+<% content_for :content_header do -%>
+<div class="page-header">
+  <div class="pull-right">
+    <a href="/apps/new" class="btn btn-large btn-success">Add Your App &rarr;</a>
+  </div>
+
+  <h1>Search Results for <%= params[:query] -%></h1>
+</div>
+<% end -%>
+
+<div class="row">
+  <div class="span5">
+    <h2>Apps</h2>
+    <div id="apps">
+    <% if !@apps.nil? and @apps.size > 0 -%>
+      <ul class="thumbnails">
+      <% @apps.each do |app| -%>
+        <%= render :partial => 'apps/mini_card', 
+           :locals => { :app => app } -%>
+      <% end -%>
+      </ul>
+    <% else -%>
+      No results
+    <% end -%>
+    </div>
+  </div>
+  <div class="span5 offset1 pull-right">
+    <h2>Users</h2>
+    <div id="users">
+    <% if !@users.nil? and @users.size > 0 -%>
+      <ul class="thumbnails">
+      <% @users.each do |user| -%>
+        <li>
+          <div class="thumbnail">
+            <a href="/users/<%= user.id -%>">
+              <img src="<%= user.picture(100) -%>"><br/>
+                <%= user.nickname -%>
+            </a>
+      <% end -%>
+      </ul>
+    <% else -%>
+      No results
+    <% end -%>
+    </div>
+  </div>
+</div>
+
+<div class="row add-top">
+  <div class="span5">
+    <h2>Posts</h2>
+    <div id="posts">
+    </div>
+  </div>
+  <div class="span5 offset1 pull-right">
+    <h2>Comments</h2>
+    <div id="comments">
+    </div>
+  </div>
+</div>

@@ -110,10 +110,10 @@
 	  <a class="btn btn-small editcomment" data-controls-modal="modal-edit-response" data-backdrop="static" data-comment-id="{{id}}" data-parent-id="{{parent_id}}">Edit &rarr;</a>
       <a class="btn btn-small response" data-controls-modal="modal-add-response" data-backdrop="static" data-comment-id="{{id}}">Reply</a>
     </div>  
-    <div class="pull-left"><img src="http://placehold.it/36x36" alt=""></div>
+    <div class="pull-left"><img src="{{picture_small}}"></div>
     <div class="post-response">
       <span class="info">
-      <span class="nowrap"> <img src="{{picture}}"><a href="/users/1">{{username}}</a></span> 
+      <span class="nowrap"><a href="/users/{{user_id}}">{{username}}</a></span> 
       &bull; {{created_at}} 
       &bull; {{score}} pt
       &bull; <a href="/apps/<%= params[:app_id]%>/posts/<%= @post_id %>/comments/{{id}}">Permalink</a>
@@ -201,7 +201,7 @@ $(document).ready(function() {
 						//identify how much margin-left we want for this
 						comment.width = level * 46;
 						comment.username = user_data[String(comment.user_id)]["username"];
-						comment.picture = user_data[String(comment.user_id)]["picture"];
+            comment.picture_small = user_data[String(comment.user_id)]["picture_small"];
 						//compile
 						compiled.push(commentTmpl(comment));
 						//console.log(comment);

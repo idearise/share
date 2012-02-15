@@ -11,6 +11,7 @@ group :production do
 end
 group :development, :test do
   gem 'sqlite3'
+  gem 'pg'
   gem 'rails-dev-boost', :git => 'git://github.com/thedarkone/rails-dev-boost.git', :require => 'rails_development_boost'
   gem 'forgery'
 end
@@ -27,7 +28,8 @@ gem 'mini_magick'
 gem 'nested_form', :git => 'git://github.com/ryanb/nested_form.git'
 gem 'kaminari'
 gem 'redcarpet', :git => 'git://github.com/tanoku/redcarpet'
-gem "jbuilder", :git => "git://github.com/rails/jbuilder.git"
+gem 'jbuilder', :git => 'git://github.com/rails/jbuilder.git'
+gem 'texticle', :git => 'git://github.com/tenderlove/texticle', :require => 'texticle/rails'
 
 # Gems used only for assets and not required
 # in production environments by default.

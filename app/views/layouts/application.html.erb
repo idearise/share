@@ -56,8 +56,8 @@
           <li><a href="/apps/">Browse</a></li>        
           <li><a href="/posts">Posts</a></li>  
         </ul>
-        <form class="pull-left navbar-search" action="">
-          <input class="span3 search-query" type="text" placeholder="Search">
+        <form id="search" class="pull-left navbar-search" action="/search" method="get">
+          <input id="query" name="query" class="span2 search-query" type="text" placeholder="Search">
         </form>
       </div>
       <% if user_signed_in? -%>
