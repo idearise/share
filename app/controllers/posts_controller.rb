@@ -62,7 +62,6 @@ class PostsController < ApplicationController
   def set_requested_url
     if !user_signed_in?
       session[:requested_url] = app_post_url(params[:app_id], params[:id])
-      logger.debug session[:requested_url]
     end
   end
 end
