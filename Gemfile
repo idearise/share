@@ -5,19 +5,19 @@ gem 'rails', '3.2.1'
 # Bundle edge Rails instead:
 # gem 'rails',     :git => 'git://github.com/rails/rails.git'
 
-group :production do
+group :production, :staging, :demo do
   gem 'pg'
   gem 'thin'
-  gem 'forgery'
+  gem 'forgery', :git => 'git://github.com/sevenwire/forgery.git'
 end
 group :development, :test do
   gem 'sqlite3'
   gem 'pg'
   gem 'rails-dev-boost', :git => 'git://github.com/thedarkone/rails-dev-boost.git', :require => 'rails_development_boost'
-  gem 'forgery'
+  gem 'forgery', :git => 'git://github.com/sevenwire/forgery.git'
 end
 
-gem 'rest-client', :git => "git://github.com/archiloque/rest-client.git"
+gem 'rest-client', :git => 'git://github.com/archiloque/rest-client.git'
 gem 'omniauth'
 gem 'omniauth-openid'
 gem 'omniauth-facebook', :git => 'git://github.com/mkdynamic/omniauth-facebook.git'
