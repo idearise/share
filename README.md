@@ -30,5 +30,4 @@
     git push demo master
     heroku pg:reset SHARED_DATABASE --remote demo
     heroku run rake setup_heroku --app inthisappdemo --confirm inthisappdemo
-    heroku db:push --app inthisappdemo
     heroku restart --app inthisappdemo
