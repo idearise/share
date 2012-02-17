@@ -4,7 +4,7 @@
         <% if app.images.size > 0 and !app.images.last.file.blank? -%>
           <%= image_tag(app.images.last.file.thumb.url, :alt => app.images.last.description) -%>
         <% else -%>
-          <img src="http://placehold.it/260x210" alt="">
+          <img src="http://placehold.it/260x210/3C424C/cccccc&text=<%= "#{CGI.escape app.name}" -%>" alt="">
         <% end -%>
         <div class="caption">
           <h3><%= app.name -%></h3>
