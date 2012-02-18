@@ -1,0 +1,4 @@
+
+$(function() {
+	$(".markitup").markItUp(mySettings);
+});
