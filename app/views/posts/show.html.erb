@@ -96,36 +96,8 @@
 </div>
 
 <% content_for :include_js do %>
-<script id="_post_header" type="text/x-handlebars-template">
-  <div class="pull-left">
-    <img src="{{picture}}" class="inline">
-  </div>
-  <h1 class="post-title">
-  {{title}} 
-  <small>at <a href="{{url}}">{{domain}}</a> +{{up}} -{{down}} <span class="label">topic</span> <span class="label">file</span> <span class="label">link</span></small><br/>
-  <small><a href="/users/{{user_id}}">{{username}}</a> &bull; {{updated_at}} &bull; <%= link_to @app.name, app_path(@app) -%></small> 
-  </h1>
-</script>
-<script id="node" type="text/x-handlebars-template">
-<div style="margin-left: {{width}}px;" class="add-bottom">
-    <div class="pull-right half-left">
-      <a class="btn btn-small voteup" data-comment-id="{{id}}">+</a> 
-      <a class="btn btn-small votedown" data-comment-id="{{id}}">&#8722;</a>
-	  <a class="btn btn-small editcomment" data-controls-modal="modal-edit-response" data-backdrop="static" data-comment-id="{{id}}" data-parent-id="{{parent_id}}">Edit &rarr;</a>
-      <a class="btn btn-small response" data-controls-modal="modal-add-response" data-backdrop="static" data-comment-id="{{id}}">Reply</a>
-    </div>  
-    <div class="pull-left"><img src="{{picture_small}}"></div>
-    <div class="post-response">
-      <span class="info">
-      <span class="nowrap"><a href="/users/{{user_id}}">{{username}}</a></span> 
-      &bull; {{created_at}} 
-      &bull; {{score}} pt
-      &bull; <a href="/apps/<%= params[:app_id]%>/posts/<%= @post_id %>/comments/{{id}}">Permalink</a>
-      </span>
-      <p id="{{id}}_comment_text">{{text}}</p>
-    </div>
-  </div>
-</script>
+<%= render partial: 'shared/handlebars/post_header', :locals => { :ident => '_posts' }%>
+<%= render partial: 'shared/handlebars/node', :locals => { :ident => 'node' }%>
 
 
 <div id="modal-edit-post" class="modal hide fade" style="display: none; ">

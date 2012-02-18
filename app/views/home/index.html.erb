@@ -1,7 +1,7 @@
 <% content_for :page_title do -%>Welcome<% end -%>
 
 <!-- HANDLEBARS TEMPLATES -->
-<%= render partial: 'shared/handlebars/post'%>
+<%= render partial: 'shared/handlebars/post', :locals => { :ident => '_posts' }%>
 <!-- END HANDLEBARS TEMPLATES-->
 
 <% content_for :include_js do %>

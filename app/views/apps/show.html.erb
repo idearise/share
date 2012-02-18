@@ -98,18 +98,7 @@ $(document).ready(function() {
 });
 </script>
 <% end -%>
-<script id="_post" type="text/x-handlebars-template">
-  <div class="add-bottom">
-  <div class="pull-left"><img src="{{picture_small}}" class="inline"></div>
-  <div class="post-summary">
-    <h4><a href="/apps/<%= @app.id%>/posts/{{id}}">{{title}}</a> <small>at {{domain}} +{{up}} -{{down}}</small> <span class="label"><a href="{{url}}">link</a></span></h4>
-    <span class="nowrap">{{username}}</span> 
-    &bull; {{created_at}} 
-    &bull; {{comments}} responses
-  </div>
-</div>
-</script>
-
+<%= render partial: 'shared/handlebars/app_post', :locals => { :ident => '_post', :app => @app }%>
 
 <div class="row">
   <div class="span6">
