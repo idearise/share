@@ -8,15 +8,14 @@ gem 'rails', '3.2.1'
 group :production, :staging, :demo do
   gem 'pg'
   gem 'thin'
-  gem 'forgery', :git => 'git://github.com/sevenwire/forgery.git'
 end
 group :development, :test do
   gem 'sqlite3'
   gem 'pg'
   gem 'rails-dev-boost', :git => 'git://github.com/thedarkone/rails-dev-boost.git', :require => 'rails_development_boost'
-  gem 'forgery', :git => 'git://github.com/sevenwire/forgery.git'
 end
 
+gem 'forgery', :git => 'git://github.com/sevenwire/forgery.git'
 gem 'rest-client', :git => 'git://github.com/archiloque/rest-client.git'
 gem 'omniauth'
 gem 'omniauth-openid'
