@@ -10,7 +10,7 @@ module ApplicationHelper
 										:superscripts => true, 
 										:tables => true, 
 										:lax_html_blocks => true)
-	  	redcarpet.render(text).html_safe
+	  	Sanitize.clean(redcarpet.render(text), Sanitize::Config::RELAXED).html_safe
 	  end
 	end
 	
