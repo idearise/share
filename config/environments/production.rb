@@ -44,9 +44,9 @@ Share::Application.configure do
 
   # Precompile additional assets (application.js, application.css, and all non-JS/CSS are already added)
   config.assets.precompile += %w( 
-    pages/home_index.js 
-    pages/posts_show.js
-    pages/apps_show.js
+    home_index.js 
+    posts_show.js
+    apps_show.js
   )
 
   # Disable delivery errors, bad email addresses will be ignored
