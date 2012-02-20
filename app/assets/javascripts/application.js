@@ -11,3 +11,4 @@
 //= require client
 //= require users
 //= require pagination
+//= require init
