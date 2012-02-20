@@ -10,4 +10,4 @@
 
 //= require client
 //= require users
-
+//= require pagination

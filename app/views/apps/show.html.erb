@@ -17,6 +17,7 @@
 <%= javascript_include_tag "pages/apps_show" %>
 <% end -%>
 <%= render partial: 'shared/handlebars/app_post', :locals => { :ident => '_post', :app => @app }%>
+<%= render partial: 'shared/handlebars/pagination', :locals => { :ident => '_pagination'}%>
 
 <div class="row">
   <div class="span6">
@@ -75,7 +76,7 @@
     <% end -%>
     </div>
     
-    <h2>Posts <small>page 1 of 3 &bull; 30 posts</small></h2>
+    <h2>Posts <small id="pageInfo"></small></h2>
     <ul class="nav nav-pills">
       <li class="active"><a href="#">Popular</a></li>
       <li><a href="#">Recent</a></li>

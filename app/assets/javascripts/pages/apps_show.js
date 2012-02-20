@@ -1,9 +1,15 @@
-$(document).ready(function() {
-	var app_id = $('#information').attr('data-app-id');
+var loadSources = function (app_id, start, count) {
+	var pagingHandler = function (start, count) {
+		loadSources(app_id, start, count);
+	};
+	
 	Signalike.Source.top({
 		dimension: app_id,
+		start: start || 0,
+		count: count || 10,
 		success: function (sources) {
 			var source   = $("#_post").html();
+			var pagination_source = $("#_pagination").html();
 			var template = Handlebars.compile(source);
 			//sources.items is the list of sources
 			//sources.total is the number of sources in the list
@@ -12,6 +18,12 @@ $(document).ready(function() {
 			var i;
 			var data = [];
 			var user_ids = [];
+			var pageInfo = {
+				start: sources.start,
+				count: sources.count,
+				total: sources.total
+			};
+			console.log(sources);
 			limit = Math.min(limit,sources.items.length);
 			for(var x = 0; x < limit; x++) {
 				i = sources.items[x];
@@ -22,33 +34,30 @@ $(document).ready(function() {
 				Users.getLabels(user_ids, function (user_data) {
 					$.each(data, function (idx, i) {
 						i.username = user_data[i["user_id"]]["username"];
-            i.picture_small = user_data[i["user_id"]]["picture_small"];
+            			i.picture_small = user_data[i["user_id"]]["picture_small"];
 						compiled.push(template(i))
 					});
 					$('#sources').html(compiled.join(''));
 
-					//console.log(sources);
-					//console.log($("#pagination"))
-					$("#pagination").html('<ul><li class="prev disabled"><a href="#">&larr; Previous</a></li><li class="active"><a href="#">1</a></li><li><a href="#">2</a></li><li><a href="#">3</a></li><li class="next"><a href="#">Next &rarr;</a></li></ul>');
+					//$("#pagination").html('<ul><li class="prev disabled"><a href="#">&larr; Previous</a></li><li class="active"><a href="#">1</a></li><li><a href="#">2</a></li><li><a href="#">3</a></li><li class="next"><a href="#">Next &rarr;</a></li></ul>');
+					Pagination('#_pagination').paginate(pageInfo, {
+						target: '#pagination',
+						infoTarget: '#pageInfo',
+						handler: pagingHandler,
+						itemLabel: "posts"
+					});
 				});
 			}
 			else {
 				$('#sources').html("No posts yet!");
 			}
 			
-			//get the handlebar template
-			//source   = $("#_post").html();
-			//template = Handlebars.compile(source);
-			////sources.items is the list of sources
-			////sources.total is the number of sources in the list
-			//compiled = [];
-			//$.each(sources.items, function (idx, i) {
-			//	compiled.push(template(i));
-			//});
-			  
-			//$('#latest_sources_list').html(compiled.join(''));
 		}
 	});
+}
+$(document).ready(function() {
+	var app_id = $('#information').attr('data-app-id');
+	loadSources(app_id, 0, 10);
 	
 	var f = $('#newsource');
 	

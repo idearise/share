@@ -41,6 +41,12 @@ Signalike.Source.top = function (conf) {
 	if (conf.dimension) {
 		config.data.dimension = conf.dimension;
 	}
+	if (conf.start) {
+		config.data.start = conf.start;
+	}
+	if (conf.count) {
+		config.data.count = conf.count;
+	}
 
 	$.ajax(Signalike.urlFor('sources'), {
 		dataType: 'JSONP',
@@ -71,6 +77,15 @@ Signalike.Source.latest = function (conf) {
 	config.data = config.data || {};
 	if (conf.dimension) {
 		config.data.dimension = conf.dimension;
+	}
+	if (conf.dimension) {
+		config.data.dimension = conf.dimension;
+	}
+	if (conf.start) {
+		config.data.start = conf.start;
+	}
+	if (conf.count) {
+		config.data.count = conf.count;
 	}
 
 	$.ajax(Signalike.urlFor('sources','latest'), {

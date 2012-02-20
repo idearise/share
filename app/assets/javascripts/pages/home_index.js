@@ -13,7 +13,7 @@ $(document).ready(function() {
 			}), function (user_data) {
 				$.each(sources.items, function (idx, i) {
 					i.username = user_data[i["user_id"]]["username"];
-          i.picture_small = user_data[i["user_id"]]["picture_small"];
+          			i.picture_small = user_data[i["user_id"]]["picture_small"];
 					compiled.push(template(i))
 				});
 				$('#latest_sources_list').html(compiled.join(''));

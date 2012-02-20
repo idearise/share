@@ -1,0 +1,19 @@
+<% ident ||= '_pagination'%>
+<script id="<%= ident %>" type="text/x-handlebars-template">
+<ul class="paginations">
+	{{#if prevLocationIsThere}}
+	<li class="prev">
+		<a href="#" data-page-start="{{prevStart}}" data-page-count="{{prevCount}}">&larr; Previous</a>
+	</li>
+	{{/if}}
+	{{#each items}}
+	  <li class="{{status}}"><a href="#" data-page-start="{{start}}" data-page-count="{{count}}">{{label}}</a></li>
+	{{/each}}
+	
+	{{#if nextLocationIsThere}}
+	<li class="next">
+		<a href="#" data-page-start="{{nextStart}}" data-page-count="{{nextCount}}">Next &rarr;</a>
+	</li>
+	{{/if}}
+</ul>
+</script>
