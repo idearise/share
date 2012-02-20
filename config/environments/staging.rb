@@ -49,7 +49,7 @@ Share::Application.configure do
     pages/posts_show.js
     pages/apps_show.js
   )
-  
+
   # Disable delivery errors, bad email addresses will be ignored
   # config.action_mailer.raise_delivery_errors = false
 
