@@ -10,4 +10,5 @@
 
 //= require client
 //= require users
+//= require init
 
