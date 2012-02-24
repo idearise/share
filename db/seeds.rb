@@ -10,6 +10,8 @@ user1.nickname = Forgery(:name).first_name
 user1.name = user1.nickname + " " + Forgery(:name).last_name
 user1.email = Forgery(:email).address
 user1.save
+user1.id = 1
+user1.save!
 
 user2 = User.new
 user2.nickname = Forgery(:name).first_name
