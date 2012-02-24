@@ -18,7 +18,7 @@ class UsersController < ApplicationController
 
   # GET
   def user_labels
-    @users = User.find(params[:user_ids].split(",").map(&:to_i).uniq)
+    @users = User.where(id: params[:user_ids].split(",").map(&:to_i).uniq).all
   end
   
   # PUT / POST

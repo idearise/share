@@ -14,10 +14,11 @@
 <% end -%>
 
 <% content_for :include_js do %>
-<%= javascript_include_tag "pages/apps_show" %>
-<% end -%>
 <%= render partial: 'shared/handlebars/app_post', :locals => { :ident => '_post', :app => @app }%>
 <%= render partial: 'shared/handlebars/pagination', :locals => { :ident => '_pagination'}%>
+<%= javascript_include_tag "pages/apps_show" %>
+<% end -%>
+
 
 <div class="row">
   <div class="span6">
