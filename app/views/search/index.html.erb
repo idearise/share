@@ -1,5 +1,6 @@
 <% content_for :page_title do -%>Search Results for <%= params[:query] -%><% end -%>
 <% content_for :content_header do -%>
+<div id="information" data-query="<%= params[:query] %>"></div>
 <div class="page-header">
   <div class="pull-right">
     <a href="/apps/new" class="btn btn-large btn-success">Add Your App &rarr;</a>
