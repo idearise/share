@@ -33,7 +33,7 @@ var loadSources = function (app_id, start, count) {
 			if (data.length > 0) {
 				Users.getLabels(user_ids, function (user_data) {
 					$.each(data, function (idx, i) {
-						i.username = user_data[i["user_id"]]["username"];
+						i.nickname = user_data[i["user_id"]]["nickname"];
             			i.picture_small = user_data[i["user_id"]]["picture_small"];
 						compiled.push(template(i))
 					});

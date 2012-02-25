@@ -33,7 +33,7 @@ $(document).ready(function() {
                     function(i, comment) {
                         //identify how much margin-left we want for this
                         comment.width = level * 46;
-                        comment.username = user_data[String(comment.user_key)]["username"];
+                        comment.nickname = user_data[String(comment.user_key)]["nickname"];
                         comment.picture_small = user_data[String(comment.user_key)]["picture_small"];
                         //compile
                         compiled.push(commentTmpl(comment));
@@ -46,7 +46,7 @@ $(document).ready(function() {
                     return compiled;
                 };
                 var all = fun(data.comments['-1'] || [], data.comments, 0);
-                data.source.username = user_data[String(data.source.user_id)]["username"];
+                data.source.nickname = user_data[String(data.source.user_id)]["nickname"];
                 data.source.picture = user_data[String(data.source.user_id)]["picture"];
 
                 $('#post-header').html(template(data.source));

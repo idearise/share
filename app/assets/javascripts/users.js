@@ -13,7 +13,7 @@ var Users = {
 					var data = {};
 					$.each(json.labels, function (idx, val) {
 						data[String(val["id"])] = {
-							username: val["nickname"],
+							nickname: val["nickname"],
 							picture: val["picture"],
 							picture_small: val["picture_small"]
 						};
