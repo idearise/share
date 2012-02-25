@@ -1,6 +1,9 @@
 <% ident ||= 'node'%>
 <script id="<%= ident%>" type="text/x-handlebars-template">
-<div style="margin-left: {{width}}px;" class="add-bottom">
+  <div style="margin-left: {{width}}px;" class="add-bottom">
+    <div class="comment-anchor no-top no-bottom">
+      <a class="comment-anchor no-top no-bottom" id="comment-{{id}}" name="comment-{{id}}">&nbsp;</a>
+    </div>
     <div class="pull-right half-left">
       <a class="btn btn-small voteup" data-comment-id="{{id}}">+</a> 
       <a class="btn btn-small votedown" data-comment-id="{{id}}">&#8722;</a>
@@ -13,7 +16,7 @@
       <span class="nowrap"><a href="/users/{{user_id}}">{{nickname}}</a></span> 
       &bull; {{created_at}} 
       &bull; {{score}} pt
-      &bull; <a href="/apps/<%= params[:app_id]%>/posts/<%= @post_id %>/comments/{{id}}">Permalink</a><br/>
+      &bull; <a href="/apps/<%= params[:app_id]%>/posts/<%= @post_id %>#comment-{{id}}">Permalink</a><br/>
       <span class="title">{{title}}</span>
       </span>
       <p id="{{id}}_comment_text">{{text}}</p>

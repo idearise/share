@@ -97,6 +97,9 @@ label { font-weight: bold; }
 .post-response .info .title { color: #333; font-weight: bold; }
 .post-response .info a { color: #BFBFBF; text-decoration: underline; }
 
+.comment-anchor { position: relative; margin: 0; padding: 0; line-height: 0px; font-size: 0px; top: -50px; }
+
+
 /* Layout classes */
 .inline { display: inline !important; }
 .nowrap { whitespace: nowrap !important; }
