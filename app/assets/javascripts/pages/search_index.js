@@ -24,7 +24,7 @@ $(document).ready(function() {
             }
             for(var x = 0; x < results.comments.length; x++) {
                 c = results.comments[x];
-                commentsUserIds.push(c.user_id);
+                commentsUserIds.push(c.user.key);
                 commentsData.push(c);
             }
 
@@ -45,8 +45,8 @@ $(document).ready(function() {
             if (commentsData.length > 0) {
                 Users.getLabels(commentsUserIds, function (userData) {
                     $.each(commentsData, function (idx, i) {
-                        i.nickname = userData[i["user_id"]]["nickname"];
-                        i.picture_small = userData[i["user_id"]]["picture_small"];
+                        i.nickname = userData[commentsData[idx]["user"]["key"]]["nickname"];
+                        i.picture_small = userData[commentsData[idx]["user"]["key"]]["picture_small"];
                         i.dimension_key = commentsData[idx]["dimensions"][0]["key"];
                         commentsCompiled.push(commentTemplate(i));
                     });
