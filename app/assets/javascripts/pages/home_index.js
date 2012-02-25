@@ -1,5 +1,7 @@
 $(document).ready(function() {
 	Signalike.Source.top({
+		start: 0,
+		count: 10,
 		success: function (sources) {
 			//get the handlebar template
 			var source   = $("#_post").html();

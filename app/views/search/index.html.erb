@@ -9,6 +9,12 @@
 </div>
 <% end -%>
 
+<% content_for :include_js do %>
+  <%= render partial: 'shared/handlebars/app_post', :locals => { :ident => '_post', :app => @app }%>
+  <%= render partial: 'shared/handlebars/node', :locals => { :ident => 'node' }%>
+  <%= javascript_include_tag "pages/search_index"%>
+<% end -%>
+
 <div class="row">
   <div class="span5">
     <h2>Apps</h2>
