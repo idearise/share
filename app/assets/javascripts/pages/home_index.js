@@ -16,7 +16,7 @@ $(document).ready(function() {
 				$.each(sources.items, function (idx, i) {
 					i.nickname = user_data[i["user_id"]]["nickname"];
           			i.picture_small = user_data[i["user_id"]]["picture_small"];
-					compiled.push(template(i))
+					compiled.push(template(i));
 				});
 				$('#latest_sources_list').html(compiled.join(''));
 			});

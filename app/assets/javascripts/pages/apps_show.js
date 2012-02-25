@@ -35,7 +35,7 @@ var loadSources = function (app_id, start, count) {
 					$.each(data, function (idx, i) {
 						i.nickname = user_data[i["user_id"]]["nickname"];
             			i.picture_small = user_data[i["user_id"]]["picture_small"];
-						compiled.push(template(i))
+						compiled.push(template(i));
 					});
 					$('#sources').html(compiled.join(''));
 
