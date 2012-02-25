@@ -67,6 +67,7 @@ body {
 .hero-unit h1 a { color: #0AE; text-shadow: 1px 1px 2px #000; }
 .hero-unit h4 small { color: #333; }
 .hero-unit h4 a { color: #EEE; text-shadow: 1px 1px 2px #000; }
+.hero-unit .label { text-shadow: 1px 1px 2px #000; }
 
 /*.media-grid a { background: url('polaroid.png'); }*/
 .media-grid a { background: #FFFFFF; }

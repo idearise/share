@@ -5,7 +5,21 @@
   </div>
   <h1 class="post-title">
   {{title}} 
-  <small>at <a href="{{url}}">{{domain}}</a> +{{up}} -{{down}} <span class="label">topic</span> <span class="label">file</span> <span class="label">link</span></small><br/>
+  <small>
+  {{#if domain}}
+  at <a href="{{url}}">{{domain}}</a> 
+  {{/if}}
+  +{{up}} -{{down}} 
+  {{#if text}}
+  <span class="label">topic</span> 
+  {{/if}}
+  {{#if file}}
+  <span class="label">file</span> 
+  {{/if}}
+  {{#if domain}}
+  <span class="label">link</span>
+  {{/if}}
+  </small><br/>
   <small><a href="/users/{{user_id}}">{{nickname}}</a> &bull; {{updated_at}} &bull; <%= link_to @app.name, app_path(@app) -%></small> 
   </h1>
 </script>
