@@ -30,14 +30,14 @@ class ServicesController < ApplicationController
       redirect_to root_url
     else  # create account
       @newuser = User.new_by_service_session_and_request(session, request)      
-      if (Rails.env.development?) or verify_recaptcha(:model => @newuser, :message => "Sorry, there was an error with your reCAPTCHA answer!") 
+      if (Rails.env.development?) or verify_recaptcha(:model => @newuser, :message => "Sorry, there was an error with your reCAPTCHA answer.") 
         if @newuser.save!
           # signin existing user
           # in the session his user id and the service id used for signing in is stored
           session[:user_id] = @newuser.id
           session[:service_id] = @newuser.services.first.id
         
-          flash[:notice] = "Your account has been created and you have been signed in! Don't forget to fill out your profile!".html_safe
+          flash[:notice] = "Your account has been created and you have been logged in. Don't forget to fill out your profile.".html_safe
           if !session[:requested_url].nil?
             redirect_back
           elsif request.env['omniauth.origin']
@@ -46,12 +46,12 @@ class ServicesController < ApplicationController
             redirect_back
           end
         else
-          flash[:error] = "This is embarrassing! There was an error while creating your account from which we were not able to recover."
+          flash[:error] = "This is embarrassing... There was an error while creating your account from which we were not able to recover."
           redirect_to root_url
         end
       else
         flash.delete(:recaptcha_error)
-        flash[:error] = "Sorry, there was an error with your reCAPTCHA answer!"
+        flash[:error] = "Sorry, there was an error with your reCAPTCHA answer."
         @authhash = session[:authhash]
         render :signup
       end
@@ -65,7 +65,7 @@ class ServicesController < ApplicationController
       session[:service_id] = nil
       session.delete :user_id
       session.delete :service_id
-      flash[:notice] = "You have been signed out!"
+      flash[:notice] = "You have been logged out."
     end  
     redirect_to root_url
   end
@@ -130,7 +130,7 @@ class ServicesController < ApplicationController
             session[:user_id] = auth.user.id
             session[:service_id] = auth.id
           
-            flash[:notice] = "Signed in successfully via " + @authhash[:provider].capitalize + ". Make sure your profile is up-to-date!"
+            flash[:notice] = "Logged in successfully via " + @authhash[:provider].capitalize + ". Make sure your profile is up-to-date!"
             if !session[:requested_url].nil?
               redirect_back
             elsif request.env['omniauth.origin']
@@ -156,7 +156,7 @@ class ServicesController < ApplicationController
   
   # callback: failure
   def failure
-    flash[:error] = "There was an error at the remote authentication service. You have not been signed in."
+    flash[:error] = "There was an error at the remote authentication service. You have not been logged in."
     redirect_to root_url
   end
 end
