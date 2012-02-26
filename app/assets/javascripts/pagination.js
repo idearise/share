@@ -2,6 +2,11 @@
 var Pagination = jQuery.sub();
 Pagination.fn.paginate = function (pageInfo, options) {
 	//check the extremes
+	pageInfo = {
+		total: Number(pageInfo.total),
+		count: Number(pageInfo.count),
+		start: Number(pageInfo.start)
+	};
 	var extremes = {
 		min: 1,
 		max: Math.ceil(pageInfo.total / pageInfo.count)
@@ -12,10 +17,12 @@ Pagination.fn.paginate = function (pageInfo, options) {
 	}
 
 	var perPage = pageInfo.count;
-	
+	console.log("Per Page: "+ perPage);
 	//this is the page number.
 	//page 1 should be start:0 and count:perPage
 	var currentPage = Math.ceil((pageInfo.start + 1) / perPage);
+	console.log(pageInfo);
+	console.log("currentPage: "+ currentPage);
 	
 	//make sure the currentPage is within boundaries
 	currentPage = Math.max(currentPage, extremes.min);
