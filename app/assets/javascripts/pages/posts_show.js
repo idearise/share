@@ -10,7 +10,7 @@ $(document).ready(function() {
     s.fetch({
         success: function(data) {
             //display the comments!
-            var user_ids = [data.source.user_id];
+            var user_ids = [data.source.user_key];
             var collectUserIds = function(data, root, level) {
 
                 $.each(data,
@@ -46,8 +46,8 @@ $(document).ready(function() {
                     return compiled;
                 };
                 var all = fun(data.comments['-1'] || [], data.comments, 0);
-                data.source.username = user_data[String(data.source.user_id)]["username"];
-                data.source.picture = user_data[String(data.source.user_id)]["picture"];
+                data.source.username = user_data[String(data.source.user_key)]["username"];
+                data.source.picture = user_data[String(data.source.user_key)]["picture"];
 
                 $('#post-header').html(template(data.source));
                 $('#post-text').html(data.source.text);

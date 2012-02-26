@@ -21,8 +21,13 @@
 
   <!-- CSS
   ================================================== -->
+  <% if not Rails.env.development? %>
   <link href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8/themes/base/jquery-ui.css" rel="stylesheet" type="text/css"/>
   <link href='http://fonts.googleapis.com/css?family=Open+Sans:400italic,700italic,400,700' rel='stylesheet' type='text/css'>
+  <% else %>
+	<%= stylesheet_link_tag "jquery-ui1-8"%>
+	<%= stylesheet_link_tag "gfontfamily"%>
+  <% end %>
   <%= stylesheet_link_tag "application" %>
   
   <!-- Favicons
