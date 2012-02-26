@@ -1,9 +1,20 @@
 development:
   endpoint: http://demo.ubuntu-dev.local:8081/api/v1
   api_key: 46181685de0c22b5169a6519861eced18f9a0a26
+  dimension_type_key: app
+test:
+  endpoint: http://test.ubuntu-dev.local:8081/api/v1
+  api_key: 46181685de0c22b5169a6519861eced18f9a0a26
+  dimension_type_key: app
 demo:
   endpoint: http://demo.sortary.com/api/v1
   api_key: 46181685de0c22b5169a6519861eced18f9a0a26
+  dimension_type_key: app
 staging:
   endpoint: http://s.sortary.com/api/v1
   api_key: 46181685de0c22b5169a6519861eced18f9a0a26
+  dimension_type_key: app
+production:
+  endpoint: http://www.sortary.com/api/v1
+  api_key: 46181685de0c22b5169a6519861eced18f9a0a26
+  dimension_type_key: app

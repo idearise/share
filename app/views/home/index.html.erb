@@ -1,6 +1,7 @@
 <% content_for :page_title do -%>Welcome<% end -%>
 
 <!-- HANDLEBARS TEMPLATES -->
+<div id="information" data-dimension-type-key="<%= Share.config.dimension_type_key %>"></div>
 <%= render partial: 'shared/handlebars/post', :locals => { :ident => '_post' }%>
 <!-- END HANDLEBARS TEMPLATES-->
 
