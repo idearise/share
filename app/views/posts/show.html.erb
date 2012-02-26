@@ -2,11 +2,13 @@
 <% content_for :content_header do -%>
 <div id="information" data-post-id="<%= @post_id %>" data-app-id="<%= params[:app_id] %>"></div>
 <div class="page-header">
+  <% if user_signed_in? -%>
   <div class="pull-right add-left">
     <a class="btn btn-large votesourceup">+</a> 
     <a class="btn btn-large votesourcedown">&#8722;</a>
     <a data-controls-modal="modal-edit-post" data-backdrop="static" class="btn btn-large btn-primary">Edit &rarr;</a>
   </div>
+  <% end -%>
   <div id="post-header">
     Loading...
   </div>

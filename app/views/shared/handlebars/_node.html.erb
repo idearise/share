@@ -4,12 +4,14 @@
     <div class="comment-anchor no-top no-bottom">
       <a class="comment-anchor no-top no-bottom" id="comment-{{id}}" name="comment-{{id}}">&nbsp;</a>
     </div>
+    <% if user_signed_in? -%>
     <div class="pull-right half-left">
       <a class="btn btn-small voteup" data-comment-id="{{id}}">+</a> 
       <a class="btn btn-small votedown" data-comment-id="{{id}}">&#8722;</a>
-	  <a class="btn btn-small editcomment" data-controls-modal="modal-edit-response" data-backdrop="static" data-comment-id="{{id}}" data-parent-id="{{parent_id}}">Edit &rarr;</a>
+  	  <a class="btn btn-small editcomment" data-controls-modal="modal-edit-response" data-backdrop="static" data-comment-id="{{id}}" data-parent-id="{{parent_id}}">Edit</a>
       <a class="btn btn-small response" data-controls-modal="modal-add-response" data-backdrop="static" data-comment-id="{{id}}">Reply</a>
     </div>  
+    <% end -%>
     <div class="pull-left"><img src="{{picture_small}}"></div>
     <div class="post-response">
       <span class="info">
