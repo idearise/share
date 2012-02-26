@@ -5,9 +5,9 @@
 <!-- END HANDLEBARS TEMPLATES-->
 
 <% content_for :include_js do %>
-<%= javascript_include_tag 'pages/home_index' %>
+  <%= javascript_include_tag 'pages/home_index' %>
 <% end %>
-<div class="row">
+<div class="row add-top">
   <div class="hero-unit panel span6 offset1 pull-left">
     <h1>Popular Apps <small><strong><a href="/apps/popular">more &rarr;</a></strong></small></h1>
   	<div id="popular_container">
@@ -26,7 +26,7 @@
   </div>
 
   <div class="span3 well panel yellow pull-right">
-    <h3>Showcase + Discuss + Grow</h3>
+    <h3 class="no-top">Showcase + Discuss + Grow</h3>
     <ul>
       <li class="black">Add your app and talk about how you made things work.</li>
       <li class="black">Get feedback from other developers and web + mobile experts.</li>
@@ -36,7 +36,7 @@
   </div>
 
   <div class="span3 well panel pull-right">  
-    <h3>How Did They Do That?</h3>
+    <h3 class="no-top">How Did They Do That?</h3>
     <p>
       If you're looking for information on how something was done, you've come in the right place!
     </p>
@@ -49,7 +49,7 @@
   </div>
 
   <div class="span3 well panel pull-right no-bottom">
-    <h2 class="half-bottom">Recent Apps <small><a href="/apps/recent">more &rarr;</a></small></h2>
+    <h2 class="no-top half-bottom">Recent Apps <small><a href="/apps/recent">more &rarr;</a></small></h2>
     <div id="recent_container">
 	  	<ul class="thumbnails">
   		<% @recent.each do |app|%>

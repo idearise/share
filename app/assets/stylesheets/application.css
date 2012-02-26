@@ -11,12 +11,19 @@
 
 /* Section element styles */
 body { 
-  padding-top:55px; 
+  padding-top: 45px; 
   background: url('square_bg.png'); 
   font-family: "Open Sans","Helvetica Neue",Helvetica,Arial,sans-serif;
 }
 
-.navbar .navbar-inner { background: url('random_grey_variations.png'); }
+.navbar .navbar-inner { 
+  background: url('random_grey_variations.png'); 
+  border-bottom: 5px solid #EEE;
+  -webkit-box-shadow: 0 2px 3px rgba(0, 0, 0, 0.25), inset 0 -1px 0 rgba(0, 0, 0, 0.1);
+  -moz-box-shadow: 0 2px 3px rgba(0, 0, 0, 0.25), inset 0 -1px 0 rgba(0, 0, 0, 0.1);
+  box-shadow: 0 2px 3px rgba(0, 0, 0, 0.25), inset 0 -1px 0 rgba(0, 0, 0, 0.1);
+}
+
 .brand { font-weight: 900; }
 
 .panel {  
@@ -101,7 +108,8 @@ label { font-weight: bold; }
 
 
 /* Layout classes */
-.inline { display: inline !important; }
+.inline { display:inline-block !important; }
+.sub { vertical-align:sub; }
 .nowrap { whitespace: nowrap !important; }
 
 .add-top { margin-top: 20px !important; }

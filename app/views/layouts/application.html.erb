@@ -71,10 +71,10 @@
       <% else -%>
       <ul class="nav pull-right">
         <li>
-          <%= link_to "Login With", "/signin", style: "display:inline-block;padding-top:0px;" -%> 
-          <a href="/auth/google" title="Facebook" style="display:inline-block;"><%= image_tag('facebook_32.png', height:"19", width:"19", style:"vertical-align:sub;") -%></a> 
-          <a href="/auth/google" title="Google" style="display:inline-block;"><%= image_tag('google_32.png', height:"19", width:"19", style:"vertical-align:sub;") -%></a> 
-          <a href="/auth/yahoo" title="Yahoo!" style="display:inline-block;"><%= image_tag('yahoo_32.png', height:"19", width:"19", style:"vertical-align:sub;") -%></a>
+          <%= link_to "Login With", "/signin", class: "inline" -%> 
+          <a href="/auth/google" title="Facebook" class="inline"><%= image_tag('facebook_32.png', height:"19", width:"19", class:"sub") -%></a> 
+          <a href="/auth/google" title="Google" class="inline"><%= image_tag('google_32.png', height:"19", width:"19", class:"sub") -%></a> 
+          <a href="/auth/yahoo" title="Yahoo!" class="inline"><%= image_tag('yahoo_32.png', height:"19", width:"19", class:"sub") -%></a>
         </li>
       </ul>
       <% end -%>
