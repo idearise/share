@@ -11,12 +11,19 @@
 
 /* Section element styles */
 body { 
-  padding-top:55px; 
+  padding-top: 45px; 
   background: url('square_bg.png'); 
   font-family: "Open Sans","Helvetica Neue",Helvetica,Arial,sans-serif;
 }
 
-.navbar .navbar-inner { background: url('random_grey_variations.png'); }
+.navbar .navbar-inner { 
+  background: #3c424c url('random_grey_variations.png'); 
+  border-bottom: 5px solid #EEE;
+  -webkit-box-shadow: 0 2px 3px rgba(0, 0, 0, 0.25), inset 0 -1px 0 rgba(0, 0, 0, 0.1);
+  -moz-box-shadow: 0 2px 3px rgba(0, 0, 0, 0.25), inset 0 -1px 0 rgba(0, 0, 0, 0.1);
+  box-shadow: 0 2px 3px rgba(0, 0, 0, 0.25), inset 0 -1px 0 rgba(0, 0, 0, 0.1);
+}
+
 .brand { font-weight: 900; }
 
 .panel {  
@@ -67,6 +74,7 @@ body {
 .hero-unit h1 a { color: #0AE; text-shadow: 1px 1px 2px #000; }
 .hero-unit h4 small { color: #333; }
 .hero-unit h4 a { color: #EEE; text-shadow: 1px 1px 2px #000; }
+.hero-unit .label { text-shadow: 1px 1px 2px #000; }
 
 /*.media-grid a { background: url('polaroid.png'); }*/
 .media-grid a { background: #FFFFFF; }
@@ -77,8 +85,7 @@ label { font-weight: bold; }
 
 .footer {
   margin-top: 20px;
-  background-color: #EEE;
-  background: url('bright_squares.png');
+  background: #EEE url('bright_squares.png');
   padding: 10px 0;
   text-shadow: 0 1px 0 white;
   border-top: 1px solid #E5E5E5;
@@ -90,13 +97,18 @@ label { font-weight: bold; }
 .post-title a { color: #BFBFBF; text-decoration: underline; }
 #post-header .post-title { margin-left:60px; }
 .post-summary { margin-left:46px; }
-.post-summary h4 { line-height: 16px; margin-top: 10px; margin-bottom: 10px; }
+.post-summary h4 { line-height: 16px; margin-top: 10px; margin-bottom: 4px; }
 .post-response { margin-left:46px; padding-right: 56px; }
 .post-response .info { color: #BFBFBF; }
+.post-response .info .title { color: #333; font-weight: bold; }
 .post-response .info a { color: #BFBFBF; text-decoration: underline; }
 
+.comment-anchor { position: relative; margin: 0; padding: 0; line-height: 0px; font-size: 0px; top: -50px; }
+
+
 /* Layout classes */
-.inline { display: inline !important; }
+.inline { display:inline-block !important; }
+.sub { vertical-align:sub; }
 .nowrap { whitespace: nowrap !important; }
 
 .add-top { margin-top: 20px !important; }

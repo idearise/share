@@ -33,7 +33,7 @@ $(document).ready(function() {
                     function(i, comment) {
                         //identify how much margin-left we want for this
                         comment.width = level * 46;
-                        comment.username = user_data[String(comment.user_key)]["username"];
+                        comment.nickname = user_data[String(comment.user_key)]["nickname"];
                         comment.picture_small = user_data[String(comment.user_key)]["picture_small"];
                         //compile
                         compiled.push(commentTmpl(comment));

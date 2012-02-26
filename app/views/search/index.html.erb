@@ -1,5 +1,6 @@
 <% content_for :page_title do -%>Search Results for <%= params[:query] -%><% end -%>
 <% content_for :content_header do -%>
+<div id="information" data-query="<%= params[:query] %>"></div>
 <div class="page-header">
   <div class="pull-right">
     <a href="/apps/new" class="btn btn-large btn-success">Add Your App &rarr;</a>
@@ -7,6 +8,12 @@
 
   <h1>Search Results for <%= params[:query] -%></h1>
 </div>
+<% end -%>
+
+<% content_for :include_js do %>
+  <%= render partial: 'shared/handlebars/app_post', :locals => { :ident => '_post', :app => @app }%>
+  <%= render partial: 'shared/handlebars/node_for_search', :locals => { :ident => 'node' }%>
+  <%= javascript_include_tag "pages/search_index"%>
 <% end -%>
 
 <div class="row">

@@ -1,12 +1,14 @@
-<% content_for :page_title do -%>This is a very long post title that seems to keep going and going... : example.com<% end -%>
+<% content_for :page_title do -%>FIXME PUT THE POST TITLE HERE : <%= @app.name -%><% end -%>
 <% content_for :content_header do -%>
 <div id="information" data-post-id="<%= @post_id %>" data-app-id="<%= params[:app_id] %>"></div>
 <div class="page-header">
+  <% if user_signed_in? -%>
   <div class="pull-right add-left">
     <a class="btn btn-large votesourceup">+</a> 
     <a class="btn btn-large votesourcedown">&#8722;</a>
     <a data-controls-modal="modal-edit-post" data-backdrop="static" class="btn btn-large btn-primary">Edit &rarr;</a>
   </div>
+  <% end -%>
   <div id="post-header">
     Loading...
   </div>
@@ -22,7 +24,7 @@
     </ul>
     <h3>File</h3>
     <ul>
-      <li><a href="">Architecture Overview.pptx</a></li>
+      <li><a href="">FIXME.txt</a></li>
     </ul>   
   </div>
 
@@ -35,7 +37,7 @@
     <% end -%>
     </div>
 
-    <h2 class="add-bottom">Responses <small>5 responses</small></h2> 
+    <h2 class="add-bottom">Responses <small>FIXME: 5 responses</small></h2> 
     <div id="comments-section">
   	Loading..
     </div>

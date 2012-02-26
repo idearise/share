@@ -3,8 +3,23 @@
   <div class="add-bottom">
   <div class="pull-left"><img src="{{picture_small}}" class="inline"></div>
   <div class="post-summary">
-    <h4><a href="/apps/{{dimension_keys}}/posts/{{id}}">{{title}}</a> <small>at {{domain}} +{{up}} -{{down}}</small> <span class="label source"><a href="{{url}}">link</a></span></h4>
-    <span class="nowrap">{{username}}</span> 
+    <h4><a href="/apps/{{dimension_keys}}/posts/{{id}}">{{title}}</a> 
+    <small>
+    {{#if domain}}
+    at {{domain}} 
+    {{/if}}
+    +{{up}} -{{down}}</small> 
+    {{#if text}}
+    <span class="label">topic</span> 
+    {{/if}}
+    {{#if file}}
+    <span class="label">file</span> 
+    {{/if}}
+    {{#if domain}}
+    <span class="label">link</span>
+  	{{/if}}
+    </h4>
+    <span class="nowrap">{{nickname}}</span> 
     &bull; {{created_at}}  
     &bull; {{dimension_names}}
     &bull; {{comments}} responses
