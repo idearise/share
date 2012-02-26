@@ -32,11 +32,13 @@ $(document).ready(function() {
 			var compiled = [];
 			
 			Users.getLabels($.map(sources.items, function (i, idx) {
-				return i.user_id;
+				return i.user_key;
 			}), function (user_data) {
+				
 				$.each(sources.items, function (idx, i) {
-					i.nickname = user_data[i["user_id"]]["nickname"];
-    			i.picture_small = user_data[i["user_id"]]["picture_small"];
+					//console.log(i)
+					i.username = user_data[i["user_key"]]["username"];
+          			i.picture_small = user_data[i["user_key"]]["picture_small"];
 					compiled.push(template(i));
 				});
 				$('#latest_sources_list').html(compiled.join(''));

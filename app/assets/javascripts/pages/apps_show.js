@@ -23,19 +23,23 @@ var loadSources = function (app_id, start, count) {
 				count: sources.count,
 				total: sources.total
 			};
-			console.log(sources);
+			
+			//console.log(sources);
 			limit = Math.min(limit,sources.items.length);
 			for(var x = 0; x < limit; x++) {
 				i = sources.items[x];
-				user_ids.push(i.user_id);
+				user_ids.push(i.user_key);
 				data.push(i);
 			}
 			if (data.length > 0) {
 				Users.getLabels(user_ids, function (user_data) {
 					$.each(data, function (idx, i) {
-						i.nickname = user_data[i["user_id"]]["nickname"];
-            			i.picture_small = user_data[i["user_id"]]["picture_small"];
-						compiled.push(template(i));
+						i.nickname = user_data[String(i["user_key"])]["nickname"];
+            			i.picture_small = user_data[String(i["user_key"])]["picture_small"];
+						i.picture = user_data[String(i["user_key"])]["picture"];
+						//console.log(user_data);
+						//console.log(i);
+						compiled.push(template(i))
 					});
 					$('#sources').html(compiled.join(''));
 

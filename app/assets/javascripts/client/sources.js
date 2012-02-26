@@ -16,7 +16,7 @@ Signalike.Source = function (id) {
 			context: config.context,
 			type: "GET",
 			success: function (data) {
-				//console.log(data);
+				console.log(data);
 				if (data.success) {
 					config.success.apply(config.context, [data]);
 				}
