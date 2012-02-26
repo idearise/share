@@ -5,8 +5,8 @@ var loadSources = function (app_id, start, count) {
 	
 	Signalike.Source.top({
 		dimension: app_id,
-		start: start || 0,
-		count: count || 10,
+		start: start,
+		count: count,
 		success: function (sources) {
 			var source   = $("#_post").html();
 			var pagination_source = $("#_pagination").html();
@@ -19,8 +19,8 @@ var loadSources = function (app_id, start, count) {
 			var data = [];
 			var user_ids = [];
 			var pageInfo = {
-				start: sources.start,
-				count: sources.count,
+				start: start,
+				count: count,
 				total: sources.total
 			};
 			
