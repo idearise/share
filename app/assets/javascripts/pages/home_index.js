@@ -13,7 +13,6 @@ $(document).ready(function() {
       dimension_keys: dimensionKeys.join(","),
       success: function(scores) {
 				$.each(scores.items, function (idx, i) {
-					i.nickname = i["score"];
 					$("#dimension-"+i["dimension_key"]).html(i["score"]+" Posts");
 				});
       }
