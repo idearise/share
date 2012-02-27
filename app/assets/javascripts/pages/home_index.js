@@ -36,7 +36,7 @@ $(document).ready(function() {
 				
 				$.each(sources.items, function (idx, i) {
 					//console.log(i)
-					i.username = user_data[i["user_key"]]["username"];
+					i.nickname = user_data[i["user_key"]]["nickname"];
           			i.picture_small = user_data[i["user_key"]]["picture_small"];
 					compiled.push(template(i));
 				});
