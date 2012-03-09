@@ -38,13 +38,24 @@ class ServicesController < ApplicationController
           session[:service_id] = @newuser.services.first.id
         
           flash[:notice] = "Your account has been created and you have been logged in. Don't forget to fill out your profile.".html_safe
-          if !session[:requested_url].nil?
-            redirect_back
-          elsif request.env['omniauth.origin']
-            redirect_to request.env['omniauth.origin']
+          response = RestClient.post(([Share.config.endpoint, 'users.json'].join('/') + "?api_key=" + Share.config.api_key), {
+            :role => "member", :user => {:key => @newuser.id}
+          })
+          result = ActiveSupport::JSON.decode(response.body)
+          logger.info(result.inspect)
+          if result['success']
+            if !session[:requested_url].nil?
+              redirect_back
+            elsif request.env['omniauth.origin']
+              redirect_to request.env['omniauth.origin']
+            else
+              redirect_back
+            end
           else
-            redirect_back
+            #take it all back!
+            @newuser.destroy
           end
+          
         else
           flash[:error] = "This is embarrassing... There was an error while creating your account from which we were not able to recover."
           redirect_to root_url

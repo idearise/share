@@ -22,3 +22,7 @@
 
 # We need this to be committed for a deployment to Heroku
 #config/share.yml
+config/share.yml.stephen
+config/database.yml.stephen
+
+notes.txt

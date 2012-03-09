@@ -8,7 +8,7 @@ class User < ActiveRecord::Base
   # BEHAVIORS
 
   # ASSOCIATIONS
-  has_many :services
+  has_many :services, :dependent => :destroy
   has_many :apps
 
   # CALLBACKS
