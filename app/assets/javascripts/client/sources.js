@@ -38,8 +38,8 @@ Signalike.Source.top = function (conf) {
 		context: conf.context || this
 	};
 	config.data = config.data || {};
-	if (conf.dimension) {
-		config.data.dimension = conf.dimension;
+	if (conf.category) {
+		config.data.category = conf.category;
 	}
 	if (conf.start) {
 		config.data.start = conf.start;
@@ -75,11 +75,11 @@ Signalike.Source.latest = function (conf) {
 	};
 	
 	config.data = config.data || {};
-	if (conf.dimension) {
-		config.data.dimension = conf.dimension;
+	if (conf.category) {
+		config.data.category = conf.category;
 	}
-	if (conf.dimension) {
-		config.data.dimension = conf.dimension;
+	if (conf.category) {
+		config.data.category = conf.category;
 	}
 	if (conf.start) {
 		config.data.start = conf.start;

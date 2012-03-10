@@ -1,5 +1,5 @@
 //static functions
-Signalike.Dimension = function(conf) {
+Signalike.Category = function(conf) {
 	conf = conf || {};
 	var config = {
 		success : conf.success || (function(){}),
@@ -7,14 +7,14 @@ Signalike.Dimension = function(conf) {
 		context: conf.context || this
 	};
 	config.data = config.data || {};
-	if (conf.dimension_type_key) {
-		config.data.dimension_type_key = conf.dimension_type_key;
+	if (conf.category_type_key) {
+		config.data.category_type_key = conf.category_type_key;
 	}
-	if (conf.dimension_keys) {
-		config.data.dimension_keys = conf.dimension_keys;
+	if (conf.category_keys) {
+		config.data.category_keys = conf.category_keys;
 	}
 
-	$.ajax(Signalike.urlFor('dimensions','scores'), {
+	$.ajax(Signalike.urlFor('categories','scores'), {
 		dataType: 'JSONP',
 		data: config.data,
 		context: config.context,

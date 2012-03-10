@@ -1,19 +1,19 @@
 $(document).ready(function() {
 	// Get the app ids that need number of posts
-	var dimensionTypeKey = $('#information').attr('data-dimension-type-key');
-	var dimensionScores = $('div[data-placeholder="dimension-score"]');
-	var dimensionKeys = []
-	$.each(dimensionScores, function(idx, d) {
-		dimensionKeys.push($(d).data("dimension-key"));
+	var categoryTypeKey = $('#information').attr('data-category-type-key');
+	var categoryScores = $('div[data-placeholder="category-score"]');
+	var categoryKeys = []
+	$.each(categoryScores, function(idx, d) {
+		categoryKeys.push($(d).data("category-key"));
 	});
 
 	// Show the number of posts per app displayed on the page
-  var d = new Signalike.Dimension({
-	  	dimension_type_key: dimensionTypeKey,
-      dimension_keys: dimensionKeys.join(","),
+  var d = new Signalike.Category({
+	  	category_type_key: categoryTypeKey,
+      category_keys: categoryKeys.join(","),
       success: function(scores) {
 				$.each(scores.items, function (idx, i) {
-					$("#dimension-"+i["dimension_key"]).html(i["score"]+" Posts");
+					$("#category-"+i["category_key"]).html(i["score"]+" Posts");
 				});
       }
   });

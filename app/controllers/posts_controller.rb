@@ -17,7 +17,7 @@ class PostsController < ApplicationController
   def create
     #[Share.config.endpoint, 'sources.json'].join('/') + "?api_key=" + Share.config.api_key
     response = RestClient.post(([Share.config.endpoint, 'sources.json'].join('/') + "?api_key=" + Share.config.api_key), {
-      :source => params[:source], :dimension_ids => @app.id, :user_key => current_user.id, :user_role => "moderator"
+      :source => params[:source], :category_ids => @app.id, :user_key => current_user.id, :user_role => "moderator"
     })
     
     render :text => response.body
@@ -26,7 +26,7 @@ class PostsController < ApplicationController
   # PUT / POST
   def update
     response = RestClient.post(([Share.config.endpoint,  'sources', params[:id] + '.json'].join('/') + "?api_key=" + Share.config.api_key), {
-      :source => params[:source], :dimension_ids => @app.id, :user_key => current_user.id, :_method => :put,
+      :source => params[:source], :category_ids => @app.id, :user_key => current_user.id, :_method => :put,
       :user_role => "moderator"
     })
     
@@ -37,7 +37,7 @@ class PostsController < ApplicationController
   def voteup
     response = RestClient.post(([Share.config.endpoint, 'sources', params[:id] ,'up.json'].join('/') + "?api_key=" + Share.config.api_key), {
       :source_id => params[:post_id], 
-      :dimension_keys => params[:app_id],
+      :category_keys => params[:app_id],
       :user_key => current_user.id
     })
     #Rails.logger.debug(response.inspect)
@@ -48,7 +48,7 @@ class PostsController < ApplicationController
   def votedown
     response = RestClient.post(([Share.config.endpoint, 'sources', params[:id],'down.json'].join('/') + "?api_key=" + Share.config.api_key), {
       :source_id => params[:post_id], 
-      :dimension_keys => params[:app_id],
+      :category_keys => params[:app_id],
       :user_key => current_user.id
     })
     #Rails.logger.debug(response.inspect)

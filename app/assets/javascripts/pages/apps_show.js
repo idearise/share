@@ -4,7 +4,7 @@ var loadSources = function (app_id, start, count) {
 	};
 	
 	Signalike.Source.top({
-		dimension: app_id,
+		category: app_id,
 		start: start,
 		count: count,
 		success: function (sources) {
