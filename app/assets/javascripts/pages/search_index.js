@@ -47,7 +47,7 @@ $(document).ready(function() {
                     $.each(commentsData, function (idx, i) {
                         i.nickname = userData[commentsData[idx]["user"]["key"]]["nickname"];
                         i.picture_small = userData[commentsData[idx]["user"]["key"]]["picture_small"];
-                        i.dimension_key = commentsData[idx]["dimensions"][0]["key"];
+                        i.category_key = commentsData[idx]["categories"][0]["key"];
                         commentsCompiled.push(commentTemplate(i));
                     });
                     $('#comments').html(commentsCompiled.join(''));

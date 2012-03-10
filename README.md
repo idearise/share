@@ -20,7 +20,7 @@
     development:
       endpoint: http://192.168.1.7:8081/api/v1
       api_key: 879b1f71a1f61abc97e64e93cc68e7543ef4e85c
-      dimension_type_key: app
+      category_type_key: app
 </pre>
 
 * bundle exec rake setup
